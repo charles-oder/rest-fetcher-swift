@@ -41,6 +41,7 @@ public class RestFetcher {
     
     func urlSessionComplete(data:NSData?, response:NSURLResponse?, error:NSError?) {
         guard let urlResponse = response as? NSHTTPURLResponse else {
+            errorCallback(error: RestError(code: RestResponseCode.UNKNOWN.rawValue, reason: "Network Error"))
             return
         }
         var body = ""

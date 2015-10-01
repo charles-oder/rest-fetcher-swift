@@ -97,4 +97,16 @@ class RestFetcherTests: XCTestCase {
         XCTAssertTrue(errorFlag)
     }
     
+    func testNonNSHTTPURLResponse() {
+        testObject = RestFetcher(resource: "", method: RestMethod.GET, headers: Dictionary<String, String>(), body: "", successCallback: {(response:RestResponse) in
+                XCTFail("Should not have been called")
+            }, errorCallback: {(error:RestError) in
+                XCTAssertEqual(error.code, 999)
+                XCTAssertEqual("Network Error", error.reason)
+        })
+        let mockResponse = NSURLResponse()
+        let data = "{\"thing\":\"one\"}".dataUsingEncoding(NSUTF8StringEncoding)
+        testObject?.urlSessionComplete(data, response: mockResponse, error: NSError(domain: "", code: -1, userInfo: nil))
+    }
+    
 }
