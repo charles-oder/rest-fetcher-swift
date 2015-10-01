@@ -20,7 +20,7 @@ public class RestFetcher {
         self.errorCallback = errorCallback
     }
     
-    public func setUrlSession(session: NSURLSession) {
+    func setUrlSession(session: NSURLSession) {
         self.session = session
     }
     
@@ -82,10 +82,9 @@ public class RestFetcher {
         return code >= 200 && code <= 299
     }
     
-    func fetch() {
+    public func fetch() {
         let task = session.dataTaskWithRequest(createRequest(), completionHandler: urlSessionComplete)
         task.resume()
-        
     }
     
 
