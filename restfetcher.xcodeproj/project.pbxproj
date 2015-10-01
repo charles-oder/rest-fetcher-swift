@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E100771C1BBCBA0D005AC530 /* RestFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771B1BBCBA0D005AC530 /* RestFetcher.swift */; settings = {ASSET_TAGS = (); }; };
+		E100771D1BBCBA0D005AC530 /* RestFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771B1BBCBA0D005AC530 /* RestFetcher.swift */; settings = {ASSET_TAGS = (); }; };
+		E100771F1BBCBA3D005AC530 /* RestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771E1BBCBA3D005AC530 /* RestMethod.swift */; settings = {ASSET_TAGS = (); }; };
+		E10077201BBCBA3D005AC530 /* RestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771E1BBCBA3D005AC530 /* RestMethod.swift */; settings = {ASSET_TAGS = (); }; };
+		E10077231BBCBBD6005AC530 /* RestResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077221BBCBBD6005AC530 /* RestResponseCode.swift */; settings = {ASSET_TAGS = (); }; };
+		E10077241BBCBBD6005AC530 /* RestResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077221BBCBBD6005AC530 /* RestResponseCode.swift */; settings = {ASSET_TAGS = (); }; };
+		E10077261BBCBC0E005AC530 /* RestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077251BBCBC0E005AC530 /* RestResponse.swift */; settings = {ASSET_TAGS = (); }; };
+		E10077271BBCBC0E005AC530 /* RestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077251BBCBC0E005AC530 /* RestResponse.swift */; settings = {ASSET_TAGS = (); }; };
+		E10077281BBCBC3D005AC530 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10077121BBCB6EF005AC530 /* SwiftyJSON.framework */; };
+		E100772A1BBCBCCA005AC530 /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077291BBCBCCA005AC530 /* RestError.swift */; settings = {ASSET_TAGS = (); }; };
+		E100772B1BBCBCCA005AC530 /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077291BBCBCCA005AC530 /* RestError.swift */; settings = {ASSET_TAGS = (); }; };
 		E1B154651BBC9FF000A763BC /* restfetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = E1B154641BBC9FF000A763BC /* restfetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1B1546C1BBC9FF000A763BC /* restfetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B154611BBC9FF000A763BC /* restfetcher.framework */; settings = {ASSET_TAGS = (); }; };
 		E1B154711BBC9FF000A763BC /* restfetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B154701BBC9FF000A763BC /* restfetcherTests.swift */; };
@@ -59,6 +70,11 @@
 
 /* Begin PBXFileReference section */
 		E10077091BBCB6EE005AC530 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = submodules/SwiftyJSON/SwiftyJSON.xcodeproj; sourceTree = "<group>"; };
+		E100771B1BBCBA0D005AC530 /* RestFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestFetcher.swift; sourceTree = "<group>"; };
+		E100771E1BBCBA3D005AC530 /* RestMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestMethod.swift; sourceTree = "<group>"; };
+		E10077221BBCBBD6005AC530 /* RestResponseCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestResponseCode.swift; sourceTree = "<group>"; };
+		E10077251BBCBC0E005AC530 /* RestResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestResponse.swift; sourceTree = "<group>"; };
+		E10077291BBCBCCA005AC530 /* RestError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestError.swift; sourceTree = "<group>"; };
 		E1B154611BBC9FF000A763BC /* restfetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = restfetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B154641BBC9FF000A763BC /* restfetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = restfetcher.h; sourceTree = "<group>"; };
 		E1B154661BBC9FF000A763BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E10077281BBCBC3D005AC530 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +139,11 @@
 			children = (
 				E1B154641BBC9FF000A763BC /* restfetcher.h */,
 				E1B154661BBC9FF000A763BC /* Info.plist */,
+				E100771B1BBCBA0D005AC530 /* RestFetcher.swift */,
+				E100771E1BBCBA3D005AC530 /* RestMethod.swift */,
+				E10077221BBCBBD6005AC530 /* RestResponseCode.swift */,
+				E10077251BBCBC0E005AC530 /* RestResponse.swift */,
+				E10077291BBCBCCA005AC530 /* RestError.swift */,
 			);
 			path = restfetcher;
 			sourceTree = "<group>";
@@ -191,6 +213,7 @@
 		E1B154581BBC9FF000A763BC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Charles Oder";
 				TargetAttributes = {
@@ -286,6 +309,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E100771F1BBCBA3D005AC530 /* RestMethod.swift in Sources */,
+				E100772A1BBCBCCA005AC530 /* RestError.swift in Sources */,
+				E100771C1BBCBA0D005AC530 /* RestFetcher.swift in Sources */,
+				E10077261BBCBC0E005AC530 /* RestResponse.swift in Sources */,
+				E10077231BBCBBD6005AC530 /* RestResponseCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,7 +321,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E100772B1BBCBCCA005AC530 /* RestError.swift in Sources */,
 				E1B154711BBC9FF000A763BC /* restfetcherTests.swift in Sources */,
+				E10077241BBCBBD6005AC530 /* RestResponseCode.swift in Sources */,
+				E10077201BBCBA3D005AC530 /* RestMethod.swift in Sources */,
+				E100771D1BBCBA0D005AC530 /* RestFetcher.swift in Sources */,
+				E10077271BBCBC0E005AC530 /* RestResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +378,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -387,7 +420,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -400,30 +433,33 @@
 		E1B154761BBC9FF000A763BC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = restfetcher/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = us.oder.ios.restfetcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		E1B154771BBC9FF000A763BC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = restfetcher/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = us.oder.ios.restfetcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
