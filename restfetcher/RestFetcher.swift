@@ -20,14 +20,10 @@ public class RestFetcher {
         self.errorCallback = errorCallback
     }
     
-    func setUrlSession(session: NSURLSession) {
-        self.session = session
+    public func fetch() {
+        let task = session.dataTaskWithRequest(createRequest(), completionHandler: urlSessionComplete)
+        task.resume()
     }
-    
-    private func getUrl() -> NSURL {
-        return NSURL(string: resource)!
-    }
-    
     
     public func createRequest() -> NSURLRequest {
         let request = NSMutableURLRequest(URL: getUrl(), cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval:timeout)
@@ -37,20 +33,12 @@ public class RestFetcher {
         addHeaders(request)
         
         addBody(request)
-
+        
         return request
     }
     
-    private func addHeaders(request:NSMutableURLRequest) {
-        for (key, value) in headers {
-            request.addValue(value, forHTTPHeaderField: key)
-        }
-    }
-    
-    private func addBody(request:NSMutableURLRequest) {
-        if let str = body {
-            request.HTTPBody = str.dataUsingEncoding(NSUTF8StringEncoding)
-        }
+    func setUrlSession(session: NSURLSession) {
+        self.session = session
     }
     
     func urlSessionComplete(data:NSData?, response:NSURLResponse?, error:NSError?) {
@@ -68,6 +56,22 @@ public class RestFetcher {
         }
     }
     
+    private func getUrl() -> NSURL {
+        return NSURL(string: resource)!
+    }
+    
+    private func addHeaders(request:NSMutableURLRequest) {
+        for (key, value) in headers {
+            request.addValue(value, forHTTPHeaderField: key)
+        }
+    }
+    
+    private func addBody(request:NSMutableURLRequest) {
+        if let str = body {
+            request.HTTPBody = str.dataUsingEncoding(NSUTF8StringEncoding)
+        }
+    }
+    
     private func dataToString(data:NSData?) -> String {
         var output = ""
         if let d = data {
@@ -82,10 +86,4 @@ public class RestFetcher {
         return code >= 200 && code <= 299
     }
     
-    public func fetch() {
-        let task = session.dataTaskWithRequest(createRequest(), completionHandler: urlSessionComplete)
-        task.resume()
-    }
-    
-
 }
