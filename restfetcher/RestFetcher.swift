@@ -24,7 +24,7 @@ public class RestFetcher {
         self.session = session
     }
     
-    func getUrl() -> NSURL {
+    private func getUrl() -> NSURL {
         return NSURL(string: resource)!
     }
     

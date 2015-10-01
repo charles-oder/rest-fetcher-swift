@@ -17,7 +17,7 @@ class RestFetcherTests: XCTestCase {
     }
 
     func testResourceUrl() {
-        let actualUrl = self.testObject!.getUrl()
+        let actualUrl = self.testObject!.createRequest().URL
         let expectedUrl = NSURL(string: "http://google.com/api/login")
         XCTAssertEqual(actualUrl, expectedUrl!)
     }
