@@ -84,7 +84,8 @@ class RestFetcherTests: XCTestCase {
         testObject = RestFetcher(resource: "", method: RestMethod.GET, headers: Dictionary<String, String>(), body: "", successCallback: {(response:RestResponse) in
                 XCTFail("Should not have been called")
             }, errorCallback: {(error:RestError) in
-            XCTAssertEqual(error.code, -1)
+                XCTAssertEqual(error.code, -1)
+                XCTAssertEqual("Network Error", error.reason)
                 errorFlag = true
             })
         let mockResponse = NSHTTPURLResponse(URL: NSURL(string:"")!, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: Dictionary<String, String>())

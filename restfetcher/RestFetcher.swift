@@ -50,7 +50,7 @@ public class RestFetcher {
             }
         }
         if let e = error {
-            errorCallback(error: RestError(code: e.code, reason: "WTF"))
+            errorCallback(error: RestError(code: e.code, reason: "Network Error"))
         } else  if isSuccessCode(urlResponse.statusCode) {
             successCallback(response: RestResponse(headers: Dictionary<String, String>(), code: RestResponseCode.getResponseCode(urlResponse.statusCode), body: body))
         } else {
