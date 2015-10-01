@@ -20,6 +20,10 @@ public class RestFetcher {
         self.errorCallback = errorCallback
     }
     
+    public func setUrlSession(session: NSURLSession) {
+        self.session = session
+    }
+    
     func getUrl() -> NSURL {
         return NSURL(string: resource)!
     }
@@ -62,4 +66,12 @@ public class RestFetcher {
     private func isSuccessCode(code: Int) -> Bool {
         return code >= 200 && code <= 299
     }
+    
+    func fetch() {
+        let task = session.dataTaskWithRequest(createRequest(), completionHandler: urlSessionComplete)
+        task.resume()
+        
+    }
+    
+
 }

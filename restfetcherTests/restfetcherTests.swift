@@ -109,4 +109,35 @@ class RestFetcherTests: XCTestCase {
         testObject?.urlSessionComplete(data, response: mockResponse, error: NSError(domain: "", code: -1, userInfo: nil))
     }
     
+    func testFetch() {
+        class mockTask : NSURLSessionDataTask {
+            var resumeCalled = false
+            private override func resume() {
+                resumeCalled = true
+            }
+        }
+        class mockSession : NSURLSession {
+            let headers : Dictionary<String, String> = ["header1":"one", "header2":"two"]
+            var dataTaskCalled = false
+            var urlRequest :NSURLRequest?
+            var mockTaskObject = mockTask()
+            private override func dataTaskWithRequest(request: NSURLRequest, completionHandler: (NSData?, NSURLResponse?, NSError?) -> Void) -> NSURLSessionDataTask {
+                urlRequest = request
+                dataTaskCalled = true
+                XCTAssertEqual("{\"thing\":\"one\", \"otherThing\":\"two\"}", NSString(data: request.HTTPBody!, encoding: NSUTF8StringEncoding))
+                XCTAssertEqual("POST", request.HTTPMethod)
+                for (key, value) in request.allHTTPHeaderFields! {
+                    XCTAssertEqual(headers[key], value)
+                }
+                return mockTaskObject
+            }
+        }
+        let mockSessionObject = mockSession()
+        testObject!.setUrlSession(mockSessionObject)
+        testObject?.fetch()
+        
+        XCTAssertTrue(mockSessionObject.dataTaskCalled)
+        XCTAssertTrue(mockSessionObject.mockTaskObject.resumeCalled)
+    }
+    
 }
