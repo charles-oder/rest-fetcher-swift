@@ -31,16 +31,26 @@ public class RestFetcher {
     
     public func createRequest() -> NSURLRequest {
         let request = NSMutableURLRequest(URL: getUrl(), cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval:timeout)
-        request.HTTPBody = "".dataUsingEncoding(NSUTF8StringEncoding)
+        
         request.HTTPMethod = method.rawValue
+        
+        addHeaders(request)
+        
+        addBody(request)
+
+        return request
+    }
+    
+    private func addHeaders(request:NSMutableURLRequest) {
         for (key, value) in headers {
             request.addValue(value, forHTTPHeaderField: key)
         }
+    }
+    
+    private func addBody(request:NSMutableURLRequest) {
         if let str = body {
             request.HTTPBody = str.dataUsingEncoding(NSUTF8StringEncoding)
         }
-
-        return request
     }
     
     func urlSessionComplete(data:NSData?, response:NSURLResponse?, error:NSError?) {
@@ -48,19 +58,24 @@ public class RestFetcher {
             errorCallback(error: RestError(code: RestResponseCode.UNKNOWN.rawValue, reason: "Network Error"))
             return
         }
-        var body = ""
-        if let d = data {
-            if let str = NSString(data: d, encoding: NSUTF8StringEncoding) {
-                body = str as String
-            }
-        }
+        
         if let e = error {
             errorCallback(error: RestError(code: e.code, reason: "Network Error"))
         } else  if isSuccessCode(urlResponse.statusCode) {
-            successCallback(response: RestResponse(headers: Dictionary<String, String>(), code: RestResponseCode.getResponseCode(urlResponse.statusCode), body: body))
+            successCallback(response: RestResponse(headers: Dictionary<String, String>(), code: RestResponseCode.getResponseCode(urlResponse.statusCode), body: dataToString(data)))
         } else {
-            errorCallback(error: RestError(code: urlResponse.statusCode, reason: body))
+            errorCallback(error: RestError(code: urlResponse.statusCode, reason: dataToString(data)))
         }
+    }
+    
+    private func dataToString(data:NSData?) -> String {
+        var output = ""
+        if let d = data {
+            if let str = NSString(data: d, encoding: NSUTF8StringEncoding) {
+                output = str as String
+            }
+        }
+        return output
     }
     
     private func isSuccessCode(code: Int) -> Bool {
