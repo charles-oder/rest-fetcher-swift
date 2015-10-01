@@ -56,10 +56,13 @@ class RestFetcherTests: XCTestCase {
             XCTFail("Should not have been called")
             }, errorCallback: {(error:RestError) in
                 XCTAssertEqual(error.code, 400)
+                XCTAssertEqual("Refused Connection", error.reason)
               errorFlag = true
             })
         let mockResponse = NSHTTPURLResponse(URL: NSURL(string:"")!, statusCode: 400, HTTPVersion: "HTTP/1.1", headerFields: Dictionary<String, String>())
-        testObject?.urlSessionComplete(nil, response: mockResponse, error: nil)
+        let str = "Refused Connection"
+        let data = str.dataUsingEncoding(NSUTF8StringEncoding)
+        testObject?.urlSessionComplete(data, response: mockResponse, error: nil)
         XCTAssertTrue(errorFlag)
     }
     

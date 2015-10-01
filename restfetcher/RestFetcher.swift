@@ -54,7 +54,7 @@ public class RestFetcher {
         } else  if isSuccessCode(urlResponse.statusCode) {
             successCallback(response: RestResponse(headers: Dictionary<String, String>(), code: RestResponseCode.getResponseCode(urlResponse.statusCode), body: body))
         } else {
-            errorCallback(error: RestError(code: urlResponse.statusCode, reason: "WTF"))
+            errorCallback(error: RestError(code: urlResponse.statusCode, reason: body))
         }
     }
     
