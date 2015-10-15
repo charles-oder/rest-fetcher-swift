@@ -31,9 +31,9 @@ enum RestResponseCode : Int {
             case .OK:
                 return "OK"
             case .NO_CONTENT:
-                return "NO_CONTENT"
+                return "NO CONTENT"
             case .BAD_REQUEST:
-                return "BAD_REQUEST"
+                return "BAD REQUEST"
             case .UNAUTHORIZED:
                 return "UNAUTHORIZED"
             case .FORBIDDEN:
@@ -41,11 +41,11 @@ enum RestResponseCode : Int {
             case .CONFLICT:
                 return "CONFLICT"
             case .INTERNAL_SERVER_ERROR:
-                return "INTERNAL_SERVER_ERROR"
+                return "INTERNAL SERVER ERROR"
             case .METHOD_NOT_ALLOWED:
-                return "METHOD_NOT_ALLOWED"
+                return "METHOD NOT ALLOWED"
             case .REQUEST_TIMEOUT:
-                return "REQUEST_TIMEOUT"
+                return "REQUEST TIMEOUT"
             case .UNKNOWN:
                 return "UNKNOWN"
             }

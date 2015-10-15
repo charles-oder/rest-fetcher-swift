@@ -13,12 +13,12 @@ public class RestResponse : AnyObject {
         self.code = code
         self.body = body
         var error : NSError?
+        var json : JSON?
         if let data = body.dataUsingEncoding(NSUTF8StringEncoding) {
             json = JSON(data:data, options:NSJSONReadingOptions.AllowFragments, error:&error)
-        } else {
-            json = JSON([])
-            error = NSError(domain: "Sensi", code: 999, userInfo:["NSDebugDescritpion":"Non-String Response Data"])
         }
+        self.json = json
         jsonParseError = error
     }
+    
 }

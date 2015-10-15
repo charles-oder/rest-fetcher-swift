@@ -21,6 +21,8 @@
 		E1B154651BBC9FF000A763BC /* restfetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = E1B154641BBC9FF000A763BC /* restfetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1B1546C1BBC9FF000A763BC /* restfetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B154611BBC9FF000A763BC /* restfetcher.framework */; settings = {ASSET_TAGS = (); }; };
 		E1B154711BBC9FF000A763BC /* restfetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B154701BBC9FF000A763BC /* restfetcherTests.swift */; };
+		E1CA987C1BCF3D48003E0793 /* RestResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CA987B1BCF3D48003E0793 /* RestResponseTests.swift */; settings = {ASSET_TAGS = (); }; };
+		E1CA98831BCF4A72003E0793 /* RestResponseCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CA98821BCF4A72003E0793 /* RestResponseCodeTests.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		E1B1546B1BBC9FF000A763BC /* restfetcherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = restfetcherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B154701BBC9FF000A763BC /* restfetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = restfetcherTests.swift; sourceTree = "<group>"; };
 		E1B154721BBC9FF000A763BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1CA987B1BCF3D48003E0793 /* RestResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestResponseTests.swift; sourceTree = "<group>"; };
+		E1CA98821BCF4A72003E0793 /* RestResponseCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestResponseCodeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,8 @@
 			children = (
 				E1B154701BBC9FF000A763BC /* restfetcherTests.swift */,
 				E1B154721BBC9FF000A763BC /* Info.plist */,
+				E1CA987B1BCF3D48003E0793 /* RestResponseTests.swift */,
+				E1CA98821BCF4A72003E0793 /* RestResponseCodeTests.swift */,
 			);
 			path = restfetcherTests;
 			sourceTree = "<group>";
@@ -322,7 +328,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E100772B1BBCBCCA005AC530 /* RestError.swift in Sources */,
+				E1CA98831BCF4A72003E0793 /* RestResponseCodeTests.swift in Sources */,
 				E1B154711BBC9FF000A763BC /* restfetcherTests.swift in Sources */,
+				E1CA987C1BCF3D48003E0793 /* RestResponseTests.swift in Sources */,
 				E10077241BBCBBD6005AC530 /* RestResponseCode.swift in Sources */,
 				E10077201BBCBA3D005AC530 /* RestMethod.swift in Sources */,
 				E100771D1BBCBA0D005AC530 /* RestFetcher.swift in Sources */,
