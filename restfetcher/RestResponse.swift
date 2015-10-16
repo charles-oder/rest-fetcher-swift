@@ -3,7 +3,7 @@ import SwiftyJSON
 
 public class RestResponse : AnyObject {
     let headers : Dictionary<String, String>!
-    let code : RestResponseCode!
+    let code : RestResponseCode
     let body : String!
     let json : JSON!
     let jsonParseError : NSError?

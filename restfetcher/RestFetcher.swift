@@ -1,6 +1,16 @@
 import Foundation
 
+public protocol RestFetcherBuilder {
+    func createRestFetcher(resource: String, method: RestMethod, headers:Dictionary<String, String>, body:String, successCallback: (response:RestResponse)->(), errorCallback:(error:RestError)->()) -> RestFetcher;
+}
+
 public class RestFetcher {
+    
+    public class Builder : RestFetcherBuilder {
+        public func createRestFetcher(resource: String, method: RestMethod, headers:Dictionary<String, String>, body:String, successCallback: (response:RestResponse)->(), errorCallback:(error:RestError)->()) -> RestFetcher {
+            return RestFetcher(resource: resource, method: method, headers: headers, body: body, successCallback: successCallback, errorCallback: errorCallback)
+        }
+    }
 
     private let timeout: NSTimeInterval = 30
     private let resource: String!
