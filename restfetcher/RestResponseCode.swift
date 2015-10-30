@@ -1,6 +1,6 @@
 import Foundation
 
-enum RestResponseCode : Int {
+public enum RestResponseCode : Int {
     
     case NOT_FOUND = 404
     case OK = 200

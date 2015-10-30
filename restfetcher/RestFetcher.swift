@@ -44,6 +44,8 @@ public class RestFetcher {
         
         addBody(request)
         
+        logRequest(request)
+        
         return request
     }
     
@@ -56,6 +58,8 @@ public class RestFetcher {
             errorCallback(error: RestError(code: RestResponseCode.UNKNOWN.rawValue, reason: "Network Error"))
             return
         }
+        
+        logResponse(urlResponse, data: data)
         
         if let e = error {
             errorCallback(error: RestError(code: e.code, reason: "Network Error"))
@@ -80,6 +84,26 @@ public class RestFetcher {
         if let str = body {
             request.HTTPBody = str.dataUsingEncoding(NSUTF8StringEncoding)
         }
+    }
+    
+    private func logRequest(request:NSMutableURLRequest) {
+        print("making \(method.rawValue) call...")
+        print("URL: \(resource)")
+        print("Headers:")
+        for (key, val) in headers {
+            print("\(key): \(val)")
+        }
+        print("Body: \(body)")
+
+    }
+    
+    private func logResponse(response: NSHTTPURLResponse, data: NSData?) {
+        print("\(method.rawValue) response received:")
+        print("Headers:")
+        for (key, val) in response.allHeaderFields {
+            print("\(key): \(val)")
+        }
+        print("Body: \(dataToString(data))")
     }
     
     private func dataToString(data:NSData?) -> String {

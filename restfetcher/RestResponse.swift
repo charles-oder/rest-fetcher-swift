@@ -2,11 +2,11 @@ import Foundation
 import SwiftyJSON
 
 public class RestResponse : AnyObject {
-    let headers : Dictionary<String, String>!
-    let code : RestResponseCode
-    let body : String!
-    let json : JSON!
-    let jsonParseError : NSError?
+    public let headers : Dictionary<String, String>!
+    public let code : RestResponseCode
+    public let body : String!
+    public let json : JSON!
+    public let jsonParseError : NSError?
     
     init(headers: Dictionary<String, String>, code: RestResponseCode, body: String) {
         self.headers = headers
