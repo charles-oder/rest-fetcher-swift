@@ -11,16 +11,16 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         var successCallback : (response:T)->() = {(response: RestApiBaseResponse)->()in}
         var errorCallback : (error:RestError)->() = {(error:RestError)->()in}
         
-        convenience public init (successCallback:(response:T)->(), errorCallback:(error:RestError)->()) {
-            self.init(restFetcherBuilder:RestFetcher.Builder(), successCallback:successCallback, errorCallback:errorCallback);
-        }
-        
-        public init(restFetcherBuilder: RestFetcherBuilder, successCallback:(response:T)->(), errorCallback:(error:RestError)->()) {
+        public init(successCallback:(response:T)->(), errorCallback:(error:RestError)->()) {
             self.successCallback = successCallback
             self.errorCallback = errorCallback
+            self.restFetcherBuilder = RestFetcher.Builder()
+        }
+    
+        public func setRestFetcherBuilder(restFetcherBuilder: RestFetcherBuilder) {
             self.restFetcherBuilder = restFetcherBuilder
         }
-        
+    
         func getRestMethod() -> RestMethod {
             return RestMethod.GET
         }

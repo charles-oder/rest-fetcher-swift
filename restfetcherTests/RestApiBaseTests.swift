@@ -36,8 +36,8 @@ class SensiApiBaseTests: XCTestCase {
     func testFilledBodyDict() {
         class MockRequest : RestApiBaseRequest<RestApiBaseResponse> {
             
-            override init(restFetcherBuilder: RestFetcherBuilder, successCallback: (response: RestApiBaseResponse) -> (), errorCallback: (error: RestError) -> ()) {
-                super.init(restFetcherBuilder: restFetcherBuilder, successCallback: successCallback, errorCallback: errorCallback)
+            override init(successCallback: (response: RestApiBaseResponse) -> (), errorCallback: (error: RestError) -> ()) {
+                super.init(successCallback: successCallback, errorCallback: errorCallback)
             }
             
             private override func getBodyDict() -> Dictionary<String, AnyObject> {
