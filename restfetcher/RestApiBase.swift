@@ -21,15 +21,15 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
             self.restFetcherBuilder = restFetcherBuilder
         }
     
-        func getRestMethod() -> RestMethod {
+        public func getRestMethod() -> RestMethod {
             return RestMethod.GET
         }
         
-        func getApiResource() -> String {
+        public func getApiResource() -> String {
             return "http://google.com"
         }
         
-        func getBody() -> String {
+        public func getBody() -> String {
             let bodyDict = getBodyDict()
             if bodyDict.count == 0 {
                 return ""
@@ -43,12 +43,12 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
             return "" // will never be hit in this code
         }
     
-        func getBodyDict() -> Dictionary<String, AnyObject> {
+        public func getBodyDict() -> Dictionary<String, AnyObject> {
             return Dictionary<String, AnyObject>()
         }
 
         
-        func getHeaders() -> Dictionary<String, String> {
+        public func getHeaders() -> Dictionary<String, String> {
             var headers = Dictionary<String,String>()
             headers["Accept"] = "application/json; version=1"
             headers["Content-Type"] = "application/json; charset=utf-8"
@@ -71,11 +71,11 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
             }
         }
         
-        func prepare() {
+        public func prepare() {
             _restFetcher = restFetcherBuilder.createRestFetcher(getApiResource(), method: getRestMethod(), headers: getHeaders(), body: getBody(), successCallback: restFetcherSuccess, errorCallback: restFetcherError)
         }
         
-        func fetch() {
+        public func fetch() {
             if let fetcher = _restFetcher {
                 fetcher.fetch()
             } else {
@@ -84,7 +84,7 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
             }
         }
         
-        func cancel() {
+        public func cancel() {
             _cancel = true
         }
     }
