@@ -2,13 +2,13 @@ import XCTest
 
 class SensiApiBaseTests: XCTestCase {
 
-    var testReuest : RestApiBase.Request?
+    var testReuest : RestApiBaseRequest<RestApiBaseResponse>?
     var mockResponse = RestResponse(headers: Dictionary<String,String>(), code: RestResponseCode.OK, body: "")
     var mockFetcher : RestFetcher?
     
     override func setUp() {
         super.setUp()
-        testReuest = RestApiBase.Request(successCallback: {(response:RestApiBase.Response) in}, errorCallback:{(error:RestError)in})
+        testReuest = RestApiBaseRequest(successCallback: {(response:RestApiBaseResponse) in}, errorCallback:{(error:RestError)in})
     }
     
     override func tearDown() {
@@ -34,14 +34,19 @@ class SensiApiBaseTests: XCTestCase {
     }
     
     func testFilledBodyDict() {
-        class MockRequest : RestApiBase.Request {
+        class MockRequest : RestApiBaseRequest<RestApiBaseResponse> {
+            
+            override init(restFetcherBuilder: RestFetcherBuilder, successCallback: (response: RestApiBaseResponse) -> (), errorCallback: (error: RestError) -> ()) {
+                super.init(restFetcherBuilder: restFetcherBuilder, successCallback: successCallback, errorCallback: errorCallback)
+            }
+            
             private override func getBodyDict() -> Dictionary<String, AnyObject> {
                 var expectedDict = Dictionary<String, AnyObject>()
                 expectedDict["key1"] = "value1"
                 return expectedDict
             }
         }
-        testReuest = MockRequest(successCallback: {(response:RestApiBase.Response) in}, errorCallback:{(error:RestError)in})
+        testReuest = MockRequest(successCallback: {(response:RestApiBaseResponse) in}, errorCallback:{(error:RestError)in})
         var expectedDict = Dictionary<String, AnyObject>()
         expectedDict["key1"] = "value1"
         XCTAssertEqual(expectedDict.count, 1)
@@ -64,7 +69,7 @@ class SensiApiBaseTests: XCTestCase {
     
     func testSuccessCallback() {
         var success = false
-        testReuest = RestApiBase.Request(successCallback:{(response:RestApiBase.Response) in
+        testReuest = RestApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
             success = true
             let actualCode = response.code
             XCTAssertEqual(actualCode, RestResponseCode.OK)
@@ -77,7 +82,7 @@ class SensiApiBaseTests: XCTestCase {
     
     func testErrorCallback() {
         var success = false
-        testReuest = RestApiBase.Request(successCallback:{(response:RestApiBase.Response) in
+        testReuest = RestApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
                 XCTFail("Sould not be here")
             }, errorCallback:{(error:RestError) in
                 success = true
@@ -91,7 +96,7 @@ class SensiApiBaseTests: XCTestCase {
     }
     
     func testCancelCall() {
-        testReuest = RestApiBase.Request(successCallback:{(response:RestApiBase.Response) in
+        testReuest = RestApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
             XCTFail("Sould not be here")
             }, errorCallback:{(error:RestError) in
                 XCTFail("Sould not be here")
@@ -126,7 +131,7 @@ class SensiApiBaseTests: XCTestCase {
     func testResponseWithNonJsonBody() {
         let mockResponseBody = "<HTML><body></body></HTML>"
         let mockResponse = RestResponse(headers: Dictionary<String, String>(), code: RestResponseCode.OK, body: mockResponseBody)
-        let baseResponse = RestApiBase.Response(response: mockResponse)
+        let baseResponse = RestApiBaseResponse(response: mockResponse)
         let error = baseResponse.response.jsonParseError
         XCTAssertNotNil(error)
     }

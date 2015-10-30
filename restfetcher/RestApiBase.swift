@@ -1,24 +1,21 @@
 import Foundation
 import SwiftyJSON
 
-public class RestApiBase {
+
+public class RestApiBaseRequest<T: RestApiBaseResponse> {
     
-    public static var demoMode = false;
-    
-    public class Request {
-        
         private var _cancel = false
         private var _restFetcher : RestFetcher?
         public var restFetcherBuilder : RestFetcherBuilder
         
-        var successCallback : (response:RestApiBase.Response)->() = {(response: RestApiBase.Response)->()in}
+        var successCallback : (response:T)->() = {(response: RestApiBaseResponse)->()in}
         var errorCallback : (error:RestError)->() = {(error:RestError)->()in}
         
-        convenience public init (successCallback:(response:RestApiBase.Response)->(), errorCallback:(error:RestError)->()) {
+        convenience public init (successCallback:(response:T)->(), errorCallback:(error:RestError)->()) {
             self.init(restFetcherBuilder:RestFetcher.Builder(), successCallback:successCallback, errorCallback:errorCallback);
         }
         
-        public init(restFetcherBuilder: RestFetcherBuilder, successCallback:(response:RestApiBase.Response)->(), errorCallback:(error:RestError)->()) {
+        public init(restFetcherBuilder: RestFetcherBuilder, successCallback:(response:T)->(), errorCallback:(error:RestError)->()) {
             self.successCallback = successCallback
             self.errorCallback = errorCallback
             self.restFetcherBuilder = restFetcherBuilder
@@ -45,7 +42,7 @@ public class RestApiBase {
             }
             return "" // will never be hit in this code
         }
-        
+    
         func getBodyDict() -> Dictionary<String, AnyObject> {
             return Dictionary<String, AnyObject>()
         }
@@ -57,9 +54,9 @@ public class RestApiBase {
             headers["Content-Type"] = "application/json; charset=utf-8"
             return headers
         }
-        
-        func createResponse(response:RestResponse) -> RestApiBase.Response {
-            return RestApiBase.Response(response: response)
+    
+        func createResponse(response:RestResponse) -> T {
+            return RestApiBaseResponse(response: response) as! T
         }
         
         func restFetcherSuccess(response:RestResponse) {
@@ -92,7 +89,7 @@ public class RestApiBase {
         }
     }
     
-    public class Response {
+    public class RestApiBaseResponse {
         
         private var _code : RestResponseCode = RestResponseCode.UNKNOWN
         public let response : RestResponse!
@@ -111,4 +108,3 @@ public class RestApiBase {
             _code = response.code
         }
     }
-}
