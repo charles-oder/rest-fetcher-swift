@@ -8,7 +8,7 @@ public class RestResponse : AnyObject {
     public let json : JSON!
     public let jsonParseError : NSError?
     
-    init(headers: Dictionary<String, String>, code: RestResponseCode, body: String) {
+    public init(headers: Dictionary<String, String>, code: RestResponseCode, body: String) {
         self.headers = headers
         self.code = code
         self.body = body
