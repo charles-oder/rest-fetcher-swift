@@ -55,7 +55,7 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
             return headers
         }
     
-        func createResponse(response:RestResponse) -> T {
+        public func createResponse(response:RestResponse) -> T {
             return RestApiBaseResponse(response: response) as! T
         }
         
@@ -104,7 +104,7 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
             processResponse(response)
         }
         
-        internal func processResponse(response:RestResponse) {
+        public func processResponse(response:RestResponse) {
             _code = response.code
         }
     }
