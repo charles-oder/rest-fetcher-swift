@@ -98,7 +98,7 @@ public class RestFetcher {
     }
     
     private func logResponse(response: NSHTTPURLResponse, data: NSData?) {
-        print("\(method.rawValue) response received:")
+        print("\(method.rawValue) response received: \(response.statusCode)")
         print("Headers:")
         for (key, val) in response.allHeaderFields {
             print("\(key): \(val)")
