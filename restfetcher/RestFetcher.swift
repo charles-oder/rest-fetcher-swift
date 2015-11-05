@@ -20,6 +20,7 @@ public class RestFetcher {
     private let successCallback: (response: RestResponse) -> ()
     private let errorCallback: (error: RestError) -> ()
     private var session: NSURLSession = NSURLSession.sharedSession()
+    private let mainThread: dispatch_queue_t = dispatch_get_main_queue();
 
     public init(resource: String, method: RestMethod, headers: Dictionary<String, String>, body: String, successCallback: (response: RestResponse) -> (), errorCallback: (error: RestError) -> ()) {
         self.resource = resource
@@ -71,13 +72,13 @@ public class RestFetcher {
     }
     
     private func sendError(error: RestError) {
-        dispatch_async(dispatch_get_main_queue(), {
+        dispatch_async(mainThread, {
             self.errorCallback(error: error)
         })
     }
     
     private func sendSuccess(response: RestResponse) {
-        dispatch_async(dispatch_get_main_queue(), {
+        dispatch_async(mainThread, {
             self.successCallback(response: response)
         })
     }

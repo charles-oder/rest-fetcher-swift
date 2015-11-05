@@ -51,50 +51,56 @@ class RestFetcherTests: XCTestCase {
     }
     
     func test400Response() {
-        var errorFlag = false
-        testObject = RestFetcher(resource: "", method: RestMethod.GET, headers: Dictionary<String, String>(), body: "", successCallback: {(response:RestResponse) in
-            XCTFail("Should not have been called")
-            }, errorCallback: {(error:RestError) in
-                XCTAssertEqual(error.code, 400)
-                XCTAssertEqual("Refused Connection", error.reason)
-              errorFlag = true
-            })
-        let mockResponse = NSHTTPURLResponse(URL: NSURL(string:"")!, statusCode: 400, HTTPVersion: "HTTP/1.1", headerFields: Dictionary<String, String>())
-        let str = "Refused Connection"
-        let data = str.dataUsingEncoding(NSUTF8StringEncoding)
-        testObject?.urlSessionComplete(data, response: mockResponse, error: nil)
-        XCTAssertTrue(errorFlag)
+        dispatch_async(dispatch_get_main_queue(), {
+            var errorFlag = false
+            self.testObject = RestFetcher(resource: "", method: RestMethod.GET, headers: Dictionary<String, String>(), body: "", successCallback: {(response:RestResponse) in
+                XCTFail("Should not have been called")
+                }, errorCallback: {(error:RestError) in
+                    XCTAssertEqual(error.code, 400)
+                    XCTAssertEqual("Refused Connection", error.reason)
+                  errorFlag = true
+                })
+            let mockResponse = NSHTTPURLResponse(URL: NSURL(string:"")!, statusCode: 400, HTTPVersion: "HTTP/1.1", headerFields: Dictionary<String, String>())
+            let str = "Refused Connection"
+            let data = str.dataUsingEncoding(NSUTF8StringEncoding)
+            self.testObject?.urlSessionComplete(data, response: mockResponse, error: nil)
+            XCTAssertTrue(errorFlag)
+        })
     }
     
     func test200Response() {
-        var successFlag = false
-        testObject = RestFetcher(resource: "", method: RestMethod.GET, headers: Dictionary<String, String>(), body: "", successCallback: {(response:RestResponse) in
-                XCTAssertEqual(RestResponseCode.OK, response.code)
-                let actualBody = response.body
-                XCTAssertEqual(actualBody, "{\"thing\":\"one\"}")
-                successFlag = true
-            }, errorCallback: {(error:RestError) in
-                XCTFail("Should not have been called")
-            })
-        let mockResponse = NSHTTPURLResponse(URL: NSURL(string:"")!, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: Dictionary<String, String>())
-        let data = "{\"thing\":\"one\"}".dataUsingEncoding(NSUTF8StringEncoding)
-        testObject?.urlSessionComplete(data, response: mockResponse, error: nil)
-        XCTAssertTrue(successFlag)
+        dispatch_async(dispatch_get_main_queue(), {
+            var successFlag = false
+            self.testObject = RestFetcher(resource: "", method: RestMethod.GET, headers: Dictionary<String, String>(), body: "", successCallback: {(response:RestResponse) in
+                    XCTAssertEqual(RestResponseCode.OK, response.code)
+                    let actualBody = response.body
+                    XCTAssertEqual(actualBody, "{\"thing\":\"one\"}")
+                    successFlag = true
+                }, errorCallback: {(error:RestError) in
+                    XCTFail("Should not have been called")
+                })
+            let mockResponse = NSHTTPURLResponse(URL: NSURL(string:"")!, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: Dictionary<String, String>())
+            let data = "{\"thing\":\"one\"}".dataUsingEncoding(NSUTF8StringEncoding)
+            self.testObject?.urlSessionComplete(data, response: mockResponse, error: nil)
+            XCTAssertTrue(successFlag)
+        })
    }
     
     func testErrorResponse() {
-        var errorFlag = false
-        testObject = RestFetcher(resource: "", method: RestMethod.GET, headers: Dictionary<String, String>(), body: "", successCallback: {(response:RestResponse) in
-                XCTFail("Should not have been called")
-            }, errorCallback: {(error:RestError) in
-                XCTAssertEqual(error.code, -1)
-                XCTAssertEqual("Network Error", error.reason)
-                errorFlag = true
-            })
-        let mockResponse = NSHTTPURLResponse(URL: NSURL(string:"")!, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: Dictionary<String, String>())
-        let data = "{\"thing\":\"one\"}".dataUsingEncoding(NSUTF8StringEncoding)
-        testObject?.urlSessionComplete(data, response: mockResponse, error: NSError(domain: "", code: -1, userInfo: nil))
-        XCTAssertTrue(errorFlag)
+        dispatch_async(dispatch_get_main_queue(), {
+            var errorFlag = false
+            self.testObject = RestFetcher(resource: "", method: RestMethod.GET, headers: Dictionary<String, String>(), body: "", successCallback: {(response:RestResponse) in
+                    XCTFail("Should not have been called")
+                }, errorCallback: {(error:RestError) in
+                    XCTAssertEqual(error.code, -1)
+                    XCTAssertEqual("Network Error", error.reason)
+                    errorFlag = true
+                })
+            let mockResponse = NSHTTPURLResponse(URL: NSURL(string:"")!, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: Dictionary<String, String>())
+            let data = "{\"thing\":\"one\"}".dataUsingEncoding(NSUTF8StringEncoding)
+            self.testObject?.urlSessionComplete(data, response: mockResponse, error: NSError(domain: "", code: -1, userInfo: nil))
+            XCTAssertTrue(errorFlag)
+        })
     }
     
     func testNonNSHTTPURLResponse() {
