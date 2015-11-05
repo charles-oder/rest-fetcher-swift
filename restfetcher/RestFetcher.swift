@@ -55,19 +55,31 @@ public class RestFetcher {
     
     func urlSessionComplete(data:NSData?, response:NSURLResponse?, error:NSError?) {
         guard let urlResponse = response as? NSHTTPURLResponse else {
-            errorCallback(error: RestError(code: RestResponseCode.UNKNOWN.rawValue, reason: "Network Error"))
+            sendError(RestError(code: RestResponseCode.UNKNOWN.rawValue, reason: "Network Error"))
             return
         }
         
         logResponse(urlResponse, data: data)
         
         if let e = error {
-            errorCallback(error: RestError(code: e.code, reason: "Network Error"))
+            sendError(RestError(code: e.code, reason: "Network Error"))
         } else  if isSuccessCode(urlResponse.statusCode) {
-            successCallback(response: RestResponse(headers: Dictionary<String, String>(), code: RestResponseCode.getResponseCode(urlResponse.statusCode), body: dataToString(data)))
+            sendSuccess(RestResponse(headers: Dictionary<String, String>(), code: RestResponseCode.getResponseCode(urlResponse.statusCode), body: dataToString(data)))
         } else {
-            errorCallback(error: RestError(code: urlResponse.statusCode, reason: dataToString(data)))
+            sendError(RestError(code: urlResponse.statusCode, reason: dataToString(data)))
         }
+    }
+    
+    private func sendError(error: RestError) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.errorCallback(error: error)
+        })
+    }
+    
+    private func sendSuccess(response: RestResponse) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.successCallback(response: response)
+        })
     }
     
     private func getUrl() -> NSURL {
