@@ -2,13 +2,13 @@ import XCTest
 
 class SensiApiBaseTests: XCTestCase {
 
-    var testReuest : RestApiBaseRequest<RestApiBaseResponse>?
+    var testReuest : ConcreteApiBaseRequest!
     var mockResponse = RestResponse(headers: Dictionary<String,String>(), code: RestResponseCode.OK, body: "")
     var mockFetcher : RestFetcher?
     
     override func setUp() {
         super.setUp()
-        testReuest = RestApiBaseRequest(successCallback: {(response:RestApiBaseResponse) in}, errorCallback:{(error:RestError)in})
+        testReuest = ConcreteApiBaseRequest(successCallback: {(response:RestApiBaseResponse) in}, errorCallback:{(error:RestError)in})
     }
     
     override func tearDown() {
@@ -22,7 +22,7 @@ class SensiApiBaseTests: XCTestCase {
     }
     
     func testApiResource() {
-        let expectedResource = "http://google.com"
+        let expectedResource = "http://google.com/api?arg2=value2&arg1=value%201"
         let actuaResource = testReuest!.getApiResource()
         XCTAssertEqual(actuaResource, expectedResource)
     }
@@ -34,7 +34,7 @@ class SensiApiBaseTests: XCTestCase {
     }
     
     func testFilledBodyDict() {
-        class MockRequest : RestApiBaseRequest<RestApiBaseResponse> {
+        class MockRequest : ConcreteApiBaseRequest {
             
             override init(successCallback: (response: RestApiBaseResponse) -> (), errorCallback: (error: RestError) -> ()) {
                 super.init(successCallback: successCallback, errorCallback: errorCallback)
@@ -69,7 +69,7 @@ class SensiApiBaseTests: XCTestCase {
     
     func testSuccessCallback() {
         var success = false
-        testReuest = RestApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
+        testReuest = ConcreteApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
             success = true
             let actualCode = response.code
             XCTAssertEqual(actualCode, RestResponseCode.OK)
@@ -82,7 +82,7 @@ class SensiApiBaseTests: XCTestCase {
     
     func testErrorCallback() {
         var success = false
-        testReuest = RestApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
+        testReuest = ConcreteApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
                 XCTFail("Sould not be here")
             }, errorCallback:{(error:RestError) in
                 success = true
@@ -96,7 +96,7 @@ class SensiApiBaseTests: XCTestCase {
     }
     
     func testCancelCall() {
-        testReuest = RestApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
+        testReuest = ConcreteApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
             XCTFail("Sould not be here")
             }, errorCallback:{(error:RestError) in
                 XCTFail("Sould not be here")
@@ -137,4 +137,26 @@ class SensiApiBaseTests: XCTestCase {
     }
     
 
+}
+
+public class ConcreteApiBaseRequest : RestApiBaseRequest<RestApiBaseResponse> {
+    
+    public override init(successCallback: (response: RestApiBaseResponse) -> (), errorCallback: (error: RestError) -> ()) {
+        super.init(successCallback: successCallback, errorCallback: errorCallback)
+    }
+    
+    public override func getApiBase() -> String {
+        return "http://google.com"
+    }
+    
+    public override func getApiRoot() -> String {
+        return "/api"
+    }
+    
+    public override func getQueryArguments() -> Dictionary<String, String> {
+        var args = super.getQueryArguments()
+        args["arg1"] = "value 1"
+        args["arg2"] = "value2"
+        return args
+    }
 }
