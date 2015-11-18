@@ -58,10 +58,9 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
             return ""
         }
         let bodyJson = JSON(bodyDict)
-        if let output = bodyJson.rawString() {
-            var value = output.stringByReplacingOccurrencesOfString("\n", withString: "")
-            value = value.stringByReplacingOccurrencesOfString(" ", withString: "")
-            return value
+        
+        if let output = bodyJson.rawString(NSUTF8StringEncoding, options:NSJSONWritingOptions(rawValue: 0)) {
+            return output
         }
         return "" // will never be hit in this code
     }
