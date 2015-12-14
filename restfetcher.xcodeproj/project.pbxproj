@@ -7,25 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E100771C1BBCBA0D005AC530 /* RestFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771B1BBCBA0D005AC530 /* RestFetcher.swift */; settings = {ASSET_TAGS = (); }; };
-		E100771D1BBCBA0D005AC530 /* RestFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771B1BBCBA0D005AC530 /* RestFetcher.swift */; settings = {ASSET_TAGS = (); }; };
-		E100771F1BBCBA3D005AC530 /* RestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771E1BBCBA3D005AC530 /* RestMethod.swift */; settings = {ASSET_TAGS = (); }; };
-		E10077201BBCBA3D005AC530 /* RestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771E1BBCBA3D005AC530 /* RestMethod.swift */; settings = {ASSET_TAGS = (); }; };
-		E10077231BBCBBD6005AC530 /* RestResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077221BBCBBD6005AC530 /* RestResponseCode.swift */; settings = {ASSET_TAGS = (); }; };
-		E10077241BBCBBD6005AC530 /* RestResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077221BBCBBD6005AC530 /* RestResponseCode.swift */; settings = {ASSET_TAGS = (); }; };
-		E10077261BBCBC0E005AC530 /* RestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077251BBCBC0E005AC530 /* RestResponse.swift */; settings = {ASSET_TAGS = (); }; };
-		E10077271BBCBC0E005AC530 /* RestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077251BBCBC0E005AC530 /* RestResponse.swift */; settings = {ASSET_TAGS = (); }; };
+		E100771C1BBCBA0D005AC530 /* RestFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771B1BBCBA0D005AC530 /* RestFetcher.swift */; };
+		E100771D1BBCBA0D005AC530 /* RestFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771B1BBCBA0D005AC530 /* RestFetcher.swift */; };
+		E100771F1BBCBA3D005AC530 /* RestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771E1BBCBA3D005AC530 /* RestMethod.swift */; };
+		E10077201BBCBA3D005AC530 /* RestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771E1BBCBA3D005AC530 /* RestMethod.swift */; };
+		E10077231BBCBBD6005AC530 /* RestResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077221BBCBBD6005AC530 /* RestResponseCode.swift */; };
+		E10077241BBCBBD6005AC530 /* RestResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077221BBCBBD6005AC530 /* RestResponseCode.swift */; };
+		E10077261BBCBC0E005AC530 /* RestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077251BBCBC0E005AC530 /* RestResponse.swift */; };
+		E10077271BBCBC0E005AC530 /* RestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077251BBCBC0E005AC530 /* RestResponse.swift */; };
 		E10077281BBCBC3D005AC530 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10077121BBCB6EF005AC530 /* SwiftyJSON.framework */; };
-		E100772A1BBCBCCA005AC530 /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077291BBCBCCA005AC530 /* RestError.swift */; settings = {ASSET_TAGS = (); }; };
-		E100772B1BBCBCCA005AC530 /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077291BBCBCCA005AC530 /* RestError.swift */; settings = {ASSET_TAGS = (); }; };
+		E100772A1BBCBCCA005AC530 /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077291BBCBCCA005AC530 /* RestError.swift */; };
+		E100772B1BBCBCCA005AC530 /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077291BBCBCCA005AC530 /* RestError.swift */; };
+		E12F93821C1F6792002F218F /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12F93811C1F6792002F218F /* JsonParser.swift */; };
 		E1B154651BBC9FF000A763BC /* restfetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = E1B154641BBC9FF000A763BC /* restfetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E1B1546C1BBC9FF000A763BC /* restfetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B154611BBC9FF000A763BC /* restfetcher.framework */; settings = {ASSET_TAGS = (); }; };
+		E1B1546C1BBC9FF000A763BC /* restfetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B154611BBC9FF000A763BC /* restfetcher.framework */; };
 		E1B154711BBC9FF000A763BC /* restfetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B154701BBC9FF000A763BC /* restfetcherTests.swift */; };
-		E1CA987C1BCF3D48003E0793 /* RestResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CA987B1BCF3D48003E0793 /* RestResponseTests.swift */; settings = {ASSET_TAGS = (); }; };
-		E1CA98831BCF4A72003E0793 /* RestResponseCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CA98821BCF4A72003E0793 /* RestResponseCodeTests.swift */; settings = {ASSET_TAGS = (); }; };
-		E1F8F5E11BD06CF70086A5A2 /* RestApiBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8F5E01BD06CF70086A5A2 /* RestApiBase.swift */; settings = {ASSET_TAGS = (); }; };
-		E1F8F5E21BD06CF70086A5A2 /* RestApiBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8F5E01BD06CF70086A5A2 /* RestApiBase.swift */; settings = {ASSET_TAGS = (); }; };
-		E1F8F5E91BD06D070086A5A2 /* RestApiBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8F5E81BD06D070086A5A2 /* RestApiBaseTests.swift */; settings = {ASSET_TAGS = (); }; };
+		E1CA987C1BCF3D48003E0793 /* RestResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CA987B1BCF3D48003E0793 /* RestResponseTests.swift */; };
+		E1CA98831BCF4A72003E0793 /* RestResponseCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CA98821BCF4A72003E0793 /* RestResponseCodeTests.swift */; };
+		E1F8F5E11BD06CF70086A5A2 /* RestApiBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8F5E01BD06CF70086A5A2 /* RestApiBase.swift */; };
+		E1F8F5E21BD06CF70086A5A2 /* RestApiBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8F5E01BD06CF70086A5A2 /* RestApiBase.swift */; };
+		E1F8F5E91BD06D070086A5A2 /* RestApiBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8F5E81BD06D070086A5A2 /* RestApiBaseTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		E10077221BBCBBD6005AC530 /* RestResponseCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestResponseCode.swift; sourceTree = "<group>"; };
 		E10077251BBCBC0E005AC530 /* RestResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestResponse.swift; sourceTree = "<group>"; };
 		E10077291BBCBCCA005AC530 /* RestError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestError.swift; sourceTree = "<group>"; };
+		E12F93811C1F6792002F218F /* JsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 		E1B154611BBC9FF000A763BC /* restfetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = restfetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B154641BBC9FF000A763BC /* restfetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = restfetcher.h; sourceTree = "<group>"; };
 		E1B154661BBC9FF000A763BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				E10077221BBCBBD6005AC530 /* RestResponseCode.swift */,
 				E10077251BBCBC0E005AC530 /* RestResponse.swift */,
 				E10077291BBCBCCA005AC530 /* RestError.swift */,
+				E12F93811C1F6792002F218F /* JsonParser.swift */,
 			);
 			path = restfetcher;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				E100771C1BBCBA0D005AC530 /* RestFetcher.swift in Sources */,
 				E1F8F5E11BD06CF70086A5A2 /* RestApiBase.swift in Sources */,
 				E10077261BBCBC0E005AC530 /* RestResponse.swift in Sources */,
+				E12F93821C1F6792002F218F /* JsonParser.swift in Sources */,
 				E10077231BBCBBD6005AC530 /* RestResponseCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
