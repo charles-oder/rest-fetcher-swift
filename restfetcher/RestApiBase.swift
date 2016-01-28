@@ -1,5 +1,4 @@
 import Foundation
-import SwiftyJSON
 
 
 public class RestApiBaseRequest<T: RestApiBaseResponse> {
@@ -57,9 +56,14 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         if bodyDict.count == 0 {
             return ""
         }
-        let bodyJson = JSON(bodyDict)
+        var bodyData: NSData
+        do {
+            bodyData = try NSJSONSerialization.dataWithJSONObject(bodyDict, options: NSJSONWritingOptions(rawValue: 0))
+        } catch _ {
+            bodyData = NSData()
+        }
         
-        if let output = bodyJson.rawString(NSUTF8StringEncoding, options:NSJSONWritingOptions(rawValue: 0)) {
+        if let output = NSString(data: bodyData, encoding: NSUTF8StringEncoding) as? String {
             return output
         }
         return "" // will never be hit in this code

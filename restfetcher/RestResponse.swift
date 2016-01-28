@@ -1,24 +1,27 @@
 import Foundation
-import SwiftyJSON
 
 public class RestResponse : AnyObject {
     public let headers : Dictionary<String, String>!
     public let code : RestResponseCode
     public let body : String!
-    public let json : JSON!
-    public let jsonParseError : NSError?
+    public let data : NSData!
     
-    public init(headers: Dictionary<String, String>, code: RestResponseCode, body: String) {
+    public init(headers: Dictionary<String, String>, code: RestResponseCode, data: NSData?) {
         self.headers = headers
         self.code = code
-        self.body = body
-        var error : NSError?
-        var json : JSON?
-        if let data = body.dataUsingEncoding(NSUTF8StringEncoding) {
-            json = JSON(data:data, options:NSJSONReadingOptions.AllowFragments, error:&error)
-        }
-        self.json = json
-        jsonParseError = error
+        self.body = RestResponse.dataToString(data)
+        self.data = data
     }
     
+    public class func dataToString(data:NSData?) -> String {
+        var output = ""
+        if let d = data {
+            if let str = NSString(data: d, encoding: NSUTF8StringEncoding) {
+                output = str as String
+            }
+        }
+        return output
+    }
+    
+
 }

@@ -3,7 +3,7 @@ import XCTest
 class SensiApiBaseTests: XCTestCase {
 
     var testReuest : ConcreteApiBaseRequest!
-    var mockResponse = RestResponse(headers: Dictionary<String,String>(), code: RestResponseCode.OK, body: "")
+    var mockResponse = RestResponse(headers: Dictionary<String,String>(), code: RestResponseCode.OK, data: NSData())
     var mockFetcher : RestFetcher?
     
     override func setUp() {
@@ -128,15 +128,6 @@ class SensiApiBaseTests: XCTestCase {
         XCTAssert(mockFetcherBuilder.mockFetcher.fetched)
     }
     
-    func testResponseWithNonJsonBody() {
-        let mockResponseBody = "<HTML><body></body></HTML>"
-        let mockResponse = RestResponse(headers: Dictionary<String, String>(), code: RestResponseCode.OK, body: mockResponseBody)
-        let baseResponse = RestApiBaseResponse(response: mockResponse)
-        let error = baseResponse.response.jsonParseError
-        XCTAssertNotNil(error)
-    }
-    
-
 }
 
 public class ConcreteApiBaseRequest : RestApiBaseRequest<RestApiBaseResponse> {

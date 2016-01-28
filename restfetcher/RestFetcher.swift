@@ -65,7 +65,7 @@ public class RestFetcher {
         if let e = error {
             sendError(RestError(code: e.code, reason: "Network Error"))
         } else  if isSuccessCode(urlResponse.statusCode) {
-            sendSuccess(RestResponse(headers: Dictionary<String, String>(), code: RestResponseCode.getResponseCode(urlResponse.statusCode), body: dataToString(data)))
+            sendSuccess(RestResponse(headers: Dictionary<String, String>(), code: RestResponseCode.getResponseCode(urlResponse.statusCode), data: data))
         } else {
             sendError(RestError(code: urlResponse.statusCode, reason: dataToString(data)))
         }
