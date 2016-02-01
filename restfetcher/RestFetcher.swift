@@ -1,13 +1,13 @@
 import Foundation
 
 public protocol RestFetcherBuilder {
-    func createRestFetcher(resource: String, method: RestMethod, headers:Dictionary<String, String>, body:String, successCallback: (response:RestResponse)->(), errorCallback:(error:RestError)->()) -> RestFetcher;
+    func createRestFetcher(resource: String, method: RestMethod, headers:Dictionary<String, String>, body:String, successCallback: (response:RestResponse)->(), errorCallback:(error:NSError)->()) -> RestFetcher;
 }
 
 public class RestFetcher {
     
     public class Builder : RestFetcherBuilder {
-        public func createRestFetcher(resource: String, method: RestMethod, headers:Dictionary<String, String>, body:String, successCallback: (response:RestResponse)->(), errorCallback:(error:RestError)->()) -> RestFetcher {
+        public func createRestFetcher(resource: String, method: RestMethod, headers:Dictionary<String, String>, body:String, successCallback: (response:RestResponse)->(), errorCallback:(error:NSError)->()) -> RestFetcher {
             return RestFetcher(resource: resource, method: method, headers: headers, body: body, successCallback: successCallback, errorCallback: errorCallback)
         }
     }
@@ -18,11 +18,11 @@ public class RestFetcher {
     private let headers: Dictionary<String, String>!
     private let body: String?
     private let successCallback: (response: RestResponse) -> ()
-    private let errorCallback: (error: RestError) -> ()
+    private let errorCallback: (error: NSError) -> ()
     private var session: NSURLSession = NSURLSession.sharedSession()
     private let mainThread: dispatch_queue_t = dispatch_get_main_queue();
 
-    public init(resource: String, method: RestMethod, headers: Dictionary<String, String>, body: String, successCallback: (response: RestResponse) -> (), errorCallback: (error: RestError) -> ()) {
+    public init(resource: String, method: RestMethod, headers: Dictionary<String, String>, body: String, successCallback: (response: RestResponse) -> (), errorCallback: (error: NSError) -> ()) {
         self.resource = resource
         self.method = method
         self.headers = headers
@@ -56,18 +56,18 @@ public class RestFetcher {
     
     func urlSessionComplete(data:NSData?, response:NSURLResponse?, error:NSError?) {
         guard let urlResponse = response as? NSHTTPURLResponse else {
-            sendError(RestError(code: RestResponseCode.UNKNOWN.rawValue, reason: "Network Error"))
+            sendError(NSError(domain: "RestFetcher", code: RestResponseCode.UNKNOWN.rawValue, userInfo: ["message":"Network Error"]))
             return
         }
         
         logResponse(urlResponse, data: data)
         
         if let e = error {
-            sendError(RestError(code: e.code, reason: "Network Error"))
+            sendError(NSError(domain: "RestFetcher", code: e.code, userInfo: ["message":"Network Error"]))
         } else  if isSuccessCode(urlResponse.statusCode) {
             sendSuccess(RestResponse(headers: extractHeaders(urlResponse), code: RestResponseCode.getResponseCode(urlResponse.statusCode), data: data))
         } else {
-            sendError(RestError(code: urlResponse.statusCode, reason: dataToString(data)))
+            sendError(NSError(domain: "RestFetcher", code: urlResponse.statusCode, userInfo: ["message":dataToString(data)]))
         }
     }
     
@@ -79,7 +79,7 @@ public class RestFetcher {
         }
     }
     
-    private func sendError(error: RestError) {
+    private func sendError(error: NSError) {
         dispatch_async(mainThread, {
             self.errorCallback(error: error)
         })

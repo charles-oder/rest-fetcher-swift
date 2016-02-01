@@ -8,7 +8,7 @@ class RestFetcherTests: XCTestCase {
         let headers : Dictionary<String, String> = ["header1":"one", "header2":"two"]
         let method = RestMethod.POST
         let body = "{\"thing\":\"one\", \"otherThing\":\"two\"}"
-        testObject = RestFetcher(resource: "http://google.com/api/login", method: method, headers: headers, body: body, successCallback: {(response:RestResponse) in }, errorCallback: {(error:RestError) in })
+        testObject = RestFetcher(resource: "http://google.com/api/login", method: method, headers: headers, body: body, successCallback: {(response:RestResponse) in }, errorCallback: {(error:NSError) in })
         super.setUp()
     }
     
@@ -55,9 +55,9 @@ class RestFetcherTests: XCTestCase {
         var errorFlag = false
         self.testObject = RestFetcher(resource: "", method: RestMethod.GET, headers: Dictionary<String, String>(), body: "", successCallback: {(response:RestResponse) in
             XCTFail("Should not have been called")
-            }, errorCallback: {(error:RestError) in
+            }, errorCallback: {(error:NSError) in
                 XCTAssertEqual(error.code, 400)
-                XCTAssertEqual("Refused Connection", error.reason)
+                XCTAssertEqual("Refused Connection", (error.userInfo["message"] as! String))
                 asyncExpectation.fulfill()
               errorFlag = true
             })
@@ -85,7 +85,7 @@ class RestFetcherTests: XCTestCase {
                 XCTAssertEqual("value2", response.headers["header2"])
                 successFlag = true
                 asyncExpectation.fulfill()
-            }, errorCallback: {(error:RestError) in
+            }, errorCallback: {(error:NSError) in
                 XCTFail("Should not have been called")
             })
         
@@ -104,9 +104,9 @@ class RestFetcherTests: XCTestCase {
         var errorFlag = false
         self.testObject = RestFetcher(resource: "", method: RestMethod.GET, headers: Dictionary<String, String>(), body: "", successCallback: {(response:RestResponse) in
                 XCTFail("Should not have been called")
-            }, errorCallback: {(error:RestError) in
+            }, errorCallback: {(error:NSError) in
                 XCTAssertEqual(error.code, -1)
-                XCTAssertEqual("Network Error", error.reason)
+                XCTAssertEqual("Network Error", (error.userInfo["message"] as! String))
                 errorFlag = true
                 asyncExpectation.fulfill()
             })
@@ -124,9 +124,9 @@ class RestFetcherTests: XCTestCase {
     func testNonNSHTTPURLResponse() {
         testObject = RestFetcher(resource: "", method: RestMethod.GET, headers: Dictionary<String, String>(), body: "", successCallback: {(response:RestResponse) in
                 XCTFail("Should not have been called")
-            }, errorCallback: {(error:RestError) in
+            }, errorCallback: {(error:NSError) in
                 XCTAssertEqual(error.code, 999)
-                XCTAssertEqual("Network Error", error.reason)
+                XCTAssertEqual("Network Error", (error.userInfo["message"] as! String))
         })
         let mockResponse = NSURLResponse()
         let data = "{\"thing\":\"one\"}".dataUsingEncoding(NSUTF8StringEncoding)

@@ -8,9 +8,9 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
     public var restFetcherBuilder : RestFetcherBuilder
     
     var successCallback : (response:T)->() = {(response: RestApiBaseResponse)->()in}
-    var errorCallback : (error:RestError)->() = {(error:RestError)->()in}
+    var errorCallback : (error:NSError)->() = {(error:NSError)->()in}
     
-    public init(successCallback:(response:T)->(), errorCallback:(error:RestError)->()) {
+    public init(successCallback:(response:T)->(), errorCallback:(error:NSError)->()) {
         self.successCallback = successCallback
         self.errorCallback = errorCallback
         self.restFetcherBuilder = RestFetcher.Builder()
@@ -90,7 +90,7 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         }
     }
     
-    func restFetcherError(error:RestError) {
+    func restFetcherError(error:NSError) {
         if !_cancel {
             errorCallback(error: error)
         }
