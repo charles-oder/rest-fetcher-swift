@@ -1,6 +1,6 @@
 //
 //  RestResponseCodeTests.swift
-//  restfetcher
+//  RestFetcher
 //
 //  Created by Charles Oder on 10/14/15.
 //  Copyright © 2015 Charles Oder. All rights reserved.
