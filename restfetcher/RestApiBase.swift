@@ -84,7 +84,9 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
     
     func restFetcherSuccess(response:RestResponse) {
         if !_cancel {
-            successCallback(response: createResponse(response))
+            let apiResponse = createResponse(response)
+            apiResponse.request = self
+            successCallback(response: apiResponse)
         }
     }
     
@@ -116,6 +118,7 @@ public class RestApiBaseResponse {
     
     private var _code : RestResponseCode = RestResponseCode.UNKNOWN
     public let response : RestResponse!
+    internal(set) public var request: AnyObject!
     var code: RestResponseCode {
         get {
             return _code

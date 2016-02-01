@@ -36,7 +36,7 @@ class SensiApiBaseTests: XCTestCase {
     func testFilledBodyDict() {
         class MockRequest : ConcreteApiBaseRequest {
             
-            override init(successCallback: (response: RestApiBaseResponse) -> (), errorCallback: (error: RestError) -> ()) {
+            override init(successCallback: (response: ConcreteApiBaseResponse) -> (), errorCallback: (error: RestError) -> ()) {
                 super.init(successCallback: successCallback, errorCallback: errorCallback)
             }
             
@@ -72,6 +72,7 @@ class SensiApiBaseTests: XCTestCase {
         testReuest = ConcreteApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
             success = true
             let actualCode = response.code
+            XCTAssertTrue(self.testReuest === response.request)
             XCTAssertEqual(actualCode, RestResponseCode.OK)
             }, errorCallback:{(error:RestError) in
                 XCTFail("Sould not be here")
@@ -130,9 +131,9 @@ class SensiApiBaseTests: XCTestCase {
     
 }
 
-public class ConcreteApiBaseRequest : RestApiBaseRequest<RestApiBaseResponse> {
+public class ConcreteApiBaseRequest : RestApiBaseRequest<ConcreteApiBaseResponse> {
     
-    public override init(successCallback: (response: RestApiBaseResponse) -> (), errorCallback: (error: RestError) -> ()) {
+    public override init(successCallback: (response: ConcreteApiBaseResponse) -> (), errorCallback: (error: RestError) -> ()) {
         super.init(successCallback: successCallback, errorCallback: errorCallback)
     }
     
@@ -142,6 +143,10 @@ public class ConcreteApiBaseRequest : RestApiBaseRequest<RestApiBaseResponse> {
     
     public override func getApiRoot() -> String {
         return "/api"
+    }
+    
+    public override func createResponse(response: RestResponse) -> ConcreteApiBaseResponse {
+        return ConcreteApiBaseResponse(response: response)
     }
     
     public override func getHeaders() -> Dictionary<String, String> {
@@ -157,4 +162,12 @@ public class ConcreteApiBaseRequest : RestApiBaseRequest<RestApiBaseResponse> {
         args["arg2"] = "value2"
         return args
     }
+}
+
+public class ConcreteApiBaseResponse: RestApiBaseResponse {
+    public override init(response: RestResponse) {
+        super.init(response: response)
+    }
+    
+    
 }
