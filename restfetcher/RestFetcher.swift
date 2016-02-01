@@ -65,9 +65,17 @@ public class RestFetcher {
         if let e = error {
             sendError(RestError(code: e.code, reason: "Network Error"))
         } else  if isSuccessCode(urlResponse.statusCode) {
-            sendSuccess(RestResponse(headers: Dictionary<String, String>(), code: RestResponseCode.getResponseCode(urlResponse.statusCode), data: data))
+            sendSuccess(RestResponse(headers: extractHeaders(urlResponse), code: RestResponseCode.getResponseCode(urlResponse.statusCode), data: data))
         } else {
             sendError(RestError(code: urlResponse.statusCode, reason: dataToString(data)))
+        }
+    }
+    
+    private func extractHeaders(urlResponse: NSHTTPURLResponse) -> [String : String] {
+        if let headers = urlResponse.allHeaderFields as? [String : String] {
+            return headers
+        } else {
+            return Dictionary<String, String>()
         }
     }
     

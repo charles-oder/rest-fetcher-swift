@@ -81,6 +81,8 @@ class RestFetcherTests: XCTestCase {
                 XCTAssertEqual(RestResponseCode.OK, response.code)
                 let actualBody = response.body
                 XCTAssertEqual(actualBody, "{\"thing\":\"one\"}")
+                XCTAssertEqual("value1", response.headers["header1"])
+                XCTAssertEqual("value2", response.headers["header2"])
                 successFlag = true
                 asyncExpectation.fulfill()
             }, errorCallback: {(error:RestError) in
