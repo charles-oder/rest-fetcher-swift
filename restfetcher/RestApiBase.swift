@@ -75,10 +75,7 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
 
     
     public func getHeaders() -> Dictionary<String, String> {
-        var headers = Dictionary<String,String>()
-        headers["Accept"] = "application/json; version=1"
-        headers["Content-Type"] = "application/json; charset=utf-8"
-        return headers
+        return Dictionary<String,String>()
     }
 
     public func createResponse(response:RestResponse) -> T {

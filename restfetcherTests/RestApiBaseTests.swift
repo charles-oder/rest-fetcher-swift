@@ -144,6 +144,13 @@ public class ConcreteApiBaseRequest : RestApiBaseRequest<RestApiBaseResponse> {
         return "/api"
     }
     
+    public override func getHeaders() -> Dictionary<String, String> {
+        var headers = super.getHeaders()
+        headers["Accept"] = "application/json; version=1"
+        headers["Content-Type"] = "application/json; charset=utf-8"
+        return headers
+    }
+    
     public override func getQueryArguments() -> Dictionary<String, String> {
         var args = super.getQueryArguments()
         args["arg1"] = "value 1"
