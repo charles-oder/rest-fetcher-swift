@@ -2,13 +2,13 @@ import XCTest
 
 class SensiApiBaseTests: XCTestCase {
 
-    var testReuest : ConcreteApiBaseRequest!
+    var testRequest : ConcreteApiBaseRequest!
     var mockResponse = RestResponse(headers: Dictionary<String,String>(), code: RestResponseCode.OK, data: NSData())
     var mockFetcher : RestFetcher?
     
     override func setUp() {
         super.setUp()
-        testReuest = ConcreteApiBaseRequest(successCallback: {(response:RestApiBaseResponse) in}, errorCallback:{(error:RestError)in})
+        testRequest = ConcreteApiBaseRequest(successCallback: {(response:RestApiBaseResponse) in}, errorCallback:{(error:RestError)in})
     }
     
     override func tearDown() {
@@ -17,19 +17,19 @@ class SensiApiBaseTests: XCTestCase {
 
     func testRestMethod() {
         let expectedRestMethod = RestMethod.GET
-        let actualRestMethod = testReuest!.getRestMethod()
+        let actualRestMethod = testRequest!.getRestMethod()
         XCTAssertEqual(actualRestMethod, expectedRestMethod)
     }
     
     func testApiResource() {
         let expectedResource = "http://google.com/api?arg2=value2&arg1=value%201"
-        let actuaResource = testReuest!.getApiResource()
+        let actuaResource = testRequest!.getApiResource()
         XCTAssertEqual(actuaResource, expectedResource)
     }
     
     func testBody() {
         let expectedBody = ""
-        let actualBody = testReuest!.getBody()
+        let actualBody = testRequest!.getBody()
         XCTAssertEqual(actualBody, expectedBody)
     }
     
@@ -46,11 +46,11 @@ class SensiApiBaseTests: XCTestCase {
                 return expectedDict
             }
         }
-        testReuest = MockRequest(successCallback: {(response:RestApiBaseResponse) in}, errorCallback:{(error:RestError)in})
+        testRequest = MockRequest(successCallback: {(response:RestApiBaseResponse) in}, errorCallback:{(error:RestError)in})
         var expectedDict = Dictionary<String, AnyObject>()
         expectedDict["key1"] = "value1"
         XCTAssertEqual(expectedDict.count, 1)
-        XCTAssertEqual("{\"key1\":\"value1\"}", testReuest?.getBody())
+        XCTAssertEqual("{\"key1\":\"value1\"}", testRequest?.getBody())
     }
     
     func testEmptyBodyDict() {
@@ -60,7 +60,7 @@ class SensiApiBaseTests: XCTestCase {
     
     func testHeaders() {
         let expectedSize = 2
-        let headers = testReuest!.getHeaders()
+        let headers = testRequest!.getHeaders()
         let actualSize = headers.count
         XCTAssertEqual(actualSize, expectedSize)
         XCTAssertEqual(headers["Accept"]!, "application/json; version=1")
@@ -69,21 +69,21 @@ class SensiApiBaseTests: XCTestCase {
     
     func testSuccessCallback() {
         var success = false
-        testReuest = ConcreteApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
+        testRequest = ConcreteApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
             success = true
             let actualCode = response.code
-            XCTAssertTrue(self.testReuest === response.request)
+            XCTAssertTrue(self.testRequest === response.request)
             XCTAssertEqual(actualCode, RestResponseCode.OK)
             }, errorCallback:{(error:RestError) in
                 XCTFail("Sould not be here")
         })
-        testReuest!.restFetcherSuccess(mockResponse)
+        testRequest!.restFetcherSuccess(mockResponse)
         XCTAssert(success)
     }
     
     func testErrorCallback() {
         var success = false
-        testReuest = ConcreteApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
+        testRequest = ConcreteApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
                 XCTFail("Sould not be here")
             }, errorCallback:{(error:RestError) in
                 success = true
@@ -92,19 +92,19 @@ class SensiApiBaseTests: XCTestCase {
                 XCTAssertEqual(actualCode, 400)
                 XCTAssertEqual(actualReason, "Some Error")
         })
-        testReuest!.restFetcherError(RestError(code: 400, reason: "Some Error"))
+        testRequest!.restFetcherError(RestError(code: 400, reason: "Some Error"))
         XCTAssert(success)
     }
     
     func testCancelCall() {
-        testReuest = ConcreteApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
+        testRequest = ConcreteApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
             XCTFail("Sould not be here")
             }, errorCallback:{(error:RestError) in
                 XCTFail("Sould not be here")
         })
-        testReuest!.cancel()
-        testReuest!.restFetcherSuccess(mockResponse)
-        testReuest!.restFetcherError(RestError(code: 400, reason: "Some Error"))
+        testRequest!.cancel()
+        testRequest!.restFetcherSuccess(mockResponse)
+        testRequest!.restFetcherError(RestError(code: 400, reason: "Some Error"))
     }
     
     func testFetch() {
@@ -124,8 +124,8 @@ class SensiApiBaseTests: XCTestCase {
             }
         }
         let mockFetcherBuilder = MockFetcherBuilder()
-        testReuest!.restFetcherBuilder = mockFetcherBuilder
-        testReuest!.fetch()
+        testRequest!.restFetcherBuilder = mockFetcherBuilder
+        testRequest!.fetch()
         XCTAssert(mockFetcherBuilder.mockFetcher.fetched)
     }
     
