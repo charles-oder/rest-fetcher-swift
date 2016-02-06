@@ -15,6 +15,7 @@
 		E10077241BBCBBD6005AC530 /* RestResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077221BBCBBD6005AC530 /* RestResponseCode.swift */; };
 		E10077261BBCBC0E005AC530 /* RestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077251BBCBC0E005AC530 /* RestResponse.swift */; };
 		E10077271BBCBC0E005AC530 /* RestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077251BBCBC0E005AC530 /* RestResponse.swift */; };
+		E1541E581C663EBF001EC652 /* RestFetcher.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E1541E571C663EBF001EC652 /* RestFetcher.podspec */; };
 		E1B154651BBC9FF000A763BC /* RestFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = E1B154641BBC9FF000A763BC /* RestFetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1B1546C1BBC9FF000A763BC /* RestFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B154611BBC9FF000A763BC /* RestFetcher.framework */; };
 		E1B154711BBC9FF000A763BC /* RestFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B154701BBC9FF000A763BC /* RestFetcherTests.swift */; };
@@ -40,6 +41,7 @@
 		E100771E1BBCBA3D005AC530 /* RestMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestMethod.swift; sourceTree = "<group>"; };
 		E10077221BBCBBD6005AC530 /* RestResponseCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestResponseCode.swift; sourceTree = "<group>"; };
 		E10077251BBCBC0E005AC530 /* RestResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestResponse.swift; sourceTree = "<group>"; };
+		E1541E571C663EBF001EC652 /* RestFetcher.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RestFetcher.podspec; sourceTree = "<group>"; };
 		E1B154611BBC9FF000A763BC /* RestFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RestFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B154641BBC9FF000A763BC /* RestFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestFetcher.h; sourceTree = "<group>"; };
 		E1B154661BBC9FF000A763BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		E1B154571BBC9FF000A763BC = {
 			isa = PBXGroup;
 			children = (
+				E1541E571C663EBF001EC652 /* RestFetcher.podspec */,
 				E1B154631BBC9FF000A763BC /* RestFetcher */,
 				E1B1546F1BBC9FF000A763BC /* RestFetcherTests */,
 				E1B154621BBC9FF000A763BC /* Products */,
@@ -208,6 +211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1541E581C663EBF001EC652 /* RestFetcher.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
