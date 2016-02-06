@@ -21,9 +21,9 @@ class SensiApiBaseTests: XCTestCase {
         XCTAssertEqual(actualRestMethod, expectedRestMethod)
     }
     
-    func testApiResource() {
+    func testBuildUrlString() {
         let expectedResource = "http://google.com/api?arg2=value2&arg1=value%201"
-        let actuaResource = testRequest!.getApiResource()
+        let actuaResource = testRequest!.buildUrlString()
         XCTAssertEqual(actuaResource, expectedResource)
     }
     
@@ -127,6 +127,20 @@ class SensiApiBaseTests: XCTestCase {
         testRequest!.restFetcherBuilder = mockFetcherBuilder
         testRequest!.fetch()
         XCTAssert(mockFetcherBuilder.mockFetcher.fetched)
+    }
+    
+    func testQueryArgumentsAreAtTheEndOfSubclasses() {
+        let testObject = ConcreteApiBaseRequest2(successCallback: {_ in }, errorCallback: {_ in })
+        let expectedResource = "http://google.com/api/stuff?arg2=value2&arg1=value%201"
+        
+        XCTAssertEqual(expectedResource, testObject.buildUrlString())
+    }
+    
+}
+
+public class ConcreteApiBaseRequest2 : ConcreteApiBaseRequest {
+    public override func getApiResource() -> String {
+        return "\(super.getApiResource())/stuff"
     }
     
 }

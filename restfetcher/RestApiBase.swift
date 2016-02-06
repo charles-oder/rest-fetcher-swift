@@ -48,7 +48,7 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
     }
         
     public func getApiResource() -> String {
-        return "\(getApiBase())\(getApiRoot())\(getQueryString())"
+        return "\(getApiBase())\(getApiRoot())"
     }
     
     public func getBody() -> String {
@@ -96,8 +96,12 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         }
     }
     
+    func buildUrlString() -> String {
+        return "\(getApiResource())\(getQueryString())"
+    }
+    
     public func prepare() {
-        _restFetcher = restFetcherBuilder.createRestFetcher(getApiResource(), method: getRestMethod(), headers: getHeaders(), body: getBody(), successCallback: restFetcherSuccess, errorCallback: restFetcherError)
+        _restFetcher = restFetcherBuilder.createRestFetcher(buildUrlString(), method: getRestMethod(), headers: getHeaders(), body: getBody(), successCallback: restFetcherSuccess, errorCallback: restFetcherError)
     }
     
     public func fetch() {
