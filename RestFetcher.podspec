@@ -11,5 +11,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/charles-oder/rest-fetcher-swift.git", :tag => "1.0.0" }
   s.source_files  = "Classes", "RestFetcher/*.swift"
   s.exclude_files = "Classes/Exclude"
+  s.platform     = :ios, "8.0"
 
 end
