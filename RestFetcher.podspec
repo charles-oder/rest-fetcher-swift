@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.homepage      = "https://github.com/charles-oder/rest-fetcher-swift"
   s.license       = { :type => "MIT", :file => "LICENSE.txt" }
   s.author        = { "Charles Oder" => "charles@oder.us" }
-  s.source        = { :git => "https://github.com/charles-oder/rest-fetcher-swift.git", :branch => "s.version.to_s", :tag => s.version.to_s }
+  s.source        = { :git => "https://github.com/charles-oder/rest-fetcher-swift.git", :branch => "Release-1.0.3", :tag => s.version.to_s }
 
   s.source_files  = "Classes", "RestFetcher/*.swift"
   s.exclude_files = "Classes/Exclude"
