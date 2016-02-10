@@ -51,6 +51,14 @@ public class JsonParser {
         return output
     }
     
+    public func getStringArray(key key: String) -> [String] {
+        if let array = _payload[key] as? [String] {
+            return array
+        } else {
+            return []
+        }
+    }
+    
     public func getInt(key key: String) -> Int? {
         return _payload[key] as? Int
     }
@@ -60,6 +68,14 @@ public class JsonParser {
             return value
         } else {
             return 0
+        }
+    }
+    
+    public func getIntArray(key key: String) -> [Int] {
+        if let array = _payload[key] as? [Int] {
+            return array
+        } else {
+            return []
         }
     }
     

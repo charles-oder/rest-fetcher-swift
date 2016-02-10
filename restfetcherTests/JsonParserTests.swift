@@ -145,5 +145,29 @@ class JsonParserTests: XCTestCase {
         XCTAssertEqual(3, value![2].getInt(key: "intKey"))
     }
     
+    func testGetStringArrayForKey() {
+        let json = "{\"strings\":[\"string 1\",\"string 2\",\"string 3\"]}"
+        let testObject = JsonParser(json: json)
+        
+        let values = testObject.getStringArray(key:"strings")
+        
+        XCTAssertEqual(3, values.count)
+        XCTAssertEqual("string 1", values[0])
+        XCTAssertEqual("string 2", values[1])
+        XCTAssertEqual("string 3", values[2])
+    }
+    
+    func testGetIntArrayForKey() {
+        let json = "{\"ints\":[1,2,3]}"
+        let testObject = JsonParser(json: json)
+        
+        let values = testObject.getIntArray(key:"ints")
+        
+        XCTAssertEqual(3, values.count)
+        XCTAssertEqual(1, values[0])
+        XCTAssertEqual(2, values[1])
+        XCTAssertEqual(3, values[2])
+    }
+    
     
 }
