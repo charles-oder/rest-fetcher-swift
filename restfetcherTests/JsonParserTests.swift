@@ -11,7 +11,7 @@ import XCTest
 
 class JsonParserTests: XCTestCase {
     
-    let testJson = "{\"boolKey\":true,\"stringKey\":\"stringValue\",\"intKey\":42,\"objectKey\":{\"stringKey\":\"objectStringValue\",\"intKey\":43},\"objectArrayKey\":[{\"stringKey\":\"arrayObjectString1\",\"intKey\":1},{\"stringKey\":\"arrayObjectString2\",\"intKey\":2},{\"stringKey\":\"arrayObjectString3\",\"intKey\":3}]}"
+    let testJson = "{\"boolKey\":true,\"doubleKey\":33.333,\"doubleArrayKey\":[11.11,22.22,33.33],\"stringKey\":\"stringValue\",\"intKey\":42,\"objectKey\":{\"stringKey\":\"objectStringValue\",\"intKey\":43},\"objectArrayKey\":[{\"stringKey\":\"arrayObjectString1\",\"intKey\":1},{\"stringKey\":\"arrayObjectString2\",\"intKey\":2},{\"stringKey\":\"arrayObjectString3\",\"intKey\":3}]}"
     
     let testJsonDictionary:[String: AnyObject] = ["stringKey":"stringValue","intKey":42,"objectKey":["stringKey":"objectStringValue","intKey":43], "objectArrayKey":[["stringKey":"arrayObjectString1","intKey":1],["stringKey":"arrayObjectString2","intKey":2],["stringKey":"arrayObjectString3","intKey":3]]]
     
@@ -29,7 +29,7 @@ class JsonParserTests: XCTestCase {
         
         let payload = testObject.getDictionaryPayload()
         
-        XCTAssertEqual(5, payload.count)
+        XCTAssertEqual(7, payload.count)
     }
     
     func testGetDictionaryPayloadCreatedWithJsonString() {
@@ -37,7 +37,7 @@ class JsonParserTests: XCTestCase {
         
         let payload = testObject.getDictionaryPayload()
         
-        XCTAssertEqual(5, payload.count)
+        XCTAssertEqual(7, payload.count)
     }
     
     func testGetDictionaryWithBadJsonString() {
@@ -169,5 +169,51 @@ class JsonParserTests: XCTestCase {
         XCTAssertEqual(3, values[2])
     }
     
+    func testGetDoubleForKey() {
+        let testObject = JsonParser(json: testJson)
+        
+        let value = testObject.getDouble(key:"doubleKey")
+        
+        XCTAssertEqual(33.333, value!)
+    }
     
+    func testGetDoubleValueForExistingKey() {
+        let testObject = JsonParser(json: testJson)
+        
+        let value = testObject.getDoubleValue(key:"doubleKey")
+        
+        XCTAssertEqual(33.333, value)
+    }
+    
+    func testGetIDoubleValueForNonExistingKey() {
+        let testObject = JsonParser(json: "{}")
+        
+        let value = testObject.getDoubleValue(key:"doubleKey")
+        
+        XCTAssertEqual(0, value)
+    }
+
+    
+    func testGetDoubleArrayForKey() {
+        let json = "{\"doubles\":[11.11,22.22,33.33]}"
+        let testObject = JsonParser(json: json)
+        
+        let values = testObject.getDoubleArray(key:"doubles")
+        
+        XCTAssertEqual(3, values.count)
+        XCTAssertEqual(11.11, values[0])
+        XCTAssertEqual(22.22, values[1])
+        XCTAssertEqual(33.33, values[2])
+    }
+    
+    func testGetDoubleArrayForNonExistingKey() {
+        let json = "{}"
+        let testObject = JsonParser(json: json)
+        
+        let values = testObject.getDoubleArray(key:"doubles")
+        
+        XCTAssertEqual(0, values.count)
+    }
+    
+
 }

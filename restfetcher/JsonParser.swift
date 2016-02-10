@@ -79,6 +79,26 @@ public class JsonParser {
         }
     }
     
+    public func getDouble(key key: String) -> Double? {
+        return _payload[key] as? Double
+    }
+    
+    public func getDoubleValue(key key: String) -> Double {
+        if let value = getDouble(key: key) {
+            return value
+        } else {
+            return 0.0
+        }
+    }
+    
+    public func getDoubleArray(key key: String) -> [Double] {
+        if let array = _payload[key] as? [Double] {
+            return array
+        } else {
+            return []
+        }
+    }
+    
     public func getBool(key key: String) -> Bool? {
         return _payload[key] as? Bool
     }
