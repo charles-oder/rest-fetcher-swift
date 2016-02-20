@@ -4,7 +4,8 @@ public protocol RestFetcherBuilder {
     func createRestFetcher(resource: String, method: RestMethod, headers:Dictionary<String, String>, body:String, successCallback: (response:RestResponse)->(), errorCallback:(error:NSError)->()) -> RestFetcher;
 }
 
-public class RestFetcher {
+@objc
+public class RestFetcher: NSObject {
     
     public class Builder : RestFetcherBuilder {
         public func createRestFetcher(resource: String, method: RestMethod, headers:Dictionary<String, String>, body:String, successCallback: (response:RestResponse)->(), errorCallback:(error:NSError)->()) -> RestFetcher {

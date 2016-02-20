@@ -1,6 +1,7 @@
 import Foundation
 
-public class RestResponse : AnyObject {
+@objc
+public class RestResponse : NSObject {
     public let headers : Dictionary<String, String>!
     public let code : RestResponseCode
     public let body : String!

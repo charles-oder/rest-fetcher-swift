@@ -1,5 +1,6 @@
 import Foundation
 
+@objc
 public enum RestResponseCode : Int {
     
     case NOT_FOUND = 404

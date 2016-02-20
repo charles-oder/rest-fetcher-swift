@@ -10,7 +10,8 @@ import UIKit
 
 public typealias Payload = [String: AnyObject]
 
-public class JsonParser {
+@objc
+public class JsonParser: NSObject {
     
     private let _payload: Payload
     
