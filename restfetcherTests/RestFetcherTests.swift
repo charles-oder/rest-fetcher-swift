@@ -25,7 +25,7 @@ class RestFetcherTests: XCTestCase {
     func testRestMethod() {
         let expectedMethod = RestMethod.POST
         let actualMethod = testObject!.createRequest().HTTPMethod
-        XCTAssertEqual(actualMethod!, expectedMethod.rawValue)
+        XCTAssertEqual(actualMethod!, expectedMethod.getString())
     }
     
     func testHeaders() {

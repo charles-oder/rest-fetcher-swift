@@ -39,7 +39,7 @@ public class RestFetcher {
     public func createRequest() -> NSURLRequest {
         let request = NSMutableURLRequest(URL: getUrl(), cachePolicy: NSURLRequestCachePolicy.UseProtocolCachePolicy, timeoutInterval:timeout)
         
-        request.HTTPMethod = method.rawValue
+        request.HTTPMethod = method.getString()
         
         addHeaders(request)
         
