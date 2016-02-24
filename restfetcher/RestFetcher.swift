@@ -109,7 +109,7 @@ public class RestFetcher: NSObject {
     }
     
     private func logRequest(request:NSMutableURLRequest) {
-        print("making \(method.rawValue) call...")
+        print("\(hashValue) making \(method.getString()) call...")
         print("URL: \(resource)")
         print("Headers:")
         for (key, val) in headers {
@@ -120,7 +120,7 @@ public class RestFetcher: NSObject {
     }
     
     private func logResponse(response: NSHTTPURLResponse, data: NSData?) {
-        print("\(method.rawValue) response received: \(response.statusCode)")
+        print("\(hashValue)\(method.getString()) response received: \(response.statusCode)")
         print("Headers:")
         for (key, val) in response.allHeaderFields {
             print("\(key): \(val)")
