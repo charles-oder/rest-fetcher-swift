@@ -86,14 +86,22 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         if !_cancel {
             let apiResponse = createResponse(response)
             apiResponse.request = self
-            successCallback(response: apiResponse)
+            onSuccess(apiResponse)
         }
     }
     
     func restFetcherError(error:NSError) {
         if !_cancel {
-            errorCallback(error: error)
+            onError(error)
         }
+    }
+    
+    public func onSuccess(response:T) {
+        successCallback(response: response)
+    }
+    
+    public func onError(error:NSError) {
+        errorCallback(error: error)
     }
     
     func buildUrlString() -> String {
