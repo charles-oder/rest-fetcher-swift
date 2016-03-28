@@ -5,7 +5,8 @@ public enum RestMethod : Int {
     case GET = 1
     case POST = 2
     case PUT = 3
-    case DELETE = 43
+    case DELETE = 4
+    case PATCH = 5
     
     public func getString() -> String {
         switch self
@@ -18,6 +19,8 @@ public enum RestMethod : Int {
             return "PUT"
         case .DELETE:
             return "DELETE"
+        case .PATCH:
+            return "PATCH"
         }
     }
 }
