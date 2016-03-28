@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name          = "RestFetcher"
-  s.version       = "1.1.5"
+  s.version       = "1.1.7"
   s.summary       = "A simple framework for making api calls."
   s.description   = "This is a simple library for supporting a family of API calls."
   s.homepage      = "https://github.com/charles-oder/rest-fetcher-swift"
