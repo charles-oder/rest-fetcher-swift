@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import RestFetcher
 
 class RestResponseCodeTests: XCTestCase {
     

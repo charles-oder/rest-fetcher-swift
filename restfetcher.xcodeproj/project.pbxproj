@@ -8,13 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E100771C1BBCBA0D005AC530 /* RestFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771B1BBCBA0D005AC530 /* RestFetcher.swift */; };
-		E100771D1BBCBA0D005AC530 /* RestFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771B1BBCBA0D005AC530 /* RestFetcher.swift */; };
 		E100771F1BBCBA3D005AC530 /* RestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771E1BBCBA3D005AC530 /* RestMethod.swift */; };
-		E10077201BBCBA3D005AC530 /* RestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E100771E1BBCBA3D005AC530 /* RestMethod.swift */; };
 		E10077231BBCBBD6005AC530 /* RestResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077221BBCBBD6005AC530 /* RestResponseCode.swift */; };
-		E10077241BBCBBD6005AC530 /* RestResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077221BBCBBD6005AC530 /* RestResponseCode.swift */; };
 		E10077261BBCBC0E005AC530 /* RestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077251BBCBC0E005AC530 /* RestResponse.swift */; };
-		E10077271BBCBC0E005AC530 /* RestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10077251BBCBC0E005AC530 /* RestResponse.swift */; };
 		E123EE1A1C67E76C002EA72D /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123EE191C67E76C002EA72D /* JsonParser.swift */; };
 		E123EE1E1C67E814002EA72D /* JsonParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E123EE1D1C67E814002EA72D /* JsonParserTests.swift */; };
 		E1541E581C663EBF001EC652 /* RestFetcher.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E1541E571C663EBF001EC652 /* RestFetcher.podspec */; };
@@ -24,7 +20,6 @@
 		E1CA987C1BCF3D48003E0793 /* RestResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CA987B1BCF3D48003E0793 /* RestResponseTests.swift */; };
 		E1CA98831BCF4A72003E0793 /* RestResponseCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CA98821BCF4A72003E0793 /* RestResponseCodeTests.swift */; };
 		E1F8F5E11BD06CF70086A5A2 /* RestApiBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8F5E01BD06CF70086A5A2 /* RestApiBase.swift */; };
-		E1F8F5E21BD06CF70086A5A2 /* RestApiBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8F5E01BD06CF70086A5A2 /* RestApiBase.swift */; };
 		E1F8F5E91BD06D070086A5A2 /* RestApiBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8F5E81BD06D070086A5A2 /* RestApiBaseTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -248,16 +243,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1F8F5E21BD06CF70086A5A2 /* RestApiBase.swift in Sources */,
 				E1F8F5E91BD06D070086A5A2 /* RestApiBaseTests.swift in Sources */,
 				E1CA98831BCF4A72003E0793 /* RestResponseCodeTests.swift in Sources */,
 				E1B154711BBC9FF000A763BC /* RestFetcherTests.swift in Sources */,
 				E123EE1E1C67E814002EA72D /* JsonParserTests.swift in Sources */,
 				E1CA987C1BCF3D48003E0793 /* RestResponseTests.swift in Sources */,
-				E10077241BBCBBD6005AC530 /* RestResponseCode.swift in Sources */,
-				E10077201BBCBA3D005AC530 /* RestMethod.swift in Sources */,
-				E100771D1BBCBA0D005AC530 /* RestFetcher.swift in Sources */,
-				E10077271BBCBC0E005AC530 /* RestResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

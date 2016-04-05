@@ -1,4 +1,5 @@
 import XCTest
+@testable import RestFetcher
 
 class RestResponseTests: XCTestCase {
     
