@@ -46,7 +46,9 @@ public class RestFetcher: NSObject {
         
         addBody(request)
         
-        logRequest(request)
+        if RestFetcherEnvironemnt().isLogging() {
+            logRequest(request)
+        }
         
         return request
     }
@@ -61,7 +63,9 @@ public class RestFetcher: NSObject {
             return
         }
         
-        logResponse(urlResponse, data: data)
+        if RestFetcherEnvironemnt().isLogging() {
+            logResponse(urlResponse, data: data)
+        }
         
         if let e = error {
             sendError(NSError(domain: "RestFetcher", code: e.code, userInfo: ["message":"Network Error"]))
