@@ -12,7 +12,12 @@ public class RestFetcher: NSObject {
             return RestFetcher(resource: resource, method: method, headers: headers, body: body, successCallback: successCallback, errorCallback: errorCallback)
         }
     }
-
+    
+    private static var logger: RestFetcherLogger? = ConsoleLogger()
+    public static func setLogger(logger: RestFetcherLogger?) {
+        RestFetcher.logger = logger
+    }
+    
     private let timeout: NSTimeInterval = 30
     private let resource: String!
     private let method: RestMethod!
@@ -113,23 +118,11 @@ public class RestFetcher: NSObject {
     }
     
     private func logRequest(request:NSMutableURLRequest) {
-        print("\(hashValue) making \(method.getString()) call...")
-        print("URL: \(resource)")
-        print("Headers:")
-        for (key, val) in headers {
-            print("\(key): \(val)")
-        }
-        print("Body: \(body)")
-
+        RestFetcher.logger?.logRequest("\(hashValue) \(method.getString())", url: resource, headers: headers, body: body)
     }
     
     private func logResponse(response: NSHTTPURLResponse, data: NSData?) {
-        print("\(hashValue)\(method.getString()) response received: \(response.statusCode)")
-        print("Headers:")
-        for (key, val) in response.allHeaderFields {
-            print("\(key): \(val)")
-        }
-        print("Body: \(dataToString(data))")
+        RestFetcher.logger?.logResponse("\(hashValue) \(method.getString())", url: resource, code: response.statusCode, headers: headers, body: body)
     }
     
     private func dataToString(data:NSData?) -> String {
