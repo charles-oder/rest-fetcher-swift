@@ -108,8 +108,13 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         return "\(getApiResource())\(getQueryString())"
     }
     
+    public func getLogger() -> RestFetcherLogger {
+        return ConsoleLogger()
+    }
+    
     public func prepare() {
         _restFetcher = restFetcherBuilder.createRestFetcher(buildUrlString(), method: getRestMethod(), headers: getHeaders(), body: getBody(), successCallback: restFetcherSuccess, errorCallback: restFetcherError)
+        _restFetcher?.setLogger(getLogger())
     }
     
     public func fetch() {

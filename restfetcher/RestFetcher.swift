@@ -13,9 +13,9 @@ public class RestFetcher: NSObject {
         }
     }
     
-    private static var logger: RestFetcherLogger? = ConsoleLogger()
-    public static func setLogger(logger: RestFetcherLogger?) {
-        RestFetcher.logger = logger
+    private var logger: RestFetcherLogger? = ConsoleLogger()
+    public func setLogger(logger: RestFetcherLogger?) {
+        self.logger = logger
     }
     
     private let timeout: NSTimeInterval = 30
@@ -118,11 +118,11 @@ public class RestFetcher: NSObject {
     }
     
     private func logRequest(request:NSMutableURLRequest) {
-        RestFetcher.logger?.logRequest("\(hashValue) \(method.getString())", url: resource, headers: headers, body: body)
+        logger?.logRequest("\(hashValue) \(method.getString())", url: resource, headers: headers, body: body)
     }
     
     private func logResponse(response: NSHTTPURLResponse, data: NSData?) {
-        RestFetcher.logger?.logResponse("\(hashValue) \(method.getString())", url: resource, code: response.statusCode, headers: headers, body: body)
+        logger?.logResponse("\(hashValue) \(method.getString())", url: resource, code: response.statusCode, headers: headers, body: body)
     }
     
     private func dataToString(data:NSData?) -> String {
