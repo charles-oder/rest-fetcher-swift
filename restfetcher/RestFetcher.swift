@@ -122,7 +122,7 @@ public class RestFetcher: NSObject {
     }
     
     private func logResponse(response: NSHTTPURLResponse, data: NSData?) {
-        logger?.logResponse("\(hashValue) \(method.getString())", url: resource, code: response.statusCode, headers: headers, body: body)
+        logger?.logResponse("\(hashValue) \(method.getString())", url: resource, code: response.statusCode, headers: headers, body: dataToString(data))
     }
     
     private func dataToString(data:NSData?) -> String {

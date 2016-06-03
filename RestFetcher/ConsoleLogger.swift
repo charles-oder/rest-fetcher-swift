@@ -25,7 +25,7 @@ public class ConsoleLogger: NSObject, RestFetcherLogger {
         for (key, val) in headers {
             logMessage += "\(key): \(val)"
         }
-        logMessage += "Body: \(body)"
+        logMessage += "\nBody: \(body)"
         print(logMessage)
     }
 }
