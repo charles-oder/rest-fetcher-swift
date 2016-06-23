@@ -5,6 +5,6 @@
       location = "group:RestFetcherExample.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/charlesoder/Documents/Developer/Personal/rest-fetcher-swift/RestFetcher.xcodeproj">
+      location = "group:RestFetcher.xcodeproj">
    </FileRef>
 </Workspace>

@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "35C49206AD9AD0E2A764FFDA19D22408F620F413+++D4DDC23",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "35C49206AD9AD0E2A764FFDA19D22408F620F413+++DFC6A8E" : 0,
+    "35C49206AD9AD0E2A764FFDA19D22408F620F413+++F37E1D6" : 0,
+    "35C49206AD9AD0E2A764FFDA19D22408F620F413+++D4DDC23" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "AAECDC7B-F512-4E54-A84C-9DA1B39E3D7D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "35C49206AD9AD0E2A764FFDA19D22408F620F413+++DFC6A8E" : "..\/..\/Personal\/rest-fetcher-swift",
+    "35C49206AD9AD0E2A764FFDA19D22408F620F413+++F37E1D6" : "..\/..\/Personal\/rest-fetcher-swift",
+    "35C49206AD9AD0E2A764FFDA19D22408F620F413+++D4DDC23" : "rest-fetcher-swift\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "RestFetcher",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "RestFetcher.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/charles-oder\/rest-fetcher-swift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "35C49206AD9AD0E2A764FFDA19D22408F620F413+++D4DDC23"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/charles-oder\/rest-fetcher-swift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "35C49206AD9AD0E2A764FFDA19D22408F620F413+++DFC6A8E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/charles-oder\/rest-fetcher-swift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "35C49206AD9AD0E2A764FFDA19D22408F620F413+++F37E1D6"
+    }
+  ]
+}
