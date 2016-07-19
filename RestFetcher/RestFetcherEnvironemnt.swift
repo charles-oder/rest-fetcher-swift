@@ -14,7 +14,7 @@ class RestFetcherEnvironemnt: NSObject {
         if let value = getInfoPlistDictionary()?["log_rest_fetcher_calls"] as? Bool {
             return value
         }
-        return true
+        return false
     }
     
     func getInfoPlistDictionary() -> NSDictionary? {

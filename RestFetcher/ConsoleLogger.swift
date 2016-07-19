@@ -9,7 +9,7 @@
 import UIKit
 
 @objc
-public class ConsoleLogger: NSObject, RestFetcherLogger {
+public class ConsoleLogger: NSObject {
 
     public func logRequest(callId: String, url: String?, headers: [String:String], body: String?) {
         var logMessage = "Request: \(callId)\nURL: \(url)\n Headers:\n"
