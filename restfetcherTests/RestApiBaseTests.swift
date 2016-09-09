@@ -4,7 +4,7 @@ import XCTest
 class SensiApiBaseTests: XCTestCase {
 
     var testRequest : ConcreteApiBaseRequest!
-    var mockResponse = RestResponse(headers: Dictionary<String,String>(), code: RestResponseCode.OK, data: NSData())
+    var mockResponse = RestResponse(headers: Dictionary<String,String>(), code: RestResponseCode.OK, data: Data())
     var mockFetcher : RestFetcher?
     
     override func setUp() {
@@ -37,19 +37,19 @@ class SensiApiBaseTests: XCTestCase {
     func testFilledBodyDict() {
         class MockRequest : ConcreteApiBaseRequest {
             
-            override init(successCallback: (response: ConcreteApiBaseResponse) -> (), errorCallback: (error: NSError) -> ()) {
+            override init(successCallback: @escaping (_ response: ConcreteApiBaseResponse) -> (), errorCallback: @escaping (_ error: NSError) -> ()) {
                 super.init(successCallback: successCallback, errorCallback: errorCallback)
             }
             
             private override func getBodyDict() -> Dictionary<String, AnyObject> {
                 var expectedDict = Dictionary<String, AnyObject>()
-                expectedDict["key1"] = "value1"
+                expectedDict["key1"] = "value1" as AnyObject?
                 return expectedDict
             }
         }
         testRequest = MockRequest(successCallback: {(response:RestApiBaseResponse) in}, errorCallback:{(error:NSError)in})
         var expectedDict = Dictionary<String, AnyObject>()
-        expectedDict["key1"] = "value1"
+        expectedDict["key1"] = "value1" as AnyObject?
         XCTAssertEqual(expectedDict.count, 1)
         XCTAssertEqual("{\"key1\":\"value1\"}", testRequest?.getBody())
     }
@@ -78,7 +78,7 @@ class SensiApiBaseTests: XCTestCase {
             }, errorCallback:{(error:NSError) in
                 XCTFail("Sould not be here")
         })
-        testRequest!.restFetcherSuccess(mockResponse)
+        testRequest!.restFetcherSuccess(response: mockResponse)
         XCTAssert(success)
     }
     
@@ -93,7 +93,7 @@ class SensiApiBaseTests: XCTestCase {
                 XCTAssertEqual(actualCode, 400)
                 XCTAssertEqual(actualReason, "Some Error")
         })
-        testRequest!.restFetcherError(NSError(domain: "RestFetcher", code: 400, userInfo: ["message":"Some Error"]))
+        testRequest!.restFetcherError(error: NSError(domain: "RestFetcher", code: 400, userInfo: ["message":"Some Error"]))
         XCTAssert(success)
     }
     
@@ -104,8 +104,8 @@ class SensiApiBaseTests: XCTestCase {
                 XCTFail("Sould not be here")
         })
         testRequest!.cancel()
-        testRequest!.restFetcherSuccess(mockResponse)
-        testRequest!.restFetcherError(NSError(domain: "RestFetcher", code: 400, userInfo: ["message":"Some Error"]))
+        testRequest!.restFetcherSuccess(response: mockResponse)
+        testRequest!.restFetcherError(error: NSError(domain: "RestFetcher", code: 400, userInfo: ["message":"Some Error"]))
     }
     
     func testFetch() {
@@ -120,7 +120,8 @@ class SensiApiBaseTests: XCTestCase {
         }
         class MockFetcherBuilder : RestFetcherBuilder {
             var mockFetcher = MockFetcher()
-            private func createRestFetcher(resource: String, method: RestMethod, headers: Dictionary<String, String>, body: String, successCallback: (response: RestResponse) -> (), errorCallback: (error: NSError) -> ()) -> RestFetcher {
+            
+            fileprivate func createRestFetcher(resource: String, method: RestMethod, headers: Dictionary<String, String>, body: String, successCallback: @escaping (RestResponse) -> (), errorCallback: @escaping (NSError) -> ()) -> RestFetcher {
                 return mockFetcher
             }
         }
@@ -148,7 +149,7 @@ public class ConcreteApiBaseRequest2 : ConcreteApiBaseRequest {
 
 public class ConcreteApiBaseRequest : RestApiBaseRequest<ConcreteApiBaseResponse> {
     
-    public override init(successCallback: (response: ConcreteApiBaseResponse) -> (), errorCallback: (error: NSError) -> ()) {
+    public override init(successCallback: @escaping (_ response: ConcreteApiBaseResponse) -> (), errorCallback: @escaping (_ error: NSError) -> ()) {
         super.init(successCallback: successCallback, errorCallback: errorCallback)
     }
     
@@ -160,7 +161,7 @@ public class ConcreteApiBaseRequest : RestApiBaseRequest<ConcreteApiBaseResponse
         return "/api"
     }
     
-    public override func createResponse(response: RestResponse) -> ConcreteApiBaseResponse {
+    public override func createResponse(_ response: RestResponse) -> ConcreteApiBaseResponse {
         return ConcreteApiBaseResponse(response: response)
     }
     

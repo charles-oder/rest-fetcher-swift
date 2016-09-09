@@ -15,7 +15,7 @@ public enum RestResponseCode : Int {
     case UNKNOWN = 999
     case REQUEST_TIMEOUT = 408
     
-    static func getResponseCode(code: Int) -> RestResponseCode {
+    static func getResponseCode(_ code: Int) -> RestResponseCode {
         if let c = RestResponseCode(rawValue: code) {
             return c
         } else {

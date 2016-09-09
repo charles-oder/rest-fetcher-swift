@@ -19,7 +19,7 @@ class RestFetcherEnvironemnt: NSObject {
     
     func getInfoPlistDictionary() -> NSDictionary? {
         var plist: NSDictionary?
-        if let path = NSBundle.mainBundle().pathForResource("Info", ofType: "plist") {
+        if let path = Bundle.main.path(forResource: "Info", ofType: "plist") {
             plist = NSDictionary(contentsOfFile: path)
         }
         return plist

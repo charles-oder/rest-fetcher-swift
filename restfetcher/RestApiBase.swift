@@ -7,10 +7,10 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
     private var _restFetcher : RestFetcher?
     public var restFetcherBuilder : RestFetcherBuilder
     
-    var successCallback : (response:T)->() = {(response: RestApiBaseResponse)->()in}
-    var errorCallback : (error:NSError)->() = {(error:NSError)->()in}
+    var successCallback : (_ response:T)->() = {(response: RestApiBaseResponse)->()in}
+    var errorCallback : (_ error:NSError)->() = {(error:NSError)->()in}
     
-    public init(successCallback:(response:T)->(), errorCallback:(error:NSError)->()) {
+    public init(successCallback: @escaping (_ response:T)->(), errorCallback: @escaping (_ error:NSError)->()) {
         self.successCallback = successCallback
         self.errorCallback = errorCallback
         self.restFetcherBuilder = RestFetcher.Builder()
@@ -41,7 +41,7 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         var output = ""
         for (key, value) in getQueryArguments() {
             output += firstArg ? "?" : "&"
-            output += "\(key)=\(value.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!)"
+            output += "\(key)=\(value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)"
             firstArg = false
         }
         return output
@@ -56,14 +56,14 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         if bodyDict.count == 0 {
             return ""
         }
-        var bodyData: NSData
+        var bodyData: Data
         do {
-            bodyData = try NSJSONSerialization.dataWithJSONObject(bodyDict, options: NSJSONWritingOptions(rawValue: 0))
+            bodyData = try JSONSerialization.data(withJSONObject: bodyDict, options: JSONSerialization.WritingOptions(rawValue: 0))
         } catch _ {
-            bodyData = NSData()
+            bodyData = Data()
         }
         
-        if let output = NSString(data: bodyData, encoding: NSUTF8StringEncoding) as? String {
+        if let output = NSString(data: bodyData, encoding: String.Encoding.utf8.rawValue) as? String {
             return output
         }
         return "" // will never be hit in this code
@@ -78,7 +78,7 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         return Dictionary<String,String>()
     }
 
-    public func createResponse(response:RestResponse) -> T {
+    public func createResponse(_ response:RestResponse) -> T {
         return RestApiBaseResponse(response: response) as! T
     }
     
@@ -96,12 +96,12 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         }
     }
     
-    public func onSuccess(response:T) {
-        successCallback(response: response)
+    public func onSuccess(_ response:T) {
+        successCallback(response)
     }
     
-    public func onError(error:NSError) {
-        errorCallback(error: error)
+    public func onError(_ error:NSError) {
+        errorCallback(error)
     }
     
     func buildUrlString() -> String {
@@ -109,7 +109,7 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
     }
     
     public func prepare() {
-        _restFetcher = restFetcherBuilder.createRestFetcher(buildUrlString(), method: getRestMethod(), headers: getHeaders(), body: getBody(), successCallback: restFetcherSuccess, errorCallback: restFetcherError)
+        _restFetcher = restFetcherBuilder.createRestFetcher(resource: buildUrlString(), method: getRestMethod(), headers: getHeaders(), body: getBody(), successCallback: restFetcherSuccess, errorCallback: restFetcherError)
     }
     
     public func fetch() {
@@ -142,7 +142,7 @@ public class RestApiBaseResponse {
         processResponse(response)
     }
     
-    public func processResponse(response:RestResponse) {
+    public func processResponse(_ response:RestResponse) {
         _code = response.code
     }
 }

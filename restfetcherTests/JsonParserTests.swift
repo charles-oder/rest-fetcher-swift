@@ -13,7 +13,15 @@ class JsonParserTests: XCTestCase {
     
     let testJson = "{\"boolKey\":true,\"doubleKey\":33.333,\"doubleArrayKey\":[11.11,22.22,33.33],\"stringKey\":\"stringValue\",\"intKey\":42,\"objectKey\":{\"stringKey\":\"objectStringValue\",\"intKey\":43},\"objectArrayKey\":[{\"stringKey\":\"arrayObjectString1\",\"intKey\":1},{\"stringKey\":\"arrayObjectString2\",\"intKey\":2},{\"stringKey\":\"arrayObjectString3\",\"intKey\":3}]}"
     
-    let testJsonDictionary:[String: AnyObject] = ["stringKey":"stringValue","intKey":42,"objectKey":["stringKey":"objectStringValue","intKey":43], "objectArrayKey":[["stringKey":"arrayObjectString1","intKey":1],["stringKey":"arrayObjectString2","intKey":2],["stringKey":"arrayObjectString3","intKey":3]]]
+    
+    var testJsonDictionary: [String: AnyObject] {
+        get {
+            let object = ["stringKey":"objectStringValue" as AnyObject,"intKey":43 as AnyObject] as [String: AnyObject]
+            let objectArray = [["stringKey":"arrayObjectString1" as AnyObject,"intKey":1 as AnyObject],["stringKey":"arrayObjectString2" as AnyObject,"intKey":2 as AnyObject],["stringKey":"arrayObjectString3" as AnyObject,"intKey":3 as AnyObject]] as [[String: AnyObject]]
+            let jsonDictionary:[String: AnyObject] = ["stringKey":"stringValue" as AnyObject,"intKey":42 as AnyObject,"objectKey":object as AnyObject, "objectArrayKey":objectArray as AnyObject]
+            return jsonDictionary
+        }
+    }
     
     func testGetDictionaryPayloadCreatedWithDictionary() {
         let testObject = JsonParser(dictionary: testJsonDictionary)
@@ -24,7 +32,7 @@ class JsonParserTests: XCTestCase {
     }
     
     func testGetDictionaryPayloadCreatedWithData() {
-        let data = testJson.dataUsingEncoding(NSUTF8StringEncoding)!
+        let data = testJson.data(using: String.Encoding.utf8)!
         let testObject = JsonParser(data: data)
         
         let payload = testObject.getDictionaryPayload()
@@ -41,7 +49,7 @@ class JsonParserTests: XCTestCase {
     }
     
     func testGetDictionaryWithBadJsonString() {
-        let data = "{\"string\":\"value\",\"huh?\":}".dataUsingEncoding(NSUTF8StringEncoding)!
+        let data = "{\"string\":\"value\",\"huh?\":}".data(using: String.Encoding.utf8)!
         let testObject = JsonParser(data: data)
         
         let payload = testObject.getDictionaryPayload()

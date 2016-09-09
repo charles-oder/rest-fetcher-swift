@@ -16,14 +16,14 @@ public class JsonParser: NSObject {
     private let _payload: Payload
     
     public convenience init(json: String) {
-        let data = json.dataUsingEncoding(NSUTF8StringEncoding)!
+        let data = json.data(using: String.Encoding.utf8)!
         self.init(data:data)
     }
 
-    public convenience init(data: NSData) {
+    public convenience init(data: Data) {
         var payload: Payload
         do {
-            payload = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as! Payload
+            payload = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! Payload
         } catch {
             print(error)
             payload = Dictionary<String, AnyObject>()
@@ -40,11 +40,11 @@ public class JsonParser: NSObject {
         return _payload
     }
     
-    public func getString(key key: String) -> String? {
+    public func getString(key: String) -> String? {
         return _payload[key] as? String
     }
     
-    public func getStringValue(key key: String) -> String {
+    public func getStringValue(key: String) -> String {
         var output = ""
         if let value = getString(key: key) {
             output = value
@@ -52,7 +52,7 @@ public class JsonParser: NSObject {
         return output
     }
     
-    public func getStringArray(key key: String) -> [String] {
+    public func getStringArray(key: String) -> [String] {
         if let array = _payload[key] as? [String] {
             return array
         } else {
@@ -60,11 +60,11 @@ public class JsonParser: NSObject {
         }
     }
     
-    public func getInt(key key: String) -> Int? {
+    public func getInt(key: String) -> Int? {
         return _payload[key] as? Int
     }
     
-    public func getIntValue(key key: String) -> Int {
+    public func getIntValue(key: String) -> Int {
         if let value = getInt(key: key) {
             return value
         } else {
@@ -72,7 +72,7 @@ public class JsonParser: NSObject {
         }
     }
     
-    public func getIntArray(key key: String) -> [Int] {
+    public func getIntArray(key: String) -> [Int] {
         if let array = _payload[key] as? [Int] {
             return array
         } else {
@@ -80,11 +80,11 @@ public class JsonParser: NSObject {
         }
     }
     
-    public func getDouble(key key: String) -> Double? {
+    public func getDouble(key: String) -> Double? {
         return _payload[key] as? Double
     }
     
-    public func getDoubleValue(key key: String) -> Double {
+    public func getDoubleValue(key: String) -> Double {
         if let value = getDouble(key: key) {
             return value
         } else {
@@ -92,7 +92,7 @@ public class JsonParser: NSObject {
         }
     }
     
-    public func getDoubleArray(key key: String) -> [Double] {
+    public func getDoubleArray(key: String) -> [Double] {
         if let array = _payload[key] as? [Double] {
             return array
         } else {
@@ -100,11 +100,11 @@ public class JsonParser: NSObject {
         }
     }
     
-    public func getBool(key key: String) -> Bool? {
+    public func getBool(key: String) -> Bool? {
         return _payload[key] as? Bool
     }
     
-    public func getBoolValue(key key: String) -> Bool {
+    public func getBoolValue(key: String) -> Bool {
         if let value = getBool(key: key) {
             return value
         } else {
@@ -112,7 +112,7 @@ public class JsonParser: NSObject {
         }
     }
     
-    public func getObject(key key: String) -> JsonParser? {
+    public func getObject(key: String) -> JsonParser? {
         if let payload = _payload[key] as? Payload {
             return JsonParser(dictionary: payload)
         } else {
@@ -120,7 +120,7 @@ public class JsonParser: NSObject {
         }
     }
     
-    public func getObjectArray(key key: String) -> [JsonParser]? {
+    public func getObjectArray(key: String) -> [JsonParser]? {
         var output: [JsonParser] = []
         if let payloadArray = _payload[key] as? [Payload] {
             for payload in payloadArray {
