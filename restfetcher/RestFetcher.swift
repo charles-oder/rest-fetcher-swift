@@ -5,7 +5,7 @@ public protocol RestFetcherBuilder {
 }
 
 @objc
-public class RestFetcher: NSObject {
+open class RestFetcher: NSObject {
     
     public class Builder : RestFetcherBuilder {
         public func createRestFetcher(resource: String, method: RestMethod, headers:Dictionary<String, String>, body:String, successCallback: @escaping (_ response:RestResponse)->(), errorCallback: @escaping (_ error:NSError)->()) -> RestFetcher {
@@ -22,7 +22,7 @@ public class RestFetcher: NSObject {
     private let successCallback: (_ response: RestResponse) -> ()
     private let errorCallback: (_ error: NSError) -> ()
     private var session: URLSession = URLSession.shared
-
+    
     public init(resource: String, method: RestMethod, headers: Dictionary<String, String>, body: String, successCallback: @escaping (_ response: RestResponse) -> (), errorCallback: @escaping (_ error: NSError) -> ()) {
         self.resource = resource
         self.method = method
@@ -32,7 +32,7 @@ public class RestFetcher: NSObject {
         self.errorCallback = errorCallback
     }
     
-    public func fetch() {
+    open func fetch() {
         let task = session.dataTask(with: createRequest(), completionHandler: urlSessionComplete)
         task.resume()
     }

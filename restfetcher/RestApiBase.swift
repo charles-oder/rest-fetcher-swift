@@ -1,7 +1,7 @@
 import Foundation
 
 
-public class RestApiBaseRequest<T: RestApiBaseResponse> {
+open class RestApiBaseRequest<T: RestApiBaseResponse> {
     
     private var _cancel = false
     private var _restFetcher : RestFetcher?
@@ -15,28 +15,28 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         self.errorCallback = errorCallback
         self.restFetcherBuilder = RestFetcher.Builder()
     }
-
+    
     public func setRestFetcherBuilder(restFetcherBuilder: RestFetcherBuilder) {
         self.restFetcherBuilder = restFetcherBuilder
     }
-
-    public func getRestMethod() -> RestMethod {
+    
+    open func getRestMethod() -> RestMethod {
         return RestMethod.GET
     }
     
-    public func getApiBase() -> String {
+    open func getApiBase() -> String {
         return "http://google.com"
     }
     
-    public func getApiRoot() -> String {
+    open func getApiRoot() -> String {
         return ""
     }
     
-    public func getQueryArguments() -> Dictionary<String, String> {
+    open func getQueryArguments() -> Dictionary<String, String> {
         return Dictionary<String, String>()
     }
     
-    public func getQueryString() -> String {
+    open func getQueryString() -> String {
         var firstArg = true
         var output = ""
         for (key, value) in getQueryArguments() {
@@ -46,12 +46,12 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         }
         return output
     }
-        
-    public func getApiResource() -> String {
+    
+    open func getApiResource() -> String {
         return "\(getApiBase())\(getApiRoot())"
     }
     
-    public func getBody() -> String {
+    open func getBody() -> String {
         let bodyDict = getBodyDict()
         if bodyDict.count == 0 {
             return ""
@@ -68,17 +68,17 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         }
         return "" // will never be hit in this code
     }
-
-    public func getBodyDict() -> Dictionary<String, AnyObject> {
+    
+    open func getBodyDict() -> Dictionary<String, AnyObject> {
         return Dictionary<String, AnyObject>()
     }
-
     
-    public func getHeaders() -> Dictionary<String, String> {
+    
+    open func getHeaders() -> Dictionary<String, String> {
         return Dictionary<String,String>()
     }
-
-    public func createResponse(_ response:RestResponse) -> T {
+    
+    open func createResponse(_ response:RestResponse) -> T {
         return RestApiBaseResponse(response: response) as! T
     }
     
@@ -96,11 +96,11 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         }
     }
     
-    public func onSuccess(_ response:T) {
+    open func onSuccess(_ response:T) {
         successCallback(response)
     }
     
-    public func onError(_ error:NSError) {
+    open func onError(_ error:NSError) {
         errorCallback(error)
     }
     
@@ -108,11 +108,11 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         return "\(getApiResource())\(getQueryString())"
     }
     
-    public func prepare() {
+    open func prepare() {
         _restFetcher = restFetcherBuilder.createRestFetcher(resource: buildUrlString(), method: getRestMethod(), headers: getHeaders(), body: getBody(), successCallback: restFetcherSuccess, errorCallback: restFetcherError)
     }
     
-    public func fetch() {
+    open func fetch() {
         if let fetcher = _restFetcher {
             fetcher.fetch()
         } else {
@@ -121,12 +121,12 @@ public class RestApiBaseRequest<T: RestApiBaseResponse> {
         }
     }
     
-    public func cancel() {
+    open func cancel() {
         _cancel = true
     }
 }
-    
-public class RestApiBaseResponse {
+
+open class RestApiBaseResponse {
     
     private var _code : RestResponseCode = RestResponseCode.UNKNOWN
     public let response : RestResponse!
@@ -142,7 +142,7 @@ public class RestApiBaseResponse {
         processResponse(response)
     }
     
-    public func processResponse(_ response:RestResponse) {
+    open func processResponse(_ response:RestResponse) {
         _code = response.code
     }
 }
