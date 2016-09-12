@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'RestFetcherExample' do
+  pod 'RestFetcher', :path => '../'
+
+  target 'RestFetcherExampleTests' do
+    inherit! :search_paths
+
+  end
+end
+

@@ -1,0 +1,6 @@
+framework module RestFetcher {
+  umbrella header "RestFetcher-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,16 @@
+PODS:
+  - RestFetcher (1.3)
+
+DEPENDENCIES:
+  - RestFetcher (from `../`)
+
+EXTERNAL SOURCES:
+  RestFetcher:
+    :path: ../
+
+SPEC CHECKSUMS:
+  RestFetcher: 10d718a7b382dc5ba8d07c39d4f8c7f9e3d817b9
+
+PODFILE CHECKSUM: d63a1c95a4e237e5c72171873239b23324ea3397
+
+COCOAPODS: 1.1.0.rc.1

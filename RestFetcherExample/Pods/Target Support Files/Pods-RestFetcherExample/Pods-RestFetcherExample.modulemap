@@ -1,0 +1,6 @@
+framework module Pods_RestFetcherExample {
+  umbrella header "Pods-RestFetcherExample-umbrella.h"
+
+  export *
+  module * { export * }
+}
