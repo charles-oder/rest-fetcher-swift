@@ -84,13 +84,13 @@ open class RestRequest<T> {
         return Dictionary<String,String>()
     }
     
-    open func createResponse(_ response:RestResponse) -> T? {
+    open func createResponse(code: RestResponseCode, headers: Dictionary<String, String>, data: Data?, body: String?) -> T? {
         return nil
     }
     
     func restFetcherSuccess(response:RestResponse) {
         if !_cancel {
-            let apiResponse = createResponse(response)
+            let apiResponse = createResponse(code: response.code, headers: response.headers, data: response.data, body: response.body)
             onSuccess(response.code, apiResponse)
         }
     }

@@ -147,7 +147,7 @@ open class ConcreteRestRequest2 : ConcreteRestRequest {
     
 }
 
-open class ConcreteRestRequest : RestRequest<ConcreteApiBaseResponse> {
+open class ConcreteRestRequest : RestRequest<ConcreteRestResponse> {
     
     open override var domain: String {
         return "http://google.com"
@@ -157,8 +157,8 @@ open class ConcreteRestRequest : RestRequest<ConcreteApiBaseResponse> {
         return "/api"
     }
     
-    open override func createResponse(_ response: RestResponse) -> ConcreteApiBaseResponse {
-        return ConcreteApiBaseResponse(response: response)
+    open override func createResponse(code: RestResponseCode, headers: Dictionary<String, String>, data: Data?, body: String?) -> ConcreteRestResponse {
+        return ConcreteRestResponse()
     }
     
     open override var requestHeaders: Dictionary<String, String> {
@@ -176,10 +176,5 @@ open class ConcreteRestRequest : RestRequest<ConcreteApiBaseResponse> {
     }
 }
 
-open class ConcreteRestResponse: RestApiBaseResponse {
-    public override init(response: RestResponse) {
-        super.init(response: response)
-    }
-    
-    
+open class ConcreteRestResponse {
 }
