@@ -14,11 +14,11 @@ class JsonParserTests: XCTestCase {
     let testJson = "{\"boolKey\":true,\"doubleKey\":33.333,\"doubleArrayKey\":[11.11,22.22,33.33],\"stringKey\":\"stringValue\",\"intKey\":42,\"objectKey\":{\"stringKey\":\"objectStringValue\",\"intKey\":43},\"objectArrayKey\":[{\"stringKey\":\"arrayObjectString1\",\"intKey\":1},{\"stringKey\":\"arrayObjectString2\",\"intKey\":2},{\"stringKey\":\"arrayObjectString3\",\"intKey\":3}]}"
     
     
-    var testJsonDictionary: [String: Any?] {
+    var testJsonDictionary: [String: AnyObject] {
         get {
-            let object: [String: Any?] = ["stringKey":"objectStringValue","intKey":43]
-            let objectArray: [[String: Any?]] = [["stringKey":"arrayObjectString1","intKey":1],["stringKey":"arrayObjectString2","intKey":2],["stringKey":"arrayObjectString3","intKey":3]]
-            let jsonDictionary:[String: Any?] = ["stringKey":"stringValue","intKey":42,"objectKey":object, "objectArrayKey":objectArray]
+            let object = ["stringKey":"objectStringValue" as AnyObject,"intKey":43 as AnyObject] as [String: AnyObject]
+            let objectArray = [["stringKey":"arrayObjectString1" as AnyObject,"intKey":1 as AnyObject],["stringKey":"arrayObjectString2" as AnyObject,"intKey":2 as AnyObject],["stringKey":"arrayObjectString3" as AnyObject,"intKey":3 as AnyObject]] as [[String: AnyObject]]
+            let jsonDictionary:[String: AnyObject] = ["stringKey":"stringValue" as AnyObject,"intKey":42 as AnyObject,"objectKey":object as AnyObject, "objectArrayKey":objectArray as AnyObject]
             return jsonDictionary
         }
     }

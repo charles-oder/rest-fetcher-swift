@@ -8,7 +8,7 @@
 
 import UIKit
 
-public typealias Payload = [String: Any?]
+public typealias Payload = [String: AnyObject]
 
 @objc
 public class JsonParser: NSObject {
@@ -26,7 +26,7 @@ public class JsonParser: NSObject {
             payload = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! Payload
         } catch {
             print(error)
-            payload = Dictionary<String, Any?>()
+            payload = Dictionary<String, AnyObject>()
         }
 
         self.init(dictionary:payload)

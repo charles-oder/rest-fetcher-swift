@@ -1,6 +1,6 @@
 import Foundation
 
-
+@available(*, deprecated: 2.0, message: "Use RestRequest instead")
 open class RestApiBaseRequest<T: RestApiBaseResponse> {
     
     private var _cancel = false
@@ -69,8 +69,8 @@ open class RestApiBaseRequest<T: RestApiBaseResponse> {
         return "" // will never be hit in this code
     }
     
-    open func getBodyDict() -> Dictionary<String, Any?> {
-        return Dictionary<String, Any?>()
+    open func getBodyDict() -> Dictionary<String, AnyObject> {
+        return Dictionary<String, AnyObject>()
     }
     
     
@@ -130,7 +130,7 @@ open class RestApiBaseResponse {
     
     private var _code : RestResponseCode = RestResponseCode.unknown
     public let response : RestResponse!
-    internal(set) public var request: Any!
+    internal(set) public var request: AnyObject!
     var code: RestResponseCode {
         get {
             return _code
