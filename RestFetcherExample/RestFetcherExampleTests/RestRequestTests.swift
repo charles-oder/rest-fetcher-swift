@@ -157,7 +157,7 @@ open class ConcreteRestRequest : RestRequest<ConcreteRestResponse> {
         return "/api"
     }
     
-    open override func createResponse(code: RestResponseCode, headers: Dictionary<String, String>, data: Data?, body: String?) -> ConcreteRestResponse {
+    open override func createResponse(code: Int, headers: Dictionary<String, String>, data: Data?, body: String?) -> ConcreteRestResponse {
         return ConcreteRestResponse()
     }
     
