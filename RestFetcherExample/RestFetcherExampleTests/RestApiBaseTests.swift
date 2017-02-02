@@ -17,7 +17,7 @@ class SensiApiBaseTests: XCTestCase {
     }
 
     func testRestMethod() {
-        let expectedRestMethod = RestMethod.GET
+        let expectedRestMethod = RestMethod.get
         let actualRestMethod = testRequest!.getRestMethod()
         XCTAssertEqual(actualRestMethod, expectedRestMethod)
     }
@@ -112,7 +112,7 @@ class SensiApiBaseTests: XCTestCase {
         class MockFetcher : RestFetcher {
             var fetched = false
             init(){
-                super.init(resource: "", method: RestMethod.GET, headers: Dictionary<String,String>(), body: "", successCallback: {(response:RestResponse)in}, errorCallback: {(error:NSError)in})
+                super.init(resource: "", method: RestMethod.get, headers: Dictionary<String,String>(), body: "", successCallback: {(response:RestResponse)in}, errorCallback: {(error:NSError)in})
             }
             override func fetch() {
                 fetched = true

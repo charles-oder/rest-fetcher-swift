@@ -21,7 +21,7 @@ open class RestApiBaseRequest<T: RestApiBaseResponse> {
     }
     
     open func getRestMethod() -> RestMethod {
-        return RestMethod.GET
+        return RestMethod.get
     }
     
     open func getApiBase() -> String {

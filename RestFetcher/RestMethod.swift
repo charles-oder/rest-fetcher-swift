@@ -2,24 +2,24 @@ import Foundation
 
 @objc
 public enum RestMethod : Int {
-    case GET = 1
-    case POST = 2
-    case PUT = 3
-    case DELETE = 4
-    case PATCH = 5
+    case get = 1
+    case post = 2
+    case put = 3
+    case delete = 4
+    case patch = 5
     
     public func getString() -> String {
         switch self
         {
-        case .GET:
+        case .get:
             return "GET"
-        case .POST:
+        case .post:
             return "POST"
-        case .PUT:
+        case .put:
             return "PUT"
-        case .DELETE:
+        case .delete:
             return "DELETE"
-        case .PATCH:
+        case .patch:
             return "PATCH"
         }
     }
