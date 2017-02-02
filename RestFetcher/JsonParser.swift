@@ -11,6 +11,7 @@ import UIKit
 public typealias Payload = [String: AnyObject]
 
 @objc
+@available(*, deprecated: 2.0, message: "Use Third-party parser instead")
 public class JsonParser: NSObject {
     
     private let _payload: Payload
