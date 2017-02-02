@@ -69,8 +69,8 @@ open class RestApiBaseRequest<T: RestApiBaseResponse> {
         return "" // will never be hit in this code
     }
     
-    open func getBodyDict() -> Dictionary<String, AnyObject> {
-        return Dictionary<String, AnyObject>()
+    open func getBodyDict() -> Dictionary<String, Any?> {
+        return Dictionary<String, Any?>()
     }
     
     
@@ -130,7 +130,7 @@ open class RestApiBaseResponse {
     
     private var _code : RestResponseCode = RestResponseCode.UNKNOWN
     public let response : RestResponse!
-    internal(set) public var request: AnyObject!
+    internal(set) public var request: Any!
     var code: RestResponseCode {
         get {
             return _code

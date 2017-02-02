@@ -41,21 +41,21 @@ class SensiApiBaseTests: XCTestCase {
                 super.init(successCallback: successCallback, errorCallback: errorCallback)
             }
             
-            fileprivate override func getBodyDict() -> Dictionary<String, AnyObject> {
-                var expectedDict = Dictionary<String, AnyObject>()
-                expectedDict["key1"] = "value1" as AnyObject?
+            fileprivate override func getBodyDict() -> Dictionary<String, Any?> {
+                var expectedDict = Dictionary<String, Any?>()
+                expectedDict["key1"] = "value1"
                 return expectedDict
             }
         }
         testRequest = MockRequest(successCallback: {(response:RestApiBaseResponse) in}, errorCallback:{(error:NSError)in})
-        var expectedDict = Dictionary<String, AnyObject>()
-        expectedDict["key1"] = "value1" as AnyObject?
+        var expectedDict = Dictionary<String, Any?>()
+        expectedDict["key1"] = "value1"
         XCTAssertEqual(expectedDict.count, 1)
         XCTAssertEqual("{\"key1\":\"value1\"}", testRequest?.getBody())
     }
     
     func testEmptyBodyDict() {
-        let expectedDict = Dictionary<String, AnyObject>()
+        let expectedDict = Dictionary<String, Any?>()
         XCTAssertEqual(expectedDict.count, 0)
     }
     
@@ -73,7 +73,7 @@ class SensiApiBaseTests: XCTestCase {
         testRequest = ConcreteApiBaseRequest(successCallback:{(response:RestApiBaseResponse) in
             success = true
             let actualCode = response.code
-            XCTAssertTrue(self.testRequest === response.request)
+            XCTAssertTrue(self.testRequest === response.request as! ConcreteApiBaseRequest)
             XCTAssertEqual(actualCode, RestResponseCode.OK)
             }, errorCallback:{(error:NSError) in
                 XCTFail("Sould not be here")
