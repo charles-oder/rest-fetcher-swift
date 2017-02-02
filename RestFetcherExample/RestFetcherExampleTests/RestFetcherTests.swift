@@ -79,7 +79,7 @@ class RestFetcherTests: XCTestCase {
         var successFlag = false
         let asyncExpectation = expectation(description: "ApiCall")
         self.testObject = RestFetcher(resource: "", method: RestMethod.get, headers: Dictionary<String, String>(), body: "", successCallback: {(response:RestResponse) in
-                XCTAssertEqual(RestResponseCode.OK, response.code)
+                XCTAssertEqual(RestResponseCode.ok, response.code)
                 let actualBody = response.body
                 XCTAssertEqual(actualBody, "{\"thing\":\"one\"}")
                 XCTAssertEqual("value1", response.headers["header1"])

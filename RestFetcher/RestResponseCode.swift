@@ -3,23 +3,23 @@ import Foundation
 @objc
 public enum RestResponseCode : Int {
     
-    case NOT_FOUND = 404
-    case OK = 200
-    case NO_CONTENT = 204
-    case BAD_REQUEST = 400
-    case UNAUTHORIZED = 401
-    case FORBIDDEN = 403
-    case CONFLICT = 409
-    case INTERNAL_SERVER_ERROR = 500
-    case METHOD_NOT_ALLOWED = 405
-    case UNKNOWN = 999
-    case REQUEST_TIMEOUT = 408
+    case notFound = 404
+    case ok = 200
+    case noContent = 204
+    case badRequest = 400
+    case unauthorized = 401
+    case forbidden = 403
+    case conflict = 409
+    case internalServerError = 500
+    case methodNotAllowed = 405
+    case unknown = 999
+    case requestTimeout = 408
     
     static func getResponseCode(_ code: Int) -> RestResponseCode {
         if let c = RestResponseCode(rawValue: code) {
             return c
         } else {
-            return RestResponseCode.UNKNOWN
+            return RestResponseCode.unknown
         }
     }
     
@@ -27,27 +27,27 @@ public enum RestResponseCode : Int {
         
         get {
             switch(self) {
-            case .NOT_FOUND:
+            case .notFound:
                 return "NOT FOUND"
-            case .OK:
+            case .ok:
                 return "OK"
-            case .NO_CONTENT:
+            case .noContent:
                 return "NO CONTENT"
-            case .BAD_REQUEST:
+            case .badRequest:
                 return "BAD REQUEST"
-            case .UNAUTHORIZED:
+            case .unauthorized:
                 return "UNAUTHORIZED"
-            case .FORBIDDEN:
+            case .forbidden:
                 return "FORBIDDEN"
-            case .CONFLICT:
+            case .conflict:
                 return "CONFLICT"
-            case .INTERNAL_SERVER_ERROR:
+            case .internalServerError:
                 return "INTERNAL SERVER ERROR"
-            case .METHOD_NOT_ALLOWED:
+            case .methodNotAllowed:
                 return "METHOD NOT ALLOWED"
-            case .REQUEST_TIMEOUT:
+            case .requestTimeout:
                 return "REQUEST TIMEOUT"
-            case .UNKNOWN:
+            case .unknown:
                 return "UNKNOWN"
             }
         }

@@ -128,7 +128,7 @@ open class RestApiBaseRequest<T: RestApiBaseResponse> {
 
 open class RestApiBaseResponse {
     
-    private var _code : RestResponseCode = RestResponseCode.UNKNOWN
+    private var _code : RestResponseCode = RestResponseCode.unknown
     public let response : RestResponse!
     internal(set) public var request: Any!
     var code: RestResponseCode {

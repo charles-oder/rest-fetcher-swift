@@ -4,7 +4,7 @@ import XCTest
 class SensiApiBaseTests: XCTestCase {
 
     var testRequest : ConcreteApiBaseRequest!
-    var mockResponse = RestResponse(headers: Dictionary<String,String>(), code: RestResponseCode.OK, data: Data())
+    var mockResponse = RestResponse(headers: Dictionary<String,String>(), code: RestResponseCode.ok, data: Data())
     var mockFetcher : RestFetcher?
     
     override func setUp() {
@@ -74,7 +74,7 @@ class SensiApiBaseTests: XCTestCase {
             success = true
             let actualCode = response.code
             XCTAssertTrue(self.testRequest === response.request as! ConcreteApiBaseRequest)
-            XCTAssertEqual(actualCode, RestResponseCode.OK)
+            XCTAssertEqual(actualCode, RestResponseCode.ok)
             }, errorCallback:{(error:NSError) in
                 XCTFail("Sould not be here")
         })

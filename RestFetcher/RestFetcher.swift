@@ -59,7 +59,7 @@ open class RestFetcher: NSObject {
     
     func urlSessionComplete(data:Data?, response:URLResponse?, error:Error?) {
         guard let urlResponse = response as? HTTPURLResponse else {
-            sendError( NSError(domain: "RestFetcher", code: RestResponseCode.UNKNOWN.rawValue, userInfo: ["message":"Network Error"]))
+            sendError( NSError(domain: "RestFetcher", code: RestResponseCode.unknown.rawValue, userInfo: ["message":"Network Error"]))
             return
         }
         
