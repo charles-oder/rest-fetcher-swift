@@ -38,11 +38,11 @@ open class RestRequest<T> {
         return Dictionary<String, String>()
     }
     
-    var urlPath: String {
+    public var urlPath: String {
         return "\(domain)\(rootPath)\(pathResource)".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
     }
     
-    var requestUrlString: String {
+    public var requestUrlString: String {
         return "\(urlPath)\(queryString)"
     }
     
