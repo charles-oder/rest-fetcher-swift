@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../RestFetcher.podspec">
+   </FileRef>
+   <FileRef
       location = "group:RestFetcherExample.xcodeproj">
    </FileRef>
    <FileRef
