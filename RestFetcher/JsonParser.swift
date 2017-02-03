@@ -17,23 +17,23 @@ public class JsonParser: NSObject {
     private let _payload: Payload
     
     public convenience init(json: String) {
-        let data = json.data(using: String.Encoding.utf8)!
+        let data = json.data(using: String.Encoding.utf8) ?? Data()
         self.init(data:data)
     }
 
     public convenience init(data: Data) {
         var payload: Payload
         do {
-            payload = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! Payload
+            payload = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as? Payload ?? [:]
         } catch {
             print(error)
-            payload = Dictionary<String, AnyObject>()
+            payload = [:]
         }
 
         self.init(dictionary:payload)
     }
     
-    public init(dictionary:Payload) {
+    public init(dictionary: Payload) {
         _payload = dictionary
     }
     

@@ -1,15 +1,30 @@
 import Foundation
 
 public protocol RestFetcherBuilder {
-    func createRestFetcher(resource: String, method: RestMethod, headers:Dictionary<String, String>, body:String, successCallback: @escaping (_ response:RestResponse)->(), errorCallback: @escaping (_ error:NSError)->()) -> RestFetcher;
+    func createRestFetcher(resource: String,
+                           method: RestMethod,
+                           headers: [String: String],
+                           body: String,
+                           successCallback: @escaping (_ response: RestResponse) -> Void,
+                           errorCallback: @escaping (_ error: NSError) -> Void) -> RestFetcher
 }
 
 @objc
 open class RestFetcher: NSObject {
     
-    public class Builder : RestFetcherBuilder {
-        public func createRestFetcher(resource: String, method: RestMethod, headers:Dictionary<String, String>, body:String, successCallback: @escaping (_ response:RestResponse)->(), errorCallback: @escaping (_ error:NSError)->()) -> RestFetcher {
-            return RestFetcher(resource: resource, method: method, headers: headers, body: body, successCallback: successCallback, errorCallback: errorCallback)
+    public class Builder: RestFetcherBuilder {
+        public func createRestFetcher(resource: String,
+                                      method: RestMethod,
+                                      headers: [String: String],
+                                      body: String,
+                                      successCallback: @escaping (_ response: RestResponse) -> Void,
+                                      errorCallback: @escaping (_ error: NSError) -> Void) -> RestFetcher {
+            return RestFetcher(resource: resource,
+                               method: method,
+                               headers: headers,
+                               body: body,
+                               successCallback: successCallback,
+                               errorCallback: errorCallback)
         }
     }
     
@@ -17,13 +32,18 @@ open class RestFetcher: NSObject {
     private let timeout: TimeInterval = 30
     private let resource: String!
     private let method: RestMethod!
-    private let headers: Dictionary<String, String>!
+    private let headers: [String: String]
     private let body: String?
-    private let successCallback: (_ response: RestResponse) -> ()
-    private let errorCallback: (_ error: NSError) -> ()
+    private let successCallback: (_ response: RestResponse) -> Void
+    private let errorCallback: (_ error: NSError) -> Void
     private var session: URLSession = URLSession.shared
     
-    public init(resource: String, method: RestMethod, headers: Dictionary<String, String>, body: String, successCallback: @escaping (_ response: RestResponse) -> (), errorCallback: @escaping (_ error: NSError) -> ()) {
+    public init(resource: String,
+                method: RestMethod,
+                headers: [String: String],
+                body: String,
+                successCallback: @escaping (_ response: RestResponse) -> Void,
+                errorCallback: @escaping (_ error: NSError) -> Void) {
         self.resource = resource
         self.method = method
         self.headers = headers
@@ -57,9 +77,9 @@ open class RestFetcher: NSObject {
         self.session = session
     }
     
-    func urlSessionComplete(data:Data?, response:URLResponse?, error:Error?) {
+    func urlSessionComplete(data: Data?, response: URLResponse?, error: Error?) {
         guard let urlResponse = response as? HTTPURLResponse else {
-            sendError( NSError(domain: "RestFetcher", code: RestResponseCode.unknown.rawValue, userInfo: ["message":"Network Error"]))
+            sendError(NSError(domain: "RestFetcher", code: RestResponseCode.unknown.rawValue, userInfo: ["message": "Network Error"]))
             return
         }
         
@@ -68,11 +88,14 @@ open class RestFetcher: NSObject {
         }
         
         if let e = error {
-            sendError(NSError(domain: "RestFetcher", code: e._code, userInfo: ["message":"Network Error"]))
+            sendError(NSError(domain: "RestFetcher", code: e._code, userInfo: ["message": "Network Error"]))
         } else  if isSuccessCode(urlResponse.statusCode) {
-            sendSuccess(RestResponse(headers: extractHeaders(urlResponse: urlResponse), code: RestResponseCode.getResponseCode(urlResponse.statusCode), data: data))
+            let restResponse = RestResponse(headers: extractHeaders(urlResponse: urlResponse),
+                                            code: RestResponseCode.getResponseCode(urlResponse.statusCode),
+                                            data: data)
+            sendSuccess(restResponse)
         } else {
-            sendError(NSError(domain: "RestFetcher", code: urlResponse.statusCode, userInfo: ["message":dataToString(data)]))
+            sendError(NSError(domain: "RestFetcher", code: urlResponse.statusCode, userInfo: ["message": dataToString(data)]))
         }
     }
     
@@ -80,7 +103,7 @@ open class RestFetcher: NSObject {
         if let headers = urlResponse.allHeaderFields as? [String : String] {
             return headers
         } else {
-            return Dictionary<String, String>()
+            return [:]
         }
     }
     
@@ -97,10 +120,10 @@ open class RestFetcher: NSObject {
     }
     
     private func getUrl() -> URL {
-        return URL(string: resource)!
+        return URL(string: resource) ?? URL(fileURLWithPath: "")
     }
     
-    private func addHeaders(_ request:URLRequest) -> URLRequest {
+    private func addHeaders(_ request: URLRequest) -> URLRequest {
         var updatedRequest = request
         for (key, value) in headers {
             updatedRequest.addValue(value, forHTTPHeaderField: key)
@@ -108,7 +131,7 @@ open class RestFetcher: NSObject {
         return updatedRequest
     }
     
-    private func addBody(_ request:URLRequest) -> URLRequest {
+    private func addBody(_ request: URLRequest) -> URLRequest {
         var updatedRequest = request
         if let str = body {
             updatedRequest.httpBody = str.data(using: String.Encoding.utf8)
@@ -116,15 +139,19 @@ open class RestFetcher: NSObject {
         return updatedRequest
     }
     
-    private func logRequest(_ request:URLRequest) {
+    private func logRequest(_ request: URLRequest) {
         logger.logRequest(callId: "\(hashValue) \(method.getString())", url: resource, headers: headers, body: body)
     }
     
     private func logResponse(_ response: HTTPURLResponse, data: Data?) {
-        logger.logResponse(callId: "\(hashValue) \(method.getString())", url: resource, code: response.statusCode, headers: headers, body: dataToString(data))
+        logger.logResponse(callId: "\(hashValue) \(method.getString())",
+            url: resource,
+            code: response.statusCode,
+            headers: headers,
+            body: dataToString(data))
     }
     
-    private func dataToString(_ data:Data?) -> String {
+    private func dataToString(_ data: Data?) -> String {
         var output = ""
         if let d = data {
             if let str = NSString(data: d, encoding: String.Encoding.utf8.rawValue) {

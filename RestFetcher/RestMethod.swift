@@ -1,7 +1,7 @@
 import Foundation
 
 @objc
-public enum RestMethod : Int {
+public enum RestMethod: Int {
     case get = 1
     case post = 2
     case put = 3
@@ -9,8 +9,7 @@ public enum RestMethod : Int {
     case patch = 5
     
     public func getString() -> String {
-        switch self
-        {
+        switch self {
         case .get:
             return "GET"
         case .post:

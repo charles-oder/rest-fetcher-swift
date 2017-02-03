@@ -1,4 +1,3 @@
-excluded: Pods
 line_length: 150
 trailing_whitespace: 
   ignores_empty_lines: true

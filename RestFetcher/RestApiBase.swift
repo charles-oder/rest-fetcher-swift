@@ -1,5 +1,6 @@
 import Foundation
-
+// swiftlint:disable line_length
+// swiftlint:disable empty_count closure_spacing operator_usage_whitespace colon void_return syntactic_sugar force_unwrapping force_cast comma vertical_whitespace implicit_getter
 @available(*, deprecated: 2.0, message: "Use RestRequest instead")
 open class RestApiBaseRequest<T: RestApiBaseResponse> {
     

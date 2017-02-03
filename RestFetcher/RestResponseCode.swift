@@ -1,7 +1,7 @@
 import Foundation
 
 @objc
-public enum RestResponseCode : Int {
+public enum RestResponseCode: Int {
     
     case notFound = 404
     case ok = 200
@@ -23,33 +23,31 @@ public enum RestResponseCode : Int {
         }
     }
     
-    var description : String {
+    var description: String {
         
-        get {
-            switch(self) {
-            case .notFound:
-                return "NOT FOUND"
-            case .ok:
-                return "OK"
-            case .noContent:
-                return "NO CONTENT"
-            case .badRequest:
-                return "BAD REQUEST"
-            case .unauthorized:
-                return "UNAUTHORIZED"
-            case .forbidden:
-                return "FORBIDDEN"
-            case .conflict:
-                return "CONFLICT"
-            case .internalServerError:
-                return "INTERNAL SERVER ERROR"
-            case .methodNotAllowed:
-                return "METHOD NOT ALLOWED"
-            case .requestTimeout:
-                return "REQUEST TIMEOUT"
-            case .unknown:
-                return "UNKNOWN"
-            }
+        switch self {
+        case .notFound:
+            return "NOT FOUND"
+        case .ok:
+            return "OK"
+        case .noContent:
+            return "NO CONTENT"
+        case .badRequest:
+            return "BAD REQUEST"
+        case .unauthorized:
+            return "UNAUTHORIZED"
+        case .forbidden:
+            return "FORBIDDEN"
+        case .conflict:
+            return "CONFLICT"
+        case .internalServerError:
+            return "INTERNAL SERVER ERROR"
+        case .methodNotAllowed:
+            return "METHOD NOT ALLOWED"
+        case .requestTimeout:
+            return "REQUEST TIMEOUT"
+        case .unknown:
+            return "UNKNOWN"
         }
     }
 }
