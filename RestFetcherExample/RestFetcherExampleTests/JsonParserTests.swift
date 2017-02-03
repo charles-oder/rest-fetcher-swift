@@ -11,16 +11,51 @@ import XCTest
 
 class JsonParserTests: XCTestCase {
     
-    let testJson = "{\"boolKey\":true,\"doubleKey\":33.333,\"doubleArrayKey\":[11.11,22.22,33.33],\"stringKey\":\"stringValue\",\"intKey\":42,\"objectKey\":{\"stringKey\":\"objectStringValue\",\"intKey\":43},\"objectArrayKey\":[{\"stringKey\":\"arrayObjectString1\",\"intKey\":1},{\"stringKey\":\"arrayObjectString2\",\"intKey\":2},{\"stringKey\":\"arrayObjectString3\",\"intKey\":3}]}"
-    
+    let testJson = "{\"boolKey\":true,"
+        + "\"doubleKey\":33.333,"
+        + "\"doubleArrayKey\":[11.11,22.22,33.33],"
+        + "\"stringKey\":\"stringValue\","
+        + "\"intKey\":42,"
+        + "\"objectKey\":{"
+        + "\"stringKey\":\"objectStringValue\","
+        + "\"intKey\":43"
+        + "},"
+        + "\"objectArrayKey\":["
+        + "{\"stringKey\":\"arrayObjectString1\","
+        + "\"intKey\":1"
+        + "},"
+        + "{\"stringKey\":\"arrayObjectString2\","
+        + "\"intKey\":2"
+        + "},"
+        + "{\"stringKey\":\"arrayObjectString3\","
+        + "\"intKey\":3"
+        + "}"
+        + "]"
+        + "}"
     
     var testJsonDictionary: [String: AnyObject] {
-        get {
-            let object = ["stringKey":"objectStringValue" as AnyObject,"intKey":43 as AnyObject] as [String: AnyObject]
-            let objectArray = [["stringKey":"arrayObjectString1" as AnyObject,"intKey":1 as AnyObject],["stringKey":"arrayObjectString2" as AnyObject,"intKey":2 as AnyObject],["stringKey":"arrayObjectString3" as AnyObject,"intKey":3 as AnyObject]] as [[String: AnyObject]]
-            let jsonDictionary:[String: AnyObject] = ["stringKey":"stringValue" as AnyObject,"intKey":42 as AnyObject,"objectKey":object as AnyObject, "objectArrayKey":objectArray as AnyObject]
-            return jsonDictionary
-        }
+        let object = [
+            "stringKey": "objectStringValue" as AnyObject,
+            "intKey": 43 as AnyObject
+            ] as [String: AnyObject]
+        let objectArray = [
+            [
+                "stringKey": "arrayObjectString1" as AnyObject,
+                "intKey": 1 as AnyObject
+            ], [
+                "stringKey": "arrayObjectString2" as AnyObject,
+                "intKey": 2 as AnyObject
+            ], [
+                "stringKey": "arrayObjectString3" as AnyObject,
+                "intKey": 3 as AnyObject
+            ]
+            ] as [[String: AnyObject]]
+        let jsonDictionary: [String: AnyObject] = [
+            "stringKey": "stringValue" as AnyObject,
+            "intKey": 42 as AnyObject,
+            "objectKey": object as AnyObject,
+            "objectArrayKey": objectArray as AnyObject]
+        return jsonDictionary
     }
     
     func testGetDictionaryPayloadCreatedWithDictionary() {
@@ -32,7 +67,10 @@ class JsonParserTests: XCTestCase {
     }
     
     func testGetDictionaryPayloadCreatedWithData() {
-        let data = testJson.data(using: String.Encoding.utf8)!
+        guard let data = testJson.data(using: String.Encoding.utf8) else {
+            XCTFail()
+            return
+        }
         let testObject = JsonParser(data: data)
         
         let payload = testObject.getDictionaryPayload()
@@ -49,7 +87,10 @@ class JsonParserTests: XCTestCase {
     }
     
     func testGetDictionaryWithBadJsonString() {
-        let data = "{\"string\":\"value\",\"huh?\":}".data(using: String.Encoding.utf8)!
+        guard let data = "{\"string\":\"value\",\"huh?\":}".data(using: String.Encoding.utf8) else {
+            XCTFail()
+            return
+        }
         let testObject = JsonParser(data: data)
         
         let payload = testObject.getDictionaryPayload()
@@ -62,7 +103,7 @@ class JsonParserTests: XCTestCase {
         
         let value = testObject.getString(key:"stringKey")
         
-        XCTAssertEqual("stringValue", value!)
+        XCTAssertEqual("stringValue", value)
     }
     
     func testGetStringValueForExistingKey() {
@@ -86,7 +127,7 @@ class JsonParserTests: XCTestCase {
         
         let value = testObject.getInt(key:"intKey")
         
-        XCTAssertEqual(42, value!)
+        XCTAssertEqual(42, value)
     }
     
     func testGetIntValueForExistingKey() {
@@ -110,7 +151,7 @@ class JsonParserTests: XCTestCase {
         
         let value = testObject.getBool(key:"boolKey")
         
-        XCTAssertTrue(value!)
+        XCTAssertTrue(value == true)
     }
     
     func testGetBoolValueForExistingKey() {
@@ -145,12 +186,12 @@ class JsonParserTests: XCTestCase {
         let value = testObject.getObjectArray(key:"objectArrayKey")
         
         XCTAssertNotNil(value)
-        XCTAssertEqual("arrayObjectString1", value![0].getString(key: "stringKey"))
-        XCTAssertEqual(1, value![0].getInt(key: "intKey"))
-        XCTAssertEqual("arrayObjectString2", value![1].getString(key: "stringKey"))
-        XCTAssertEqual(2, value![1].getInt(key: "intKey"))
-        XCTAssertEqual("arrayObjectString3", value![2].getString(key: "stringKey"))
-        XCTAssertEqual(3, value![2].getInt(key: "intKey"))
+        XCTAssertEqual("arrayObjectString1", value?[0].getString(key: "stringKey"))
+        XCTAssertEqual(1, value?[0].getInt(key: "intKey") ?? 0)
+        XCTAssertEqual("arrayObjectString2", value?[1].getString(key: "stringKey"))
+        XCTAssertEqual(2, value?[1].getInt(key: "intKey") ?? 0)
+        XCTAssertEqual("arrayObjectString3", value?[2].getString(key: "stringKey"))
+        XCTAssertEqual(3, value?[2].getInt(key: "intKey") ?? 0)
     }
     
     func testGetStringArrayForKey() {
@@ -182,7 +223,7 @@ class JsonParserTests: XCTestCase {
         
         let value = testObject.getDouble(key:"doubleKey")
         
-        XCTAssertEqual(33.333, value!)
+        XCTAssertEqual(33.333, value)
     }
     
     func testGetDoubleValueForExistingKey() {
@@ -200,7 +241,6 @@ class JsonParserTests: XCTestCase {
         
         XCTAssertEqual(0, value)
     }
-
     
     func testGetDoubleArrayForKey() {
         let json = "{\"doubles\":[11.11,22.22,33.33]}"
@@ -223,5 +263,4 @@ class JsonParserTests: XCTestCase {
         XCTAssertEqual(0, values.count)
     }
     
-
 }

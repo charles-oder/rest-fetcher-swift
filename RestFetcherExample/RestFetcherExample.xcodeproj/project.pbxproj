@@ -156,6 +156,7 @@
 				E1FFC8C81D871707004A1DFF /* Resources */,
 				120AE57C466958E9E536E11F /* [CP] Embed Pods Frameworks */,
 				DB9DEB8AE3AF0CB1CA8106BE /* [CP] Copy Pods Resources */,
+				E19FDF971E43F5ED00132EB0 /* Swift Lint Check */,
 			);
 			buildRules = (
 			);
@@ -308,6 +309,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RestFetcherExample/Pods-RestFetcherExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E19FDF971E43F5ED00132EB0 /* Swift Lint Check */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint Check";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint";
 		};
 		E5C2F9CAE7CC198EAB1E8842 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
