@@ -86,8 +86,13 @@ open class RestRequest<T> {
         return nil
     }
     
+    open func willCreateResponse(code: Int, headers: [String: String], data: Data?, body: String?) {
+        // Logging hook
+    }
+    
     func restFetcherSuccess(response: RestResponse) {
         if !_cancel {
+            willCreateResponse(code: response.code.rawValue, headers: response.headers, data: response.data, body: response.body)
             let apiResponse = createResponse(code: response.code.rawValue, headers: response.headers, data: response.data, body: response.body)
             onSuccess(response.code, apiResponse)
         }
