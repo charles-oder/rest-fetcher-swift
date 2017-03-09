@@ -37,11 +37,11 @@ open class RestRequest<T> {
         return [:]
     }
     
-    public var urlPath: String {
+    open var urlPath: String {
         return "\(domain)\(rootPath)\(pathResource)".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
     }
     
-    public var requestUrlString: String {
+    open var requestUrlString: String {
         return "\(urlPath)\(queryString)"
     }
     
