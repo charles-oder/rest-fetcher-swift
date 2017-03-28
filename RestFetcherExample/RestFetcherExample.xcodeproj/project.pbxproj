@@ -14,8 +14,6 @@
 		E1FFC8D31D871707004A1DFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1FFC8D11D871707004A1DFF /* Main.storyboard */; };
 		E1FFC8D51D871707004A1DFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1FFC8D41D871707004A1DFF /* Assets.xcassets */; };
 		E1FFC8D81D871707004A1DFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1FFC8D61D871707004A1DFF /* LaunchScreen.storyboard */; };
-		E1FFC8F21D871887004A1DFF /* JsonParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8ED1D871887004A1DFF /* JsonParserTests.swift */; };
-		E1FFC8F31D871887004A1DFF /* RestApiBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8EE1D871887004A1DFF /* RestApiBaseTests.swift */; };
 		E1FFC8F41D871887004A1DFF /* RestFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8EF1D871887004A1DFF /* RestFetcherTests.swift */; };
 		E1FFC8F51D871887004A1DFF /* RestResponseCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8F01D871887004A1DFF /* RestResponseCodeTests.swift */; };
 		E1FFC8F61D871887004A1DFF /* RestResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8F11D871887004A1DFF /* RestResponseTests.swift */; };
@@ -49,8 +47,6 @@
 		E1FFC8D91D871707004A1DFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1FFC8DE1D871707004A1DFF /* RestFetcherExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RestFetcherExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1FFC8E41D871707004A1DFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1FFC8ED1D871887004A1DFF /* JsonParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParserTests.swift; sourceTree = "<group>"; };
-		E1FFC8EE1D871887004A1DFF /* RestApiBaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiBaseTests.swift; sourceTree = "<group>"; };
 		E1FFC8EF1D871887004A1DFF /* RestFetcherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestFetcherTests.swift; sourceTree = "<group>"; };
 		E1FFC8F01D871887004A1DFF /* RestResponseCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestResponseCodeTests.swift; sourceTree = "<group>"; };
 		E1FFC8F11D871887004A1DFF /* RestResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestResponseTests.swift; sourceTree = "<group>"; };
@@ -132,8 +128,6 @@
 		E1FFC8E11D871707004A1DFF /* RestFetcherExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				E1FFC8ED1D871887004A1DFF /* JsonParserTests.swift */,
-				E1FFC8EE1D871887004A1DFF /* RestApiBaseTests.swift */,
 				E1FFC8EF1D871887004A1DFF /* RestFetcherTests.swift */,
 				E1FFC8F01D871887004A1DFF /* RestResponseCodeTests.swift */,
 				E1FFC8F11D871887004A1DFF /* RestResponseTests.swift */,
@@ -370,11 +364,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1FFC8F21D871887004A1DFF /* JsonParserTests.swift in Sources */,
 				E19FDF961E42ECEF00132EB0 /* RestRequestTests.swift in Sources */,
 				E1FFC8F51D871887004A1DFF /* RestResponseCodeTests.swift in Sources */,
 				E1FFC8F61D871887004A1DFF /* RestResponseTests.swift in Sources */,
-				E1FFC8F31D871887004A1DFF /* RestApiBaseTests.swift in Sources */,
 				E1FFC8F41D871887004A1DFF /* RestFetcherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
