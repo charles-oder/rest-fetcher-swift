@@ -1,5 +1,6 @@
 import Foundation
 
+// swiftlint:disable function_parameter_count
 public protocol RestFetcherBuilder {
     func createRestFetcher(resource: String,
                            method: RestMethod,

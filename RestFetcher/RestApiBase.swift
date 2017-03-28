@@ -64,7 +64,7 @@ open class RestApiBaseRequest<T: RestApiBaseResponse> {
             bodyData = Data()
         }
         
-        if let output = NSString(data: bodyData, encoding: String.Encoding.utf8.rawValue) as? String {
+        if let output = String(data: bodyData, encoding: .utf8) {
             return output
         }
         return "" // will never be hit in this code

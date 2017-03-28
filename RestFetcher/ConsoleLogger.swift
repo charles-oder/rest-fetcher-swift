@@ -12,11 +12,11 @@ import UIKit
 public class ConsoleLogger: NSObject {
 
     public func logRequest(callId: String, url: String?, headers: [String:String], body: String?) {
-        var logMessage = "Request: \(callId)\nURL: \(url)\n Headers:\n"
+        var logMessage = "Request: \(callId)\nURL: \(String(describing: url))\n Headers:\n"
         for (key, val) in headers {
             logMessage += "\t\(key): \(val)\n"
         }
-        logMessage += "Body: \(body)"
+        logMessage += "Body: \(String(describing: body))"
         print(logMessage)
     }
     
@@ -25,7 +25,7 @@ public class ConsoleLogger: NSObject {
         for (key, val) in headers {
             logMessage += "\(key): \(val)"
         }
-        logMessage += "\nBody: \(body)"
+        logMessage += "\nBody: \(String(describing: body))"
         print(logMessage)
     }
 }

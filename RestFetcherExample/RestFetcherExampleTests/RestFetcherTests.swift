@@ -60,7 +60,7 @@ class RestFetcherTests: XCTestCase {
             return
         }
         let actualBodyString = NSString(data: actualBody, encoding: String.Encoding.utf8.rawValue)
-        XCTAssert(actualBody == expectedBody, "Bodies don't match: \(actualBodyString)")
+        XCTAssert(actualBody == expectedBody, "Bodies don't match: \(String(describing: actualBodyString))")
     }
     
     func test400Response() {
