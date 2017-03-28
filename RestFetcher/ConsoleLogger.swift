@@ -11,7 +11,7 @@ import UIKit
 @objc
 public class ConsoleLogger: NSObject {
 
-    public func logRequest(callId: String, url: String?, headers: [String:String], body: String?) {
+    public func logRequest(callId: String, url: String?, headers: [String: String], body: String?) {
         var logMessage = "Request: \(callId)\nURL: \(String(describing: url))\n Headers:\n"
         for (key, val) in headers {
             logMessage += "\t\(key): \(val)\n"
@@ -20,7 +20,7 @@ public class ConsoleLogger: NSObject {
         print(logMessage)
     }
     
-    public func logResponse(callId: String, url: String?, code: Int, headers: [String:String], body: String?) {
+    public func logResponse(callId: String, url: String?, code: Int, headers: [String: String], body: String?) {
         var logMessage = "Response: \(callId) received: \(code)\nHeaders:\n"
         for (key, val) in headers {
             logMessage += "\(key): \(val)"

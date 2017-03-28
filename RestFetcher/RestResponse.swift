@@ -17,7 +17,7 @@ public class RestResponse: NSObject {
     public class func dataToString(_ data: Data?) -> String {
         var output = ""
         if let d = data {
-            if let str = NSString(data: d, encoding: String.Encoding.utf8.rawValue) {
+            if let str = String(data: d, encoding: .utf8) {
                 output = str as String
             }
         }

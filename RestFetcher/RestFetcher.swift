@@ -135,7 +135,7 @@ open class RestFetcher: NSObject {
     private func addBody(_ request: URLRequest) -> URLRequest {
         var updatedRequest = request
         if let str = body {
-            updatedRequest.httpBody = str.data(using: String.Encoding.utf8)
+            updatedRequest.httpBody = str.data(using: .utf8)
         }
         return updatedRequest
     }
@@ -155,7 +155,7 @@ open class RestFetcher: NSObject {
     private func dataToString(_ data: Data?) -> String {
         var output = ""
         if let d = data {
-            if let str = NSString(data: d, encoding: String.Encoding.utf8.rawValue) {
+            if let str = String(data: d, encoding: .utf8) {
                 output = str as String
             }
         }
