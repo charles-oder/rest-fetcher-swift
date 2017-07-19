@@ -1,0 +1,6 @@
+language: swift
+xcode_workspace: RestFetcherExample/RestFetcherExample.xcworkspace
+xcode_scheme: RestFetcherExample
+os: osx
+osx_image: xcode8.3
+podfile: RestFetcherExample/Podfile
