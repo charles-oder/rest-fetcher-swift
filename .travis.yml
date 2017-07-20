@@ -4,7 +4,4 @@ podfile: RestFetcherExample/Podfile
 branches:
   only:
     - master
-before_install:
-    - brew update
-    - brew install xctool
-script: xctool -workspace RestFetcherExample/RestFetcherExample.xcworkspace -scheme RestFetcherExample test
+script: xcodebuild -scheme RestFetcherExample -workspace RestFetcherExample/RestFetcherExample.xcworkspace -configuration Debug clean build test -destination "platform=iOS Simulator,name=iPad Air 2,OS=latest"
