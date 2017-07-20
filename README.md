@@ -1,6 +1,6 @@
 # RestFetcher
 
-[![CI Status](http://img.shields.io/travis/Charles Oder/RestFetcher.svg?style=flat)](https://travis-ci.org/charles-oder/rest-fetcher-swift)
+[![Build Status](https://travis-ci.org/charles-oder/rest-fetcher-swift.svg?branch=master)](https://travis-ci.org/charles-oder/rest-fetcher-swift)
 [![Version](https://img.shields.io/cocoapods/v/RestFetcher.svg?style=flat)](http://cocoapods.org/pods/RestFetcher)
 [![License](https://img.shields.io/cocoapods/l/RestFetcher.svg?style=flat)](http://cocoapods.org/pods/RestFetcher)
 [![Platform](https://img.shields.io/cocoapods/p/RestFetcher.svg?style=flat)](http://cocoapods.org/pods/RestFetcher)
