@@ -75,6 +75,8 @@ class RestFetcherTests: XCTestCase {
                                       errorCallback: { error in
                 XCTAssertEqual(error.code, 400)
                 XCTAssertEqual("Refused Connection", (error.userInfo["message"] as? String))
+                let headers = error.userInfo["headers"] as? [String: String]
+                XCTAssertEqual("value", headers?["field"])
                 asyncExpectation.fulfill()
               errorFlag = true
             })
@@ -83,7 +85,7 @@ class RestFetcherTests: XCTestCase {
             XCTFail()
             return
         }
-        let mockResponse = HTTPURLResponse(url: url, statusCode: 400, httpVersion: "HTTP/1.1", headerFields: [String: String]())
+        let mockResponse = HTTPURLResponse(url: url, statusCode: 400, httpVersion: "HTTP/1.1", headerFields: ["field": "value"])
         let str = "Refused Connection"
         let data = str.data(using: String.Encoding.utf8)
         self.testObject?.urlSessionComplete(data: data, response: mockResponse, error: nil)

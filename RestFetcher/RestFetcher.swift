@@ -96,7 +96,10 @@ open class RestFetcher: NSObject {
                                             data: data)
             sendSuccess(restResponse)
         } else {
-            sendError(NSError(domain: "RestFetcher", code: urlResponse.statusCode, userInfo: ["message": dataToString(data)]))
+            let headers = extractHeaders(urlResponse: urlResponse)
+            let userInfo: [AnyHashable: Any] = ["message": dataToString(data),
+                                                "headers": headers]
+            sendError(NSError(domain: "RestFetcher", code: urlResponse.statusCode, userInfo: userInfo))
         }
     }
     
