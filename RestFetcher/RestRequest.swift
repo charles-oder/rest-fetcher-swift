@@ -38,7 +38,8 @@ open class RestRequest<T> {
     }
     
     open var urlPath: String {
-        return "\(domain)\(rootPath)\(pathResource)".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        let resource = "\(rootPath)\(pathResource)".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        return "\(domain)\(resource)"
     }
     
     open var requestUrlString: String {
