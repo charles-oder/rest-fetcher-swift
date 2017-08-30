@@ -203,6 +203,7 @@
 					E1FFC8DD1D871707004A1DFF = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = H5BA38B5ND;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = E1FFC8C91D871707004A1DFF;
 					};
