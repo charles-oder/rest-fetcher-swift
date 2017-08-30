@@ -14,4 +14,3 @@ opt_in_rules: # some rules are only opt-in
   - private_outlet
   - redundant_nil_coalescing
   - switch_case_on_newline
-  - switch_case_on_newline

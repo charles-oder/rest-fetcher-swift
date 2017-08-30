@@ -2,7 +2,7 @@ import Foundation
 
 @objc
 public enum RestResponseCode: Int {
-    
+    // swiftlint:disable identifier_name
     case notFound = 404
     case ok = 200
     case noContent = 204

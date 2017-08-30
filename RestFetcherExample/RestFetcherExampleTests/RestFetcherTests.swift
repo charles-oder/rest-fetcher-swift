@@ -37,7 +37,7 @@ class RestFetcherTests: XCTestCase {
     func testHeaders() {
         let expectedHeaders: [String: String] = ["header1": "one", "header2": "two"]
         guard let request = testObject?.createRequest() else {
-            XCTFail()
+            XCTFail("No request")
             return
         }
         if let headers = request.allHTTPHeaderFields {
@@ -56,7 +56,7 @@ class RestFetcherTests: XCTestCase {
     func testBody() {
         let expectedBody = "{\"thing\":\"one\", \"otherThing\":\"two\"}".data(using: String.Encoding.utf8)
         guard let actualBody = testObject?.createRequest().httpBody else {
-            XCTFail()
+            XCTFail("No body")
             return
         }
         let actualBodyString = NSString(data: actualBody, encoding: String.Encoding.utf8.rawValue)
@@ -82,7 +82,7 @@ class RestFetcherTests: XCTestCase {
             })
         
         guard let url = URL(string:"https://google.com") else {
-            XCTFail()
+            XCTFail("no url")
             return
         }
         let mockResponse = HTTPURLResponse(url: url, statusCode: 400, httpVersion: "HTTP/1.1", headerFields: ["field": "value"])
@@ -117,7 +117,7 @@ class RestFetcherTests: XCTestCase {
             })
         
         guard let url = URL(string:"https://google.com") else {
-            XCTFail()
+            XCTFail("no url")
             return
         }
         let mockResponse = HTTPURLResponse(url: url,
@@ -151,7 +151,7 @@ class RestFetcherTests: XCTestCase {
             })
         
         guard let url = URL(string:"https://google.com") else {
-            XCTFail()
+            XCTFail("no url")
             return
         }
         let mockResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: [String: String]())
@@ -195,14 +195,13 @@ class RestFetcherTests: XCTestCase {
             var dataTaskCalled = false
             var urlRequest: URLRequest?
             var mockTaskObject = MockTask()
-            // swiftlint:disable line_length
             fileprivate override func dataTask(with request: URLRequest,
                                                completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
                 urlRequest = request
                 dataTaskCalled = true
                 guard let bodyData = request.httpBody,
                     let body = NSString(data: bodyData, encoding: String.Encoding.utf8.rawValue) else {
-                    XCTFail()
+                    XCTFail("No Body")
                     return mockTaskObject
                 }
                 XCTAssertEqual("{\"thing\":\"one\", \"otherThing\":\"two\"}", body)
