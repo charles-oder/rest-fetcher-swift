@@ -6,7 +6,7 @@ open class RestRequest<T> {
     private var _restFetcher: RestFetcher?
     public var restFetcherBuilder: RestFetcherBuilder
     
-    public var successCallback : (_ code: RestResponseCode, _ response: T?) -> Void = { _ in }
+    public var successCallback : (_ code: RestResponseCode, _ response: T?) -> Void = { _, _ in }
     public var errorCallback : (_ error: NSError) -> Void = { _ in }
     
     public init() {
