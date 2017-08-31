@@ -151,6 +151,75 @@ class RestRequestTests: XCTestCase {
         XCTAssertEqual(expectedResource, testObject.requestUrlString)
     }
     
+    func testDecodable() {
+        class Thing: Decodable {
+            var monkey: String
+        }
+        
+        class TestRequest: RestRequest<Thing> {
+            
+        }
+        
+        let jsonString = """
+                {"monkey":"shines"}
+        """
+        let data = jsonString.data(using: .utf8)
+        
+        let response = TestRequest().createResponse(code: 200, headers: [:], data: data, body: nil)
+
+        XCTAssertEqual("shines", response?.monkey)
+    }
+    
+    func testDecodableArray() {
+        class Thing: Decodable {
+            var monkey: String
+        }
+        
+        class TestRequest: RestRequest<[Thing]> {
+            
+        }
+        
+        let jsonString = """
+                [{"monkey":"shines"},{"monkey":"sees"}]
+        """
+        let data = jsonString.data(using: .utf8)
+        
+        let response = TestRequest().createResponse(code: 200, headers: [:], data: data, body: nil)
+        
+        XCTAssertEqual(2, response?.count)
+        XCTAssertEqual("shines", response?.first?.monkey)
+        XCTAssertEqual("sees", response?.last?.monkey)
+    }
+ 
+    func testStringRequest() {
+        let string = "this is a test string"
+        let data = string.data(using: .utf8)
+        
+        class TestRequest: RestRequest<String> {
+            
+        }
+        
+        
+        let response = TestRequest().createResponse(code: 200, headers: [:], data: data, body: nil)
+        
+        XCTAssertEqual(string, response)
+        
+    }
+    
+    func testDataRequest() {
+        let string = "this is a test string"
+        let data = string.data(using: .utf8)
+        
+        class TestRequest: RestRequest<Data> {
+            
+        }
+        
+        
+        let response = TestRequest().createResponse(code: 200, headers: [:], data: data, body: nil)
+        
+        XCTAssertEqual(data, response)
+        
+    }
 }
 
 open class ConcreteRestRequest2: ConcreteRestRequest {
@@ -170,10 +239,6 @@ open class ConcreteRestRequest: RestRequest<ConcreteRestResponse> {
         return "/api"
     }
     
-    open override func createResponse(code: Int, headers: [String: String], data: Data?, body: String?) -> ConcreteRestResponse {
-        return ConcreteRestResponse()
-    }
-    
     open override var requestHeaders: [String: String] {
         var headers = super.requestHeaders
         headers["Accept"] = "application/json; version=1"
@@ -186,6 +251,12 @@ open class ConcreteRestRequest: RestRequest<ConcreteRestResponse> {
         args["arg1"] = "value 1"
         args["arg2"] = "value2"
         return args
+    }
+}
+
+extension RestRequest where T == ConcreteRestResponse {
+    func createResponse(code: Int, headers: [String: String], data: Data?, body: String?) -> T? {
+        return ConcreteRestResponse()
     }
 }
 

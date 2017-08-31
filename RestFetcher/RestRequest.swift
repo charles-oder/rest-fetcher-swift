@@ -83,10 +83,6 @@ open class RestRequest<T> {
         return [:]
     }
     
-    open func createResponse(code: Int, headers: [String: String], data: Data?, body: String?) -> T? {
-        return nil
-    }
-    
     open func willCreateResponse(code: Int, headers: [String: String], data: Data?, body: String?) {
         // Logging hook
     }
@@ -133,5 +129,44 @@ open class RestRequest<T> {
     
     open func cancel() {
         _cancel = true
+    }
+}
+
+public extension RestRequest where T: Decodable {
+    func createResponse(code: Int, headers: [String: String], data: Data?, body: String?) -> T? {
+        guard let unwrappedData = data else {
+            return nil
+        }
+        return try? JSONDecoder().decode(T.self, from: unwrappedData)
+    }
+}
+
+public extension RestRequest where T == [Decodable] {
+    func createResponse(code: Int, headers: [String: String], data: Data?, body: String?) -> T? {
+        guard let unwrappedData = data else {
+            return nil
+        }
+        return try? JSONDecoder().decode(T.self, from: unwrappedData)
+    }
+}
+
+public extension RestRequest where T == String {
+    func createResponse(code: Int, headers: [String: String], data: Data?, body: String?) -> T? {
+        guard let unwrappedData = data else {
+            return nil
+        }
+       return String(data: unwrappedData, encoding: .utf8)
+    }
+}
+
+public extension RestRequest where T == Data {
+    func createResponse(code: Int, headers: [String: String], data: Data?, body: String?) -> T? {
+        return data
+    }
+}
+
+public extension RestRequest {
+    func createResponse(code: Int, headers: [String: String], data: Data?, body: String?) -> T? {
+        return nil
     }
 }
