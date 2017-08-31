@@ -83,14 +83,14 @@ open class RestRequest<T> {
         return [:]
     }
     
-    open func willCreateResponse(code: Int, headers: [String: String], data: Data?, body: String?) {
+    open func willCreateResponse(code: Int, headers: [String: String], data: Data?) {
         // Logging hook
     }
     
     func restFetcherSuccess(response: RestResponse) {
         if !_cancel {
-            willCreateResponse(code: response.code.rawValue, headers: response.headers, data: response.data, body: response.body)
-            let apiResponse = createResponse(code: response.code.rawValue, headers: response.headers, data: response.data, body: response.body)
+            willCreateResponse(code: response.code.rawValue, headers: response.headers, data: response.data)
+            let apiResponse = createResponse(code: response.code.rawValue, headers: response.headers, data: response.data)
             onSuccess(response.code, apiResponse)
         }
     }
@@ -133,7 +133,7 @@ open class RestRequest<T> {
 }
 
 public extension RestRequest where T: Decodable {
-    func createResponse(code: Int, headers: [String: String], data: Data?, body: String?) -> T? {
+    func createResponse(code: Int, headers: [String: String], data: Data?) -> T? {
         guard let unwrappedData = data else {
             return nil
         }
@@ -142,7 +142,7 @@ public extension RestRequest where T: Decodable {
 }
 
 public extension RestRequest where T == [Decodable] {
-    func createResponse(code: Int, headers: [String: String], data: Data?, body: String?) -> T? {
+    func createResponse(code: Int, headers: [String: String], data: Data?) -> T? {
         guard let unwrappedData = data else {
             return nil
         }
@@ -151,7 +151,7 @@ public extension RestRequest where T == [Decodable] {
 }
 
 public extension RestRequest where T == String {
-    func createResponse(code: Int, headers: [String: String], data: Data?, body: String?) -> T? {
+    func createResponse(code: Int, headers: [String: String], data: Data?) -> T? {
         guard let unwrappedData = data else {
             return nil
         }
@@ -160,13 +160,13 @@ public extension RestRequest where T == String {
 }
 
 public extension RestRequest where T == Data {
-    func createResponse(code: Int, headers: [String: String], data: Data?, body: String?) -> T? {
+    func createResponse(code: Int, headers: [String: String], data: Data?) -> T? {
         return data
     }
 }
 
 public extension RestRequest {
-    func createResponse(code: Int, headers: [String: String], data: Data?, body: String?) -> T? {
+    func createResponse(code: Int, headers: [String: String], data: Data?) -> T? {
         return nil
     }
 }

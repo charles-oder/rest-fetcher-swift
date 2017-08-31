@@ -165,7 +165,7 @@ class RestRequestTests: XCTestCase {
         """
         let data = jsonString.data(using: .utf8)
         
-        let response = TestRequest().createResponse(code: 200, headers: [:], data: data, body: nil)
+        let response = TestRequest().createResponse(code: 200, headers: [:], data: data)
 
         XCTAssertEqual("shines", response?.monkey)
     }
@@ -184,7 +184,7 @@ class RestRequestTests: XCTestCase {
         """
         let data = jsonString.data(using: .utf8)
         
-        let response = TestRequest().createResponse(code: 200, headers: [:], data: data, body: nil)
+        let response = TestRequest().createResponse(code: 200, headers: [:], data: data)
         
         XCTAssertEqual(2, response?.count)
         XCTAssertEqual("shines", response?.first?.monkey)
@@ -199,8 +199,7 @@ class RestRequestTests: XCTestCase {
             
         }
         
-        
-        let response = TestRequest().createResponse(code: 200, headers: [:], data: data, body: nil)
+        let response = TestRequest().createResponse(code: 200, headers: [:], data: data)
         
         XCTAssertEqual(string, response)
         
@@ -214,8 +213,7 @@ class RestRequestTests: XCTestCase {
             
         }
         
-        
-        let response = TestRequest().createResponse(code: 200, headers: [:], data: data, body: nil)
+        let response = TestRequest().createResponse(code: 200, headers: [:], data: data)
         
         XCTAssertEqual(data, response)
         
@@ -255,7 +253,7 @@ open class ConcreteRestRequest: RestRequest<ConcreteRestResponse> {
 }
 
 extension RestRequest where T == ConcreteRestResponse {
-    func createResponse(code: Int, headers: [String: String], data: Data?, body: String?) -> T? {
+    func createResponse(code: Int, headers: [String: String], data: Data?) -> T? {
         return ConcreteRestResponse()
     }
 }

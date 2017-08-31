@@ -4,13 +4,11 @@ import Foundation
 public class RestResponse: NSObject {
     public let headers: [String: String]
     public let code: RestResponseCode
-    public let body: String!
-    public let data: Data!
+    public let data: Data?
     
     public init(headers: [String: String], code: RestResponseCode, data: Data?) {
         self.headers = headers
         self.code = code
-        self.body = RestResponse.dataToString(data)
         self.data = data
     }
     
@@ -22,6 +20,16 @@ public class RestResponse: NSObject {
             }
         }
         return output
+    }
+    
+}
+
+public extension RestResponse {
+    public var body: String? {
+        guard let unwrappedData = data else {
+            return nil
+        }
+        return String(data: unwrappedData, encoding: .utf8)
     }
     
 }
