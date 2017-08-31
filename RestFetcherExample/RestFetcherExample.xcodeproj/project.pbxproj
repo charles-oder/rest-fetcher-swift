@@ -39,6 +39,7 @@
 		A54A8C12F43CF2E6F653FA18 /* Pods-RestFetcherExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestFetcherExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RestFetcherExample/Pods-RestFetcherExample.release.xcconfig"; sourceTree = "<group>"; };
 		E19B0CB51F576142002F704A /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; name = ".swift-version"; path = "../.swift-version"; sourceTree = "<group>"; };
 		E19B0CB61F576C19002F704A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
+		E19B0CB71F57A789002F704A /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		E19FDF951E42ECEF00132EB0 /* RestRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestRequestTests.swift; sourceTree = "<group>"; };
 		E1FFC8CA1D871707004A1DFF /* RestFetcherExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestFetcherExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1FFC8CD1D871707004A1DFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +100,7 @@
 			children = (
 				E19B0CB61F576C19002F704A /* .swiftlint.yml */,
 				E19B0CB51F576142002F704A /* .swift-version */,
+				E19B0CB71F57A789002F704A /* .travis.yml */,
 				E1FFC8CC1D871707004A1DFF /* RestFetcherExample */,
 				E1FFC8E11D871707004A1DFF /* RestFetcherExampleTests */,
 				E1FFC8CB1D871707004A1DFF /* Products */,
