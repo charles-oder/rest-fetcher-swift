@@ -87,7 +87,7 @@ open class RestRequest<T> {
         // Logging hook
     }
     
-    func createResponse(code: Int, headers: [String: String], data: Data?) -> T? {
+    open func createResponse(code: Int, headers: [String: String], data: Data?) -> T? {
         return nil
     }
 
