@@ -17,7 +17,7 @@ class RestRequestTests: XCTestCase {
     }
     
     func testRestMethod() {
-        let expectedRestMethod = RestMethod.get
+        let expectedRestMethod = RestMethod.GET
         let actualRestMethod = testRequest?.restMethod
         XCTAssertEqual(actualRestMethod, expectedRestMethod)
     }
@@ -115,7 +115,7 @@ class RestRequestTests: XCTestCase {
             var fetched = false
             init() {
                 super.init(resource: "",
-                           method: RestMethod.get,
+                           method: RestMethod.GET,
                            headers: [String: String](),
                            body: "",
                            successCallback: { _ in },

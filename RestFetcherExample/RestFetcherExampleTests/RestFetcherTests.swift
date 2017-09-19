@@ -7,7 +7,7 @@ class RestFetcherTests: XCTestCase {
 
     override func setUp() {
         let headers: [String: String] = ["header1": "one", "header2": "two"]
-        let method = RestMethod.post
+        let method = RestMethod.POST
         let body = "{\"thing\":\"one\", \"otherThing\":\"two\"}"
         testObject = RestFetcher(resource: "http://google.com/api/login",
                                  method: method,
@@ -29,9 +29,9 @@ class RestFetcherTests: XCTestCase {
     }
     
     func testRestMethod() {
-        let expectedMethod = RestMethod.post
+        let expectedMethod = RestMethod.POST
         let actualMethod = testObject?.createRequest().httpMethod
-        XCTAssertEqual(actualMethod, expectedMethod.getString())
+        XCTAssertEqual(actualMethod, expectedMethod.rawValue)
     }
     
     func testHeaders() {
@@ -67,7 +67,7 @@ class RestFetcherTests: XCTestCase {
         let asyncExpectation = expectation(description: "ApiCall")
         var errorFlag = false
         self.testObject = RestFetcher(resource: "",
-                                      method: RestMethod.get,
+                                      method: RestMethod.GET,
                                       headers: [String: String](), body: "",
                                       successCallback: { _ in
             XCTFail("Should not have been called")
@@ -101,7 +101,7 @@ class RestFetcherTests: XCTestCase {
         var successFlag = false
         let asyncExpectation = expectation(description: "ApiCall")
         self.testObject = RestFetcher(resource: "",
-                                      method: RestMethod.get,
+                                      method: RestMethod.GET,
                                       headers: [String: String](), body: "",
                                       successCallback: { response in
                 XCTAssertEqual(RestResponseCode.ok, response.code)
@@ -137,7 +137,7 @@ class RestFetcherTests: XCTestCase {
         let asyncExpectation = expectation(description: "ApiCall")
         var errorFlag = false
         self.testObject = RestFetcher(resource: "",
-                                      method: RestMethod.get,
+                                      method: RestMethod.GET,
                                       headers: [String: String](),
                                       body: "",
                                       successCallback: { _ in
@@ -168,7 +168,7 @@ class RestFetcherTests: XCTestCase {
     
     func testNonNSHTTPURLResponse() {
         testObject = RestFetcher(resource: "",
-                                 method: RestMethod.get,
+                                 method: RestMethod.GET,
                                  headers: [String: String](),
                                  body: "",
                                  successCallback: { _ in

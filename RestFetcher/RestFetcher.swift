@@ -61,7 +61,7 @@ open class RestFetcher: NSObject {
     public func createRequest() -> URLRequest {
         var request = URLRequest(url: getUrl(), cachePolicy: NSURLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval:timeout)
         
-        request.httpMethod = method.getString()
+        request.httpMethod = method.rawValue
         
         request = addHeaders(request)
         
@@ -144,11 +144,11 @@ open class RestFetcher: NSObject {
     }
     
     private func logRequest(_ request: URLRequest) {
-        logger.logRequest(callId: "\(hashValue) \(method.getString())", url: resource, headers: headers, body: body)
+        logger.logRequest(callId: "\(hashValue) \(method.rawValue)", url: resource, headers: headers, body: body)
     }
     
     private func logResponse(_ response: HTTPURLResponse, data: Data?) {
-        logger.logResponse(callId: "\(hashValue) \(method.getString())",
+        logger.logResponse(callId: "\(hashValue) \(method.rawValue)",
             url: resource,
             code: response.statusCode,
             headers: headers,
