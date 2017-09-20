@@ -1,7 +1,5 @@
 language: swift
 osx_image: xcode9
 podfile: RestFetcherExample/Podfile
-branches:
-  only:
-    - master
+
 script: xcodebuild -scheme RestFetcherExample -workspace RestFetcherExample/RestFetcherExample.xcworkspace -configuration Debug clean build test -destination "platform=iOS Simulator,name=iPad Air 2,OS=latest"
