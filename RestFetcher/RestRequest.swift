@@ -18,7 +18,7 @@ open class RestRequest<T> {
     }
     
     open var restMethod: RestMethod {
-        return RestMethod.GET
+        return RestMethod.get
     }
     
     open var domain: String {

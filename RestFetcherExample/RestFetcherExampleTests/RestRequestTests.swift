@@ -17,7 +17,7 @@ class RestRequestTests: XCTestCase {
     }
     
     func testRestMethod() {
-        let expectedRestMethod = RestMethod.GET
+        let expectedRestMethod = RestMethod.get
         let actualRestMethod = testRequest?.restMethod
         XCTAssertEqual(actualRestMethod, expectedRestMethod)
     }
@@ -115,7 +115,7 @@ class RestRequestTests: XCTestCase {
             var fetched = false
             init() {
                 super.init(resource: "",
-                           method: RestMethod.GET,
+                           method: RestMethod.get,
                            headers: [String: String](),
                            body: "",
                            successCallback: { _ in },
@@ -150,8 +150,7 @@ class RestRequestTests: XCTestCase {
         
         XCTAssertEqual(expectedResource, testObject.requestUrlString)
     }
-    
-    
+
 //    // Revisit this if Swift devs ever respond to issue https://bugs.swift.org/browse/SR-5809
 //    func testDecodable() {
 //        class Thing: Decodable {
