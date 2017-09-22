@@ -51,7 +51,7 @@ open class RestRequest<T> {
         var output = ""
         for (key, value) in queryArguments {
             output += firstArg ? "?" : "&"
-            output += "\(key)=\(value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
+            output += "\(key)=\(value.encodedQueryArgument ?? "")"
             firstArg = false
         }
         return output
@@ -133,5 +133,11 @@ open class RestRequest<T> {
     
     open func cancel() {
         _cancel = true
+    }
+}
+
+fileprivate extension String {
+    var encodedQueryArgument: String? {
+        return addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)?.replacingOccurrences(of: "&", with: "%26")
     }
 }

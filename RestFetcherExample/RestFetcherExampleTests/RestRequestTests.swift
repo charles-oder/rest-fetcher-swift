@@ -150,6 +150,18 @@ class RestRequestTests: XCTestCase {
         
         XCTAssertEqual(expectedResource, testObject.requestUrlString)
     }
+    
+    func testQueryArgumentsEncodeAmersands() {
+        class TestRequest: ConcreteRestRequest {
+            override var queryArguments: [String : String] {
+                return ["arg": "M & Ms"]
+            }
+        }
+        let testObject = TestRequest()
+        let expectedResource = "http://google.com/api?arg=M%20%26%20Ms"
+        
+        XCTAssertEqual(expectedResource, testObject.requestUrlString)
+    }
 
 //    // Revisit this if Swift devs ever respond to issue https://bugs.swift.org/browse/SR-5809
 //    func testDecodable() {
