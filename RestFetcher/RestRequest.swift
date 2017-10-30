@@ -83,6 +83,10 @@ open class RestRequest<T> {
         return [:]
     }
     
+    open func willFetchRequest(resource: String, method: RestMethod, headers: [String : String], body: String) {
+        // Logging hook
+    }
+
     open func willCreateResponse(code: Int, headers: [String: String], data: Data?) {
         // Logging hook
     }
@@ -124,6 +128,7 @@ open class RestRequest<T> {
     
     open func fetch() {
         if let fetcher = _restFetcher {
+            willFetchRequest(resource: requestUrlString, method: restMethod, headers: requestHeaders, body: requestBody)
             fetcher.fetch()
         } else {
             prepare()

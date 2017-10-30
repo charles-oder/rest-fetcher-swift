@@ -163,6 +163,57 @@ class RestRequestTests: XCTestCase {
         XCTAssertEqual(expectedResource, testObject.requestUrlString)
     }
 
+    func testWillCreateResponse() {
+        class TestRequest: RestRequest<RestResponse> {
+            var callCount = 0
+            override func willCreateResponse(code: Int, headers: [String : String], data: Data?) {
+                callCount += 1
+            }
+
+            override func createResponse(code: Int, headers: [String : String], data: Data?) -> RestResponse? {
+                return RestResponse(headers: headers, code: RestResponseCode.ok, data: nil)
+            }
+        }
+        
+        let testObject = TestRequest()
+        XCTAssertEqual(0, testObject.callCount)
+
+        testObject.prepare()
+        XCTAssertEqual(0, testObject.callCount)
+
+        testObject.fetch()
+        XCTAssertEqual(0, testObject.callCount)
+
+        guard let response = testObject.createResponse(code: 200, headers: [:], data: nil) else {
+            XCTFail("response is nil")
+            return
+        }
+        testObject.restFetcherSuccess(response: response)
+        XCTAssertEqual(1, testObject.callCount)
+
+    }
+
+    func testWillFetchRequest() {
+        class TestRequest: ConcreteRestRequest {
+            var callCount = 0
+            override func willFetchRequest(resource: String, method: RestMethod, headers: [String : String], body: String) {
+                callCount += 1
+            }
+        }
+        let testObject = TestRequest()
+        XCTAssertEqual(0, testObject.callCount)
+
+        testObject.prepare()
+        XCTAssertEqual(0, testObject.callCount)
+
+        testObject.fetch()
+        XCTAssertEqual(1, testObject.callCount)
+
+        _ = testObject.createResponse(code: 200, headers: [:], data: nil)
+        XCTAssertEqual(1, testObject.callCount)
+
+    }
+
 }
 
 open class ConcreteRestRequest2: ConcreteRestRequest {
