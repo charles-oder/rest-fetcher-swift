@@ -7,24 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20CAEEE754052E2D3C61608F3831B25B /* RestFetcher-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D73B00E27BCE0BF2F85C598DF5BF08CC /* RestFetcher-dummy.m */; };
-		3A003D79E16E67C1AB9683BDF1FD7DC2 /* RestFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CF020844222076886364506B98DFC9 /* RestFetcher.swift */; };
 		3D36744B0D617DC160EE1CC0B8D163CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		40B65E0F8E278972B3DCF329B4DCF173 /* RestFetcherEnvironemnt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1523ADAFC872FC676881BB7A2CD2529 /* RestFetcherEnvironemnt.swift */; };
-		47711D181119E4865C9123FF290125D8 /* RestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B3CB353530252BF051BA64F540851 /* RestMethod.swift */; };
-		5AFD8EBD20AB6B53F7B03B33EBE4DA28 /* Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 1C6F606DC37322A8E4D9291EA0986443 /* Info.plist */; };
+		46697DF010A34A655E99D947E707B170 /* RestResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7B831ED45CBAC8AFC1F0A1E8118474 /* RestResponseCode.swift */; };
 		6A7A80F8375CCB24C1946A1A07F2545A /* Pods-RestFetcherExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F9BAAC1A980A2D53A3BF9020645034 /* Pods-RestFetcherExample-dummy.m */; };
 		6CB46B5564DD7F111C7FBF17B825A517 /* Pods-RestFetcherExample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 90836CDA45A85E7CBC50197189C3564D /* Pods-RestFetcherExample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B3B7D3A3CF7765F1E7872409BE4DDE /* Pods-RestFetcherExampleTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BE039E033B11DA98617A77B7BDE41DC4 /* Pods-RestFetcherExampleTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		94F642BC4131A5D90DD55B5335E586FB /* RestFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = D3B73CDF36985A1650AEAA7D43E92D1A /* RestFetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C2B27B3EB525A2B0113C511DCF3FE509 /* RestFetcher-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 955A349EFB746CBAFE3DC174E74676E2 /* RestFetcher-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C3B597A77B519E85A7C202A986DDBB34 /* RestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20718261FBA8A551DFC3223B8DC990CE /* RestResponse.swift */; };
+		8D449B34554C2D156A8F0EF8359F870C /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5F87230F6F816529D195ABD81793C6 /* ConsoleLogger.swift */; };
+		94052748A229FED7D8BA8CB702D3CBF8 /* RestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261ED66E60D504F1D4836AC296C3C613 /* RestRequest.swift */; };
+		94F642BC4131A5D90DD55B5335E586FB /* RestFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 74288F1E0F2AC7B4BBFE957EDBD16DFF /* RestFetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A8C416E0836374D6AA9B5C9BF27B7F09 /* RestFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15727B6308CB63EA082B02AB70E0B31 /* RestFetcher.swift */; };
+		A8DF8A2B31A79AB9473E021E9A55A617 /* RestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E784009C511EA58094EB4746F3F0CBC2 /* RestResponse.swift */; };
+		B2FBD4E3AE05CF6F5D35DCC1F9BA9F5A /* RestFetcher-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E5722A041EECD9B5F37D56A13608E839 /* RestFetcher-dummy.m */; };
+		C2B27B3EB525A2B0113C511DCF3FE509 /* RestFetcher-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EE4E430CA183F808F5F01C1A959689E /* RestFetcher-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C8AE3E3F84667C94F98B1DE6BA308FF5 /* Pods-RestFetcherExampleTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930B5248E810490A3884C67873E19A /* Pods-RestFetcherExampleTests-dummy.m */; };
 		D126D21E31FA1B7E943F96EFFA9A6F9B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		D688926A866F9EBCF321244971815ED6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		ED3B2D8B16A62D0DA9FF46E0F52FF4F4 /* ConsoleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60800B64F94F2117372AD5F5D030F1 /* ConsoleLogger.swift */; };
-		EE3B24F7678EE8A2EFCB59FF6FCB2284 /* RestResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168D6CA9B50041E31AF085E87FFB5501 /* RestResponseCode.swift */; };
-		F447A3363FB443D60C87D553EE21C04D /* RestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DD1FA77B8DB4758456F9A5F8463AE4 /* RestRequest.swift */; };
+		DAF1661AA0FB2F584DAFE6276A017CF2 /* RestFetcherEnvironemnt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5049CCCAB065910478B6D6E26FA042 /* RestFetcherEnvironemnt.swift */; };
+		DBAA89D60BFBCB1B10652288F6DB9BEE /* RestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF068C0D26C1475A6B4625CAA094160 /* RestMethod.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,46 +37,45 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		168D6CA9B50041E31AF085E87FFB5501 /* RestResponseCode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestResponseCode.swift; path = RestFetcher/RestResponseCode.swift; sourceTree = "<group>"; };
-		1C6F606DC37322A8E4D9291EA0986443 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = RestFetcher/Info.plist; sourceTree = "<group>"; };
-		20718261FBA8A551DFC3223B8DC990CE /* RestResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestResponse.swift; path = RestFetcher/RestResponse.swift; sourceTree = "<group>"; };
-		220443D7E9C740D774BC44015D070629 /* RestFetcher-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RestFetcher-prefix.pch"; sourceTree = "<group>"; };
+		0EE4E430CA183F808F5F01C1A959689E /* RestFetcher-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RestFetcher-umbrella.h"; sourceTree = "<group>"; };
+		1A5049CCCAB065910478B6D6E26FA042 /* RestFetcherEnvironemnt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestFetcherEnvironemnt.swift; path = RestFetcher/RestFetcherEnvironemnt.swift; sourceTree = "<group>"; };
+		261ED66E60D504F1D4836AC296C3C613 /* RestRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestRequest.swift; path = RestFetcher/RestRequest.swift; sourceTree = "<group>"; };
+		2B462A9E87334FAB18218043AF7EC766 /* RestFetcher-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RestFetcher-prefix.pch"; sourceTree = "<group>"; };
 		2C043FD692AC2ABF6A63E5EA7EC4B327 /* Pods-RestFetcherExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RestFetcherExample.debug.xcconfig"; sourceTree = "<group>"; };
 		36930B5248E810490A3884C67873E19A /* Pods-RestFetcherExampleTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RestFetcherExampleTests-dummy.m"; sourceTree = "<group>"; };
+		3AE0F3BF711266F6DA27D97F36F3A8E9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D2F818E451D14628FC7C3F1B0F7E6EB /* Pods-RestFetcherExampleTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RestFetcherExampleTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		55534B20321F408DD57FA016504FF2A5 /* Pods-RestFetcherExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RestFetcherExample-acknowledgements.markdown"; sourceTree = "<group>"; };
 		55F9BAAC1A980A2D53A3BF9020645034 /* Pods-RestFetcherExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RestFetcherExample-dummy.m"; sourceTree = "<group>"; };
-		60DD1FA77B8DB4758456F9A5F8463AE4 /* RestRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestRequest.swift; path = RestFetcher/RestRequest.swift; sourceTree = "<group>"; };
+		5F5F87230F6F816529D195ABD81793C6 /* ConsoleLogger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConsoleLogger.swift; path = RestFetcher/ConsoleLogger.swift; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		67B500EF3D995D350E1F537290849CD6 /* Pods-RestFetcherExampleTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-RestFetcherExampleTests.modulemap"; sourceTree = "<group>"; };
 		6B2745CEF5F4CFC74BB2EB9A3FB3277F /* Pods-RestFetcherExample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RestFetcherExample-resources.sh"; sourceTree = "<group>"; };
 		6D00A8FBAC1111373E91681ADEA6363E /* Pods-RestFetcherExampleTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RestFetcherExampleTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		74288F1E0F2AC7B4BBFE957EDBD16DFF /* RestFetcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RestFetcher.h; path = RestFetcher/RestFetcher.h; sourceTree = "<group>"; };
 		766F24C2F07A6CB9FB7FB038C5B63989 /* Pods-RestFetcherExample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RestFetcherExample-frameworks.sh"; sourceTree = "<group>"; };
 		90836CDA45A85E7CBC50197189C3564D /* Pods-RestFetcherExample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RestFetcherExample-umbrella.h"; sourceTree = "<group>"; };
-		91CF020844222076886364506B98DFC9 /* RestFetcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestFetcher.swift; path = RestFetcher/RestFetcher.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		94EBC520A7AB72F8C5A2381F17E30F7C /* Pods-RestFetcherExample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-RestFetcherExample.modulemap"; sourceTree = "<group>"; };
-		955A349EFB746CBAFE3DC174E74676E2 /* RestFetcher-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RestFetcher-umbrella.h"; sourceTree = "<group>"; };
 		992547434323F2D188F58B5F8B42E150 /* Pods-RestFetcherExample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RestFetcherExample-acknowledgements.plist"; sourceTree = "<group>"; };
-		9A6B3CB353530252BF051BA64F540851 /* RestMethod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestMethod.swift; path = RestFetcher/RestMethod.swift; sourceTree = "<group>"; };
 		9E4BCB4418253B917570F5D24CE28CF0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A15727B6308CB63EA082B02AB70E0B31 /* RestFetcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestFetcher.swift; path = RestFetcher/RestFetcher.swift; sourceTree = "<group>"; };
 		A862B896EE69807D66270E07D124703E /* Pods-RestFetcherExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RestFetcherExampleTests.release.xcconfig"; sourceTree = "<group>"; };
-		ABA2D92859D04CEE767849B87D36A47C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AC60800B64F94F2117372AD5F5D030F1 /* ConsoleLogger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConsoleLogger.swift; path = RestFetcher/ConsoleLogger.swift; sourceTree = "<group>"; };
-		B4C883A01E773DF5B459C2AB1DF97F01 /* RestFetcher.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RestFetcher.xcconfig; sourceTree = "<group>"; };
+		AB620A5026A9E4CE20878603FBCDFB55 /* RestFetcher.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RestFetcher.xcconfig; sourceTree = "<group>"; };
 		B74F6F74DCB691BD7B873313F940039A /* RestFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RestFetcher.framework; path = RestFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7BC115C686BDC374A06C0A2F182DB27 /* RestFetcher.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = RestFetcher.modulemap; sourceTree = "<group>"; };
 		BE039E033B11DA98617A77B7BDE41DC4 /* Pods-RestFetcherExampleTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RestFetcherExampleTests-umbrella.h"; sourceTree = "<group>"; };
-		C1523ADAFC872FC676881BB7A2CD2529 /* RestFetcherEnvironemnt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestFetcherEnvironemnt.swift; path = RestFetcher/RestFetcherEnvironemnt.swift; sourceTree = "<group>"; };
-		D3B73CDF36985A1650AEAA7D43E92D1A /* RestFetcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RestFetcher.h; path = RestFetcher/RestFetcher.h; sourceTree = "<group>"; };
-		D73B00E27BCE0BF2F85C598DF5BF08CC /* RestFetcher-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RestFetcher-dummy.m"; sourceTree = "<group>"; };
 		D7A4887D9064EDEF5D1E609614532C19 /* Pods-RestFetcherExampleTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RestFetcherExampleTests-frameworks.sh"; sourceTree = "<group>"; };
-		DAB6EAFBBACEBDC237CC8A712493F9D6 /* RestFetcher.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = RestFetcher.modulemap; sourceTree = "<group>"; };
+		DD7B831ED45CBAC8AFC1F0A1E8118474 /* RestResponseCode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestResponseCode.swift; path = RestFetcher/RestResponseCode.swift; sourceTree = "<group>"; };
 		E52EBECA5D321408F10AD983A45A2BBC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5722A041EECD9B5F37D56A13608E839 /* RestFetcher-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RestFetcher-dummy.m"; sourceTree = "<group>"; };
 		E73C053625A6BFAB2652A7581A1E1E6C /* Pods-RestFetcherExampleTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RestFetcherExampleTests-resources.sh"; sourceTree = "<group>"; };
+		E784009C511EA58094EB4746F3F0CBC2 /* RestResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestResponse.swift; path = RestFetcher/RestResponse.swift; sourceTree = "<group>"; };
 		E7B676FC6E9D707F06BAC5276AAA0A24 /* Pods-RestFetcherExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RestFetcherExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF9461877A7E28426DB3ECBD86335692 /* Pods-RestFetcherExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RestFetcherExample.release.xcconfig"; sourceTree = "<group>"; };
 		F965F9B0D8BF3B52C394D1DB7D942B86 /* Pods_RestFetcherExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RestFetcherExample.framework; path = "Pods-RestFetcherExample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB6F1EFCF15EDF1A3D6472B709CB6794 /* Pods_RestFetcherExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RestFetcherExampleTests.framework; path = "Pods-RestFetcherExampleTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEF068C0D26C1475A6B4625CAA094160 /* RestMethod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RestMethod.swift; path = RestFetcher/RestMethod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,11 +133,28 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		7BED2C710765ED8CD64BE7830A731E96 /* RestFetcher */ = {
+			isa = PBXGroup;
+			children = (
+				5F5F87230F6F816529D195ABD81793C6 /* ConsoleLogger.swift */,
+				74288F1E0F2AC7B4BBFE957EDBD16DFF /* RestFetcher.h */,
+				A15727B6308CB63EA082B02AB70E0B31 /* RestFetcher.swift */,
+				1A5049CCCAB065910478B6D6E26FA042 /* RestFetcherEnvironemnt.swift */,
+				FEF068C0D26C1475A6B4625CAA094160 /* RestMethod.swift */,
+				261ED66E60D504F1D4836AC296C3C613 /* RestRequest.swift */,
+				E784009C511EA58094EB4746F3F0CBC2 /* RestResponse.swift */,
+				DD7B831ED45CBAC8AFC1F0A1E8118474 /* RestResponseCode.swift */,
+				D6743BBCB3571B95FC0C0F739CBC4862 /* Support Files */,
+			);
+			name = RestFetcher;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				E9B2282B5B74C25A43ABF4D0C2F12C39 /* Development Pods */,
+				C0508A163A298F34F3892E029CAE1A4D /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				9758CC519AE2C57A9659FFC01AAD26F9 /* Pods */,
 				21CE004B396CCF20AEC722FA25908135 /* Products */,
@@ -155,44 +170,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		A38C5890D5677724D1C59262421F050F /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				ABA2D92859D04CEE767849B87D36A47C /* Info.plist */,
-				DAB6EAFBBACEBDC237CC8A712493F9D6 /* RestFetcher.modulemap */,
-				B4C883A01E773DF5B459C2AB1DF97F01 /* RestFetcher.xcconfig */,
-				D73B00E27BCE0BF2F85C598DF5BF08CC /* RestFetcher-dummy.m */,
-				220443D7E9C740D774BC44015D070629 /* RestFetcher-prefix.pch */,
-				955A349EFB746CBAFE3DC174E74676E2 /* RestFetcher-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "RestFetcherExample/Pods/Target Support Files/RestFetcher";
-			sourceTree = "<group>";
-		};
-		B03745D2EC453CC3184AB44F73910CF4 /* RestFetcher */ = {
-			isa = PBXGroup;
-			children = (
-				AC60800B64F94F2117372AD5F5D030F1 /* ConsoleLogger.swift */,
-				1C6F606DC37322A8E4D9291EA0986443 /* Info.plist */,
-				D3B73CDF36985A1650AEAA7D43E92D1A /* RestFetcher.h */,
-				91CF020844222076886364506B98DFC9 /* RestFetcher.swift */,
-				C1523ADAFC872FC676881BB7A2CD2529 /* RestFetcherEnvironemnt.swift */,
-				9A6B3CB353530252BF051BA64F540851 /* RestMethod.swift */,
-				60DD1FA77B8DB4758456F9A5F8463AE4 /* RestRequest.swift */,
-				20718261FBA8A551DFC3223B8DC990CE /* RestResponse.swift */,
-				168D6CA9B50041E31AF085E87FFB5501 /* RestResponseCode.swift */,
-				A38C5890D5677724D1C59262421F050F /* Support Files */,
-			);
-			name = RestFetcher;
-			path = ../..;
-			sourceTree = "<group>";
-		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C0508A163A298F34F3892E029CAE1A4D /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7BED2C710765ED8CD64BE7830A731E96 /* RestFetcher */,
+			);
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		CB7AFF2CBFCE5A147028FFA7B7B7D4A9 /* Pods-RestFetcherExample */ = {
@@ -221,6 +212,20 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		D6743BBCB3571B95FC0C0F739CBC4862 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3AE0F3BF711266F6DA27D97F36F3A8E9 /* Info.plist */,
+				B7BC115C686BDC374A06C0A2F182DB27 /* RestFetcher.modulemap */,
+				AB620A5026A9E4CE20878603FBCDFB55 /* RestFetcher.xcconfig */,
+				E5722A041EECD9B5F37D56A13608E839 /* RestFetcher-dummy.m */,
+				2B462A9E87334FAB18218043AF7EC766 /* RestFetcher-prefix.pch */,
+				0EE4E430CA183F808F5F01C1A959689E /* RestFetcher-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "RestFetcherExample/Pods/Target Support Files/RestFetcher";
+			sourceTree = "<group>";
+		};
 		E39E029602B53B68298532AB1D7111FD /* Pods-RestFetcherExampleTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,14 +242,6 @@
 			);
 			name = "Pods-RestFetcherExampleTests";
 			path = "Target Support Files/Pods-RestFetcherExampleTests";
-			sourceTree = "<group>";
-		};
-		E9B2282B5B74C25A43ABF4D0C2F12C39 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B03745D2EC453CC3184AB44F73910CF4 /* RestFetcher */,
-			);
-			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,7 +296,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39536A14ACE39FF3E16B7C7965C973FD /* Build configuration list for PBXNativeTarget "RestFetcher" */;
 			buildPhases = (
-				559142F561E45A3FE263B7754554FA59 /* Sources */,
+				B502C09FFBB831A8AA9506CD857BB191 /* Sources */,
 				6A04D6BA9C469522612A290ACBCB57E7 /* Frameworks */,
 				CD09F12F1A484DE175533F366934F1B6 /* Headers */,
 			);
@@ -367,19 +364,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		559142F561E45A3FE263B7754554FA59 /* Sources */ = {
+		B502C09FFBB831A8AA9506CD857BB191 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED3B2D8B16A62D0DA9FF46E0F52FF4F4 /* ConsoleLogger.swift in Sources */,
-				5AFD8EBD20AB6B53F7B03B33EBE4DA28 /* Info.plist in Sources */,
-				20CAEEE754052E2D3C61608F3831B25B /* RestFetcher-dummy.m in Sources */,
-				3A003D79E16E67C1AB9683BDF1FD7DC2 /* RestFetcher.swift in Sources */,
-				40B65E0F8E278972B3DCF329B4DCF173 /* RestFetcherEnvironemnt.swift in Sources */,
-				47711D181119E4865C9123FF290125D8 /* RestMethod.swift in Sources */,
-				F447A3363FB443D60C87D553EE21C04D /* RestRequest.swift in Sources */,
-				C3B597A77B519E85A7C202A986DDBB34 /* RestResponse.swift in Sources */,
-				EE3B24F7678EE8A2EFCB59FF6FCB2284 /* RestResponseCode.swift in Sources */,
+				8D449B34554C2D156A8F0EF8359F870C /* ConsoleLogger.swift in Sources */,
+				B2FBD4E3AE05CF6F5D35DCC1F9BA9F5A /* RestFetcher-dummy.m in Sources */,
+				A8C416E0836374D6AA9B5C9BF27B7F09 /* RestFetcher.swift in Sources */,
+				DAF1661AA0FB2F584DAFE6276A017CF2 /* RestFetcherEnvironemnt.swift in Sources */,
+				DBAA89D60BFBCB1B10652288F6DB9BEE /* RestMethod.swift in Sources */,
+				94052748A229FED7D8BA8CB702D3CBF8 /* RestRequest.swift in Sources */,
+				A8DF8A2B31A79AB9473E021E9A55A617 /* RestResponse.swift in Sources */,
+				46697DF010A34A655E99D947E707B170 /* RestResponseCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,7 +495,7 @@
 		};
 		55258030E8EB14E97E31EC02411DCAB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4C883A01E773DF5B459C2AB1DF97F01 /* RestFetcher.xcconfig */;
+			baseConfigurationReference = AB620A5026A9E4CE20878603FBCDFB55 /* RestFetcher.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -650,7 +646,7 @@
 		};
 		F30B0E0FC8A7DD07E9ED52CAEA5C858A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4C883A01E773DF5B459C2AB1DF97F01 /* RestFetcher.xcconfig */;
+			baseConfigurationReference = AB620A5026A9E4CE20878603FBCDFB55 /* RestFetcher.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
