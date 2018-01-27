@@ -1,7 +1,7 @@
 import Foundation
 
 @objc
-public enum RestResponseCode: Int {
+public enum RFResponseCode: Int {
     // swiftlint:disable identifier_name
     case notFound = 404
     case ok = 200
@@ -15,11 +15,11 @@ public enum RestResponseCode: Int {
     case unknown = 999
     case requestTimeout = 408
     
-    static func getResponseCode(_ code: Int) -> RestResponseCode {
-        if let c = RestResponseCode(rawValue: code) {
+    static func getResponseCode(_ code: Int) -> RFResponseCode {
+        if let c = RFResponseCode(rawValue: code) {
             return c
         } else {
-            return RestResponseCode.unknown
+            return RFResponseCode.unknown
         }
     }
     

@@ -3,24 +3,24 @@ import Foundation
 // swiftlint:disable function_parameter_count
 public protocol RestFetcherBuilder {
     func createRestFetcher(resource: String,
-                           method: RestMethod,
+                           method: RFMethod,
                            headers: [String: String],
                            body: String,
-                           successCallback: @escaping (_ response: RestResponse) -> Void,
-                           errorCallback: @escaping (_ error: NSError) -> Void) -> RestFetcher
+                           successCallback: @escaping (_ response: RFResponse) -> Void,
+                           errorCallback: @escaping (_ error: NSError) -> Void) -> RFRestFetcher
 }
 
 @objc
-open class RestFetcher: NSObject {
+open class RFRestFetcher: NSObject {
     
     public class Builder: RestFetcherBuilder {
         public func createRestFetcher(resource: String,
-                                      method: RestMethod,
+                                      method: RFMethod,
                                       headers: [String: String],
                                       body: String,
-                                      successCallback: @escaping (_ response: RestResponse) -> Void,
-                                      errorCallback: @escaping (_ error: NSError) -> Void) -> RestFetcher {
-            return RestFetcher(resource: resource,
+                                      successCallback: @escaping (_ response: RFResponse) -> Void,
+                                      errorCallback: @escaping (_ error: NSError) -> Void) -> RFRestFetcher {
+            return RFRestFetcher(resource: resource,
                                method: method,
                                headers: headers,
                                body: body,
@@ -29,21 +29,21 @@ open class RestFetcher: NSObject {
         }
     }
     
-    private var logger: ConsoleLogger = ConsoleLogger()
+    private var logger: RFConsoleLogger = RFConsoleLogger()
     private let timeout: TimeInterval = 30
     private let resource: String!
-    private let method: RestMethod!
+    private let method: RFMethod!
     private let headers: [String: String]
     private let body: String?
-    private let successCallback: (_ response: RestResponse) -> Void
+    private let successCallback: (_ response: RFResponse) -> Void
     private let errorCallback: (_ error: NSError) -> Void
     private var session: URLSession = URLSession.shared
     
     public init(resource: String,
-                method: RestMethod,
+                method: RFMethod,
                 headers: [String: String],
                 body: String,
-                successCallback: @escaping (_ response: RestResponse) -> Void,
+                successCallback: @escaping (_ response: RFResponse) -> Void,
                 errorCallback: @escaping (_ error: NSError) -> Void) {
         self.resource = resource
         self.method = method
@@ -67,7 +67,7 @@ open class RestFetcher: NSObject {
         
         request = addBody(request)
         
-        if RestFetcherEnvironemnt().isLogging() {
+        if RFEnvironemnt().isLogging() {
             logRequest(request)
         }
         
@@ -80,19 +80,19 @@ open class RestFetcher: NSObject {
     
     func urlSessionComplete(data: Data?, response: URLResponse?, error: Error?) {
         guard let urlResponse = response as? HTTPURLResponse else {
-            sendError(NSError(domain: "RestFetcher", code: RestResponseCode.unknown.rawValue, userInfo: ["message": "Network Error"]))
+            sendError(NSError(domain: "RestFetcher", code: RFResponseCode.unknown.rawValue, userInfo: ["message": "Network Error"]))
             return
         }
         
-        if RestFetcherEnvironemnt().isLogging() {
+        if RFEnvironemnt().isLogging() {
             logResponse(urlResponse, data: data)
         }
         
         if let e = error {
             sendError(NSError(domain: "RestFetcher", code: e._code, userInfo: ["message": "Network Error"]))
         } else  if isSuccessCode(urlResponse.statusCode) {
-            let restResponse = RestResponse(headers: extractHeaders(urlResponse: urlResponse),
-                                            code: RestResponseCode.getResponseCode(urlResponse.statusCode),
+            let restResponse = RFResponse(headers: extractHeaders(urlResponse: urlResponse),
+                                            code: RFResponseCode.getResponseCode(urlResponse.statusCode),
                                             data: data)
             sendSuccess(restResponse)
         } else {
@@ -117,7 +117,7 @@ open class RestFetcher: NSObject {
         }
     }
     
-    private func sendSuccess(_ response: RestResponse) {
+    private func sendSuccess(_ response: RFResponse) {
         DispatchQueue.main.async {
             self.successCallback(response)
         }

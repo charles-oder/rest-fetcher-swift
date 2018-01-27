@@ -1,12 +1,12 @@
 import Foundation
 
 @objc
-public class RestResponse: NSObject {
+public class RFResponse: NSObject {
     public let headers: [String: String]
-    public let code: RestResponseCode
+    public let code: RFResponseCode
     public let data: Data?
     
-    public init(headers: [String: String], code: RestResponseCode, data: Data?) {
+    public init(headers: [String: String], code: RFResponseCode, data: Data?) {
         self.headers = headers
         self.code = code
         self.data = data
@@ -24,7 +24,7 @@ public class RestResponse: NSObject {
     
 }
 
-public extension RestResponse {
+public extension RFResponse {
     public var body: String? {
         guard let unwrappedData = data else {
             return nil

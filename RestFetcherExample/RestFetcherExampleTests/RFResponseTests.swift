@@ -1,13 +1,13 @@
 import XCTest
 @testable import RestFetcher
 
-class RestResponseTests: XCTestCase {
+class RFResponseTests: XCTestCase {
     
     func testCreateResponseWithValidStringBody() {
         let testJsonData = "{\"key1\":\"value1\"}"
         
-        let testObject = RestResponse(headers: [String: String](),
-                                      code: RestResponseCode.ok,
+        let testObject = RFResponse(headers: [String: String](),
+                                      code: RFResponseCode.ok,
                                       data: testJsonData.data(using: String.Encoding.utf8))
         
         XCTAssertNotNil(testObject.data)

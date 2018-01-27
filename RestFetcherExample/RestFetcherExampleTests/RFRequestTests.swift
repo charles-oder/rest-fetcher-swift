@@ -1,11 +1,11 @@
 import XCTest
 @testable import RestFetcher
 
-class RestRequestTests: XCTestCase {
+class RFRequestTests: XCTestCase {
     
     var testRequest: ConcreteRestRequest?
-    var mockResponse = RestResponse(headers: [String: String](), code: RestResponseCode.ok, data: Data())
-    var mockFetcher: RestFetcher?
+    var mockResponse = RFResponse(headers: [String: String](), code: RFResponseCode.ok, data: Data())
+    var mockFetcher: RFRestFetcher?
     
     override func setUp() {
         super.setUp()
@@ -17,7 +17,7 @@ class RestRequestTests: XCTestCase {
     }
     
     func testRestMethod() {
-        let expectedRestMethod = RestMethod.get
+        let expectedRestMethod = RFMethod.get
         let actualRestMethod = testRequest?.restMethod
         XCTAssertEqual(actualRestMethod, expectedRestMethod)
     }
@@ -70,7 +70,7 @@ class RestRequestTests: XCTestCase {
         testRequest = ConcreteRestRequest()
         testRequest?.successCallback = {code, response in
             success = true
-            XCTAssertEqual(code, RestResponseCode.ok)
+            XCTAssertEqual(code, RFResponseCode.ok)
         }
         testRequest?.errorCallback = { _ in
             XCTFail("Sould not be here")
@@ -111,11 +111,11 @@ class RestRequestTests: XCTestCase {
     
     // swiftlint:disable nesting
     func testFetch() {
-        class MockFetcher: RestFetcher {
+        class MockFetcher: RFRestFetcher {
             var fetched = false
             init() {
                 super.init(resource: "",
-                           method: RestMethod.get,
+                           method: RFMethod.get,
                            headers: [String: String](),
                            body: "",
                            successCallback: { _ in },
@@ -130,11 +130,11 @@ class RestRequestTests: XCTestCase {
             
             // swiftlint:disable function_parameter_count
             fileprivate func createRestFetcher(resource: String,
-                                               method: RestMethod,
+                                               method: RFMethod,
                                                headers: [String: String],
                                                body: String,
-                                               successCallback: @escaping (RestResponse) -> Void,
-                                               errorCallback: @escaping (NSError) -> Void) -> RestFetcher {
+                                               successCallback: @escaping (RFResponse) -> Void,
+                                               errorCallback: @escaping (NSError) -> Void) -> RFRestFetcher {
                 return mockFetcher
             }
         }
@@ -164,14 +164,14 @@ class RestRequestTests: XCTestCase {
     }
 
     func testWillCreateResponse() {
-        class TestRequest: RestRequest<RestResponse> {
+        class TestRequest: RFRequest<RFResponse> {
             var callCount = 0
             override func willCreateResponse(code: Int, headers: [String: String], data: Data?) {
                 callCount += 1
             }
 
-            override func createResponse(code: Int, headers: [String: String], data: Data?) -> RestResponse? {
-                return RestResponse(headers: headers, code: RestResponseCode.ok, data: nil)
+            override func createResponse(code: Int, headers: [String: String], data: Data?) -> RFResponse? {
+                return RFResponse(headers: headers, code: RFResponseCode.ok, data: nil)
             }
         }
         
@@ -196,7 +196,7 @@ class RestRequestTests: XCTestCase {
     func testWillFetchRequest() {
         class TestRequest: ConcreteRestRequest {
             var callCount = 0
-            override func willFetchRequest(resource: String, method: RestMethod, headers: [String: String], body: String) {
+            override func willFetchRequest(resource: String, method: RFMethod, headers: [String: String], body: String) {
                 callCount += 1
             }
         }
@@ -223,7 +223,7 @@ open class ConcreteRestRequest2: ConcreteRestRequest {
     
 }
 
-open class ConcreteRestRequest: RestRequest<ConcreteRestResponse> {
+open class ConcreteRestRequest: RFRequest<ConcreteRestResponse> {
 
     open override var domain: String {
         return "http://google.com"
@@ -248,7 +248,7 @@ open class ConcreteRestRequest: RestRequest<ConcreteRestResponse> {
     }
 }
 
-extension RestRequest where T == ConcreteRestResponse {
+extension RFRequest where T == ConcreteRestResponse {
     func createResponse(code: Int, headers: [String: String], data: Data?) -> T? {
         return ConcreteRestResponse()
     }

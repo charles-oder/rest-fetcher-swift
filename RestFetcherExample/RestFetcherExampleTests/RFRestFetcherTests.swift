@@ -1,15 +1,15 @@
 import XCTest
 @testable import RestFetcher
 
-class RestFetcherTests: XCTestCase {
+class RFRestFetcherTests: XCTestCase {
     
-    var testObject: RestFetcher?
+    var testObject: RFRestFetcher?
 
     override func setUp() {
         let headers: [String: String] = ["header1": "one", "header2": "two"]
-        let method = RestMethod.post
+        let method = RFMethod.post
         let body = "{\"thing\":\"one\", \"otherThing\":\"two\"}"
-        testObject = RestFetcher(resource: "http://google.com/api/login",
+        testObject = RFRestFetcher(resource: "http://google.com/api/login",
                                  method: method,
                                  headers: headers,
                                  body: body,
@@ -29,7 +29,7 @@ class RestFetcherTests: XCTestCase {
     }
     
     func testRestMethod() {
-        let expectedMethod = RestMethod.post
+        let expectedMethod = RFMethod.post
         let actualMethod = testObject?.createRequest().httpMethod
         XCTAssertEqual(actualMethod, expectedMethod.rawValue)
     }
@@ -66,8 +66,8 @@ class RestFetcherTests: XCTestCase {
     func test400Response() {
         let asyncExpectation = expectation(description: "ApiCall")
         var errorFlag = false
-        self.testObject = RestFetcher(resource: "",
-                                      method: RestMethod.get,
+        self.testObject = RFRestFetcher(resource: "",
+                                      method: RFMethod.get,
                                       headers: [String: String](), body: "",
                                       successCallback: { _ in
             XCTFail("Should not have been called")
@@ -100,11 +100,11 @@ class RestFetcherTests: XCTestCase {
     func test200Response() {
         var successFlag = false
         let asyncExpectation = expectation(description: "ApiCall")
-        self.testObject = RestFetcher(resource: "",
-                                      method: RestMethod.get,
+        self.testObject = RFRestFetcher(resource: "",
+                                      method: RFMethod.get,
                                       headers: [String: String](), body: "",
                                       successCallback: { response in
-                XCTAssertEqual(RestResponseCode.ok, response.code)
+                XCTAssertEqual(RFResponseCode.ok, response.code)
                 let actualBody = response.body
                 XCTAssertEqual(actualBody, "{\"thing\":\"one\"}")
                 XCTAssertEqual("value1", response.headers["header1"])
@@ -136,8 +136,8 @@ class RestFetcherTests: XCTestCase {
     func testErrorResponse() {
         let asyncExpectation = expectation(description: "ApiCall")
         var errorFlag = false
-        self.testObject = RestFetcher(resource: "",
-                                      method: RestMethod.get,
+        self.testObject = RFRestFetcher(resource: "",
+                                      method: RFMethod.get,
                                       headers: [String: String](),
                                       body: "",
                                       successCallback: { _ in
@@ -167,8 +167,8 @@ class RestFetcherTests: XCTestCase {
     }
     
     func testNonNSHTTPURLResponse() {
-        testObject = RestFetcher(resource: "",
-                                 method: RestMethod.get,
+        testObject = RFRestFetcher(resource: "",
+                                 method: RFMethod.get,
                                  headers: [String: String](),
                                  body: "",
                                  successCallback: { _ in

@@ -1,6 +1,6 @@
 import Foundation
 
-public enum RestMethod: String {
+public enum RFMethod: String {
     case get = "GET"
     case post = "POST"
     case put = "PUT"

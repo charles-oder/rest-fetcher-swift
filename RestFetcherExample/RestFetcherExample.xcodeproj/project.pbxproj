@@ -8,15 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		CDA7CA4E0C896EDBAA1C5E2B /* Pods_RestFetcherExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507F15CF116FED40C32AFDAE /* Pods_RestFetcherExample.framework */; };
-		E19FDF961E42ECEF00132EB0 /* RestRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19FDF951E42ECEF00132EB0 /* RestRequestTests.swift */; };
+		E19FDF961E42ECEF00132EB0 /* RFRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19FDF951E42ECEF00132EB0 /* RFRequestTests.swift */; };
 		E1FFC8CE1D871707004A1DFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8CD1D871707004A1DFF /* AppDelegate.swift */; };
 		E1FFC8D01D871707004A1DFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8CF1D871707004A1DFF /* ViewController.swift */; };
 		E1FFC8D31D871707004A1DFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1FFC8D11D871707004A1DFF /* Main.storyboard */; };
 		E1FFC8D51D871707004A1DFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1FFC8D41D871707004A1DFF /* Assets.xcassets */; };
 		E1FFC8D81D871707004A1DFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1FFC8D61D871707004A1DFF /* LaunchScreen.storyboard */; };
-		E1FFC8F41D871887004A1DFF /* RestFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8EF1D871887004A1DFF /* RestFetcherTests.swift */; };
-		E1FFC8F51D871887004A1DFF /* RestResponseCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8F01D871887004A1DFF /* RestResponseCodeTests.swift */; };
-		E1FFC8F61D871887004A1DFF /* RestResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8F11D871887004A1DFF /* RestResponseTests.swift */; };
+		E1FFC8F41D871887004A1DFF /* RFRestFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8EF1D871887004A1DFF /* RFRestFetcherTests.swift */; };
+		E1FFC8F51D871887004A1DFF /* RFResponseCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8F01D871887004A1DFF /* RFResponseCodeTests.swift */; };
+		E1FFC8F61D871887004A1DFF /* RFResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8F11D871887004A1DFF /* RFResponseTests.swift */; };
 		F11FD042116DE00BE35EBF58 /* Pods_RestFetcherExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A41FB6A620B0DEF244246258 /* Pods_RestFetcherExampleTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +40,7 @@
 		E19B0CB51F576142002F704A /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; name = ".swift-version"; path = "../.swift-version"; sourceTree = "<group>"; };
 		E19B0CB61F576C19002F704A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
 		E19B0CB71F57A789002F704A /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
-		E19FDF951E42ECEF00132EB0 /* RestRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestRequestTests.swift; sourceTree = "<group>"; };
+		E19FDF951E42ECEF00132EB0 /* RFRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RFRequestTests.swift; sourceTree = "<group>"; };
 		E1FFC8CA1D871707004A1DFF /* RestFetcherExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestFetcherExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1FFC8CD1D871707004A1DFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1FFC8CF1D871707004A1DFF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,9 +50,9 @@
 		E1FFC8D91D871707004A1DFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1FFC8DE1D871707004A1DFF /* RestFetcherExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RestFetcherExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1FFC8E41D871707004A1DFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1FFC8EF1D871887004A1DFF /* RestFetcherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestFetcherTests.swift; sourceTree = "<group>"; };
-		E1FFC8F01D871887004A1DFF /* RestResponseCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestResponseCodeTests.swift; sourceTree = "<group>"; };
-		E1FFC8F11D871887004A1DFF /* RestResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestResponseTests.swift; sourceTree = "<group>"; };
+		E1FFC8EF1D871887004A1DFF /* RFRestFetcherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RFRestFetcherTests.swift; sourceTree = "<group>"; };
+		E1FFC8F01D871887004A1DFF /* RFResponseCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RFResponseCodeTests.swift; sourceTree = "<group>"; };
+		E1FFC8F11D871887004A1DFF /* RFResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RFResponseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,11 +134,11 @@
 		E1FFC8E11D871707004A1DFF /* RestFetcherExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				E1FFC8EF1D871887004A1DFF /* RestFetcherTests.swift */,
-				E1FFC8F01D871887004A1DFF /* RestResponseCodeTests.swift */,
-				E1FFC8F11D871887004A1DFF /* RestResponseTests.swift */,
+				E1FFC8EF1D871887004A1DFF /* RFRestFetcherTests.swift */,
+				E1FFC8F01D871887004A1DFF /* RFResponseCodeTests.swift */,
+				E1FFC8F11D871887004A1DFF /* RFResponseTests.swift */,
 				E1FFC8E41D871707004A1DFF /* Info.plist */,
-				E19FDF951E42ECEF00132EB0 /* RestRequestTests.swift */,
+				E19FDF951E42ECEF00132EB0 /* RFRequestTests.swift */,
 			);
 			path = RestFetcherExampleTests;
 			sourceTree = "<group>";
@@ -199,7 +199,7 @@
 				TargetAttributes = {
 					E1FFC8C91D871707004A1DFF = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = H5BA38B5ND;
+						DevelopmentTeam = 57H6R24MCX;
 						ProvisioningStyle = Automatic;
 					};
 					E1FFC8DD1D871707004A1DFF = {
@@ -380,10 +380,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E19FDF961E42ECEF00132EB0 /* RestRequestTests.swift in Sources */,
-				E1FFC8F51D871887004A1DFF /* RestResponseCodeTests.swift in Sources */,
-				E1FFC8F61D871887004A1DFF /* RestResponseTests.swift in Sources */,
-				E1FFC8F41D871887004A1DFF /* RestFetcherTests.swift in Sources */,
+				E19FDF961E42ECEF00132EB0 /* RFRequestTests.swift in Sources */,
+				E1FFC8F51D871887004A1DFF /* RFResponseCodeTests.swift in Sources */,
+				E1FFC8F61D871887004A1DFF /* RFResponseTests.swift in Sources */,
+				E1FFC8F41D871887004A1DFF /* RFRestFetcherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,7 +532,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = H5BA38B5ND;
+				DEVELOPMENT_TEAM = 57H6R24MCX;
 				INFOPLIST_FILE = RestFetcherExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = us.oder.RestFetcherExample;
@@ -547,7 +547,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = H5BA38B5ND;
+				DEVELOPMENT_TEAM = 57H6R24MCX;
 				INFOPLIST_FILE = RestFetcherExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = us.oder.RestFetcherExample;

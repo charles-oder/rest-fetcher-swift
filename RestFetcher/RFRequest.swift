@@ -1,24 +1,24 @@
 import Foundation
 
-open class RestRequest<T> {
+open class RFRequest<T> {
     
     private var _cancel = false
-    private var _restFetcher: RestFetcher?
+    private var _restFetcher: RFRestFetcher?
     public var restFetcherBuilder: RestFetcherBuilder
     
-    public var successCallback : (_ code: RestResponseCode, _ response: T?) -> Void = { _, _ in }
+    public var successCallback : (_ code: RFResponseCode, _ response: T?) -> Void = { _, _ in }
     public var errorCallback : (_ error: NSError) -> Void = { _ in }
     
     public init() {
-        self.restFetcherBuilder = RestFetcher.Builder()
+        self.restFetcherBuilder = RFRestFetcher.Builder()
     }
     
     public func setRestFetcherBuilder(restFetcherBuilder: RestFetcherBuilder) {
         self.restFetcherBuilder = restFetcherBuilder
     }
     
-    open var restMethod: RestMethod {
-        return RestMethod.get
+    open var restMethod: RFMethod {
+        return RFMethod.get
     }
     
     open var domain: String {
@@ -83,7 +83,7 @@ open class RestRequest<T> {
         return [:]
     }
     
-    open func willFetchRequest(resource: String, method: RestMethod, headers: [String: String], body: String) {
+    open func willFetchRequest(resource: String, method: RFMethod, headers: [String: String], body: String) {
         // Logging hook
     }
 
@@ -95,7 +95,7 @@ open class RestRequest<T> {
         return nil
     }
 
-    func restFetcherSuccess(response: RestResponse) {
+    func restFetcherSuccess(response: RFResponse) {
         if !_cancel {
             willCreateResponse(code: response.code.rawValue, headers: response.headers, data: response.data)
             let apiResponse = createResponse(code: response.code.rawValue, headers: response.headers, data: response.data)
@@ -109,7 +109,7 @@ open class RestRequest<T> {
         }
     }
     
-    open func onSuccess(_ code: RestResponseCode, _ response: T?) {
+    open func onSuccess(_ code: RFResponseCode, _ response: T?) {
         successCallback(code, response)
     }
     
