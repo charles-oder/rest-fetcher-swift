@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CDA7CA4E0C896EDBAA1C5E2B /* Pods_RestFetcherExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507F15CF116FED40C32AFDAE /* Pods_RestFetcherExample.framework */; };
+		E19D0579201C5C18001A7D36 /* RFDataScrubberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19D0578201C5C18001A7D36 /* RFDataScrubberTests.swift */; };
 		E19FDF961E42ECEF00132EB0 /* RFRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19FDF951E42ECEF00132EB0 /* RFRequestTests.swift */; };
 		E1FFC8CE1D871707004A1DFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8CD1D871707004A1DFF /* AppDelegate.swift */; };
 		E1FFC8D01D871707004A1DFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8CF1D871707004A1DFF /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 		E19B0CB51F576142002F704A /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; name = ".swift-version"; path = "../.swift-version"; sourceTree = "<group>"; };
 		E19B0CB61F576C19002F704A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = "<group>"; };
 		E19B0CB71F57A789002F704A /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
+		E19D0578201C5C18001A7D36 /* RFDataScrubberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFDataScrubberTests.swift; sourceTree = "<group>"; };
 		E19FDF951E42ECEF00132EB0 /* RFRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RFRequestTests.swift; sourceTree = "<group>"; };
 		E1FFC8CA1D871707004A1DFF /* RestFetcherExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestFetcherExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1FFC8CD1D871707004A1DFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				E1FFC8F11D871887004A1DFF /* RFResponseTests.swift */,
 				E1FFC8E41D871707004A1DFF /* Info.plist */,
 				E19FDF951E42ECEF00132EB0 /* RFRequestTests.swift */,
+				E19D0578201C5C18001A7D36 /* RFDataScrubberTests.swift */,
 			);
 			path = RestFetcherExampleTests;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E19FDF961E42ECEF00132EB0 /* RFRequestTests.swift in Sources */,
+				E19D0579201C5C18001A7D36 /* RFDataScrubberTests.swift in Sources */,
 				E1FFC8F61D871887004A1DFF /* RFResponseTests.swift in Sources */,
 				E1FFC8F41D871887004A1DFF /* RFRestFetcherTests.swift in Sources */,
 			);

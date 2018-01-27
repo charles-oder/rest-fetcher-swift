@@ -175,7 +175,7 @@ class RFRestFetcherTests: XCTestCase {
                 XCTFail("Should not have been called")
             },
                                  errorCallback: { error in
-                XCTAssertEqual(error.code, 999)
+                XCTAssertEqual(0, error.code)
                 XCTAssertEqual("Network Error", (error.userInfo["message"] as? String))
         })
         let mockResponse = URLResponse()

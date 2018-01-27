@@ -23,6 +23,8 @@
 		D688926A866F9EBCF321244971815ED6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		DAF1661AA0FB2F584DAFE6276A017CF2 /* RFEnvironemnt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5049CCCAB065910478B6D6E26FA042 /* RFEnvironemnt.swift */; };
 		DBAA89D60BFBCB1B10652288F6DB9BEE /* RFMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF068C0D26C1475A6B4625CAA094160 /* RFMethod.swift */; };
+		E19D0576201C5953001A7D36 /* RFDataScrubber.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19D0572201C5789001A7D36 /* RFDataScrubber.swift */; };
+		E19D0577201C5957001A7D36 /* RFLoggedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19D0574201C5913001A7D36 /* RFLoggedRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		B7BC115C686BDC374A06C0A2F182DB27 /* RestFetcher.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = RestFetcher.modulemap; sourceTree = "<group>"; };
 		BE039E033B11DA98617A77B7BDE41DC4 /* Pods-RestFetcherExampleTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RestFetcherExampleTests-umbrella.h"; sourceTree = "<group>"; };
 		D7A4887D9064EDEF5D1E609614532C19 /* Pods-RestFetcherExampleTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RestFetcherExampleTests-frameworks.sh"; sourceTree = "<group>"; };
+		E19D0572201C5789001A7D36 /* RFDataScrubber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFDataScrubber.swift; sourceTree = "<group>"; };
+		E19D0574201C5913001A7D36 /* RFLoggedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFLoggedRequest.swift; sourceTree = "<group>"; };
 		E52EBECA5D321408F10AD983A45A2BBC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5722A041EECD9B5F37D56A13608E839 /* RestFetcher-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RestFetcher-dummy.m"; sourceTree = "<group>"; };
 		E73C053625A6BFAB2652A7581A1E1E6C /* Pods-RestFetcherExampleTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RestFetcherExampleTests-resources.sh"; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 				261ED66E60D504F1D4836AC296C3C613 /* RFRequest.swift */,
 				E784009C511EA58094EB4746F3F0CBC2 /* RFResponse.swift */,
 				D6743BBCB3571B95FC0C0F739CBC4862 /* Support Files */,
+				E19D0572201C5789001A7D36 /* RFDataScrubber.swift */,
+				E19D0574201C5913001A7D36 /* RFLoggedRequest.swift */,
 			);
 			name = RestFetcher;
 			path = ../..;
@@ -331,6 +337,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					D1DE57C6F45F5BA5C4EC75D0257D745C = {
+						LastSwiftMigration = 0920;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -365,11 +376,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D449B34554C2D156A8F0EF8359F870C /* RFConsoleLogger.swift in Sources */,
+				E19D0576201C5953001A7D36 /* RFDataScrubber.swift in Sources */,
 				B2FBD4E3AE05CF6F5D35DCC1F9BA9F5A /* RestFetcher-dummy.m in Sources */,
 				A8C416E0836374D6AA9B5C9BF27B7F09 /* RFRestFetcher.swift in Sources */,
 				DAF1661AA0FB2F584DAFE6276A017CF2 /* RFEnvironemnt.swift in Sources */,
 				DBAA89D60BFBCB1B10652288F6DB9BEE /* RFMethod.swift in Sources */,
 				94052748A229FED7D8BA8CB702D3CBF8 /* RFRequest.swift in Sources */,
+				E19D0577201C5957001A7D36 /* RFLoggedRequest.swift in Sources */,
 				A8DF8A2B31A79AB9473E021E9A55A617 /* RFResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,6 +471,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C043FD692AC2ABF6A63E5EA7EC4B327 /* Pods-RestFetcherExample.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -482,6 +496,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -675,6 +690,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EF9461877A7E28426DB3ECBD86335692 /* Pods-RestFetcherExample.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -698,6 +714,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
