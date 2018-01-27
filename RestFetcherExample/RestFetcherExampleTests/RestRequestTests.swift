@@ -153,7 +153,7 @@ class RestRequestTests: XCTestCase {
     
     func testQueryArgumentsEncodeAmersands() {
         class TestRequest: ConcreteRestRequest {
-            override var queryArguments: [String : String] {
+            override var queryArguments: [String: String] {
                 return ["arg": "M & Ms"]
             }
         }
@@ -166,11 +166,11 @@ class RestRequestTests: XCTestCase {
     func testWillCreateResponse() {
         class TestRequest: RestRequest<RestResponse> {
             var callCount = 0
-            override func willCreateResponse(code: Int, headers: [String : String], data: Data?) {
+            override func willCreateResponse(code: Int, headers: [String: String], data: Data?) {
                 callCount += 1
             }
 
-            override func createResponse(code: Int, headers: [String : String], data: Data?) -> RestResponse? {
+            override func createResponse(code: Int, headers: [String: String], data: Data?) -> RestResponse? {
                 return RestResponse(headers: headers, code: RestResponseCode.ok, data: nil)
             }
         }
@@ -196,7 +196,7 @@ class RestRequestTests: XCTestCase {
     func testWillFetchRequest() {
         class TestRequest: ConcreteRestRequest {
             var callCount = 0
-            override func willFetchRequest(resource: String, method: RestMethod, headers: [String : String], body: String) {
+            override func willFetchRequest(resource: String, method: RestMethod, headers: [String: String], body: String) {
                 callCount += 1
             }
         }

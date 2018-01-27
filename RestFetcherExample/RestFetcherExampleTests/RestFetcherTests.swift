@@ -81,7 +81,7 @@ class RestFetcherTests: XCTestCase {
               errorFlag = true
             })
         
-        guard let url = URL(string:"https://google.com") else {
+        guard let url = URL(string: "https://google.com") else {
             XCTFail("no url")
             return
         }
@@ -116,7 +116,7 @@ class RestFetcherTests: XCTestCase {
                 XCTFail("Should not have been called")
             })
         
-        guard let url = URL(string:"https://google.com") else {
+        guard let url = URL(string: "https://google.com") else {
             XCTFail("no url")
             return
         }
@@ -150,7 +150,7 @@ class RestFetcherTests: XCTestCase {
                 asyncExpectation.fulfill()
             })
         
-        guard let url = URL(string:"https://google.com") else {
+        guard let url = URL(string: "https://google.com") else {
             XCTFail("no url")
             return
         }

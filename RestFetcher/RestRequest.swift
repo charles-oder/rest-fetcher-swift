@@ -83,7 +83,7 @@ open class RestRequest<T> {
         return [:]
     }
     
-    open func willFetchRequest(resource: String, method: RestMethod, headers: [String : String], body: String) {
+    open func willFetchRequest(resource: String, method: RestMethod, headers: [String: String], body: String) {
         // Logging hook
     }
 

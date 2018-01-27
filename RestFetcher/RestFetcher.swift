@@ -59,7 +59,7 @@ open class RestFetcher: NSObject {
     }
     
     public func createRequest() -> URLRequest {
-        var request = URLRequest(url: getUrl(), cachePolicy: NSURLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval:timeout)
+        var request = URLRequest(url: getUrl(), cachePolicy: NSURLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: timeout)
         
         request.httpMethod = method.rawValue
         
@@ -103,8 +103,8 @@ open class RestFetcher: NSObject {
         }
     }
     
-    private func extractHeaders(urlResponse: HTTPURLResponse) -> [String : String] {
-        if let headers = urlResponse.allHeaderFields as? [String : String] {
+    private func extractHeaders(urlResponse: HTTPURLResponse) -> [String: String] {
+        if let headers = urlResponse.allHeaderFields as? [String: String] {
             return headers
         } else {
             return [:]
