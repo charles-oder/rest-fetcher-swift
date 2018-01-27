@@ -104,7 +104,7 @@ class RFRestFetcherTests: XCTestCase {
                                       method: RFMethod.get,
                                       headers: [String: String](), body: "",
                                       successCallback: { response in
-                XCTAssertEqual(RFResponseCode.ok, response.code)
+                XCTAssertEqual(200, response.code)
                 let actualBody = response.body
                 XCTAssertEqual(actualBody, "{\"thing\":\"one\"}")
                 XCTAssertEqual("value1", response.headers["header1"])

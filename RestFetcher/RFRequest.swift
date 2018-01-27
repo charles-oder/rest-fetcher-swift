@@ -6,7 +6,7 @@ open class RFRequest<T> {
     private var _restFetcher: RFRestFetcher?
     public var restFetcherBuilder: RestFetcherBuilder
     
-    public var successCallback : (_ code: RFResponseCode, _ response: T?) -> Void = { _, _ in }
+    public var successCallback : (_ code: Int, _ response: T?) -> Void = { _, _ in }
     public var errorCallback : (_ error: NSError) -> Void = { _ in }
     
     public init() {
@@ -97,8 +97,8 @@ open class RFRequest<T> {
 
     func restFetcherSuccess(response: RFResponse) {
         if !_cancel {
-            willCreateResponse(code: response.code.rawValue, headers: response.headers, data: response.data)
-            let apiResponse = createResponse(code: response.code.rawValue, headers: response.headers, data: response.data)
+            willCreateResponse(code: response.code, headers: response.headers, data: response.data)
+            let apiResponse = createResponse(code: response.code, headers: response.headers, data: response.data)
             onSuccess(response.code, apiResponse)
         }
     }
@@ -109,7 +109,7 @@ open class RFRequest<T> {
         }
     }
     
-    open func onSuccess(_ code: RFResponseCode, _ response: T?) {
+    open func onSuccess(_ code: Int, _ response: T?) {
         successCallback(code, response)
     }
     

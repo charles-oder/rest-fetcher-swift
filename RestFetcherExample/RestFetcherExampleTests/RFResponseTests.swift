@@ -7,7 +7,7 @@ class RFResponseTests: XCTestCase {
         let testJsonData = "{\"key1\":\"value1\"}"
         
         let testObject = RFResponse(headers: [String: String](),
-                                      code: RFResponseCode.ok,
+                                      code: 200,
                                       data: testJsonData.data(using: String.Encoding.utf8))
         
         XCTAssertNotNil(testObject.data)

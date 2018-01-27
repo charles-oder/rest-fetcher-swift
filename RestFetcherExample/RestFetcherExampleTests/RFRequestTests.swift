@@ -4,7 +4,7 @@ import XCTest
 class RFRequestTests: XCTestCase {
     
     var testRequest: ConcreteRestRequest?
-    var mockResponse = RFResponse(headers: [String: String](), code: RFResponseCode.ok, data: Data())
+    var mockResponse = RFResponse(headers: [String: String](), code: 200, data: Data())
     var mockFetcher: RFRestFetcher?
     
     override func setUp() {
@@ -70,7 +70,7 @@ class RFRequestTests: XCTestCase {
         testRequest = ConcreteRestRequest()
         testRequest?.successCallback = {code, response in
             success = true
-            XCTAssertEqual(code, RFResponseCode.ok)
+            XCTAssertEqual(code, 200)
         }
         testRequest?.errorCallback = { _ in
             XCTFail("Sould not be here")
@@ -171,7 +171,7 @@ class RFRequestTests: XCTestCase {
             }
 
             override func createResponse(code: Int, headers: [String: String], data: Data?) -> RFResponse? {
-                return RFResponse(headers: headers, code: RFResponseCode.ok, data: nil)
+                return RFResponse(headers: headers, code: 200, data: nil)
             }
         }
         

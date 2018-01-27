@@ -80,7 +80,7 @@ open class RFRestFetcher: NSObject {
     
     func urlSessionComplete(data: Data?, response: URLResponse?, error: Error?) {
         guard let urlResponse = response as? HTTPURLResponse else {
-            sendError(NSError(domain: "RestFetcher", code: RFResponseCode.unknown.rawValue, userInfo: ["message": "Network Error"]))
+            sendError(NSError(domain: "RestFetcher", code: 0, userInfo: ["message": "Network Error"]))
             return
         }
         
@@ -92,7 +92,7 @@ open class RFRestFetcher: NSObject {
             sendError(NSError(domain: "RestFetcher", code: e._code, userInfo: ["message": "Network Error"]))
         } else  if isSuccessCode(urlResponse.statusCode) {
             let restResponse = RFResponse(headers: extractHeaders(urlResponse: urlResponse),
-                                            code: RFResponseCode.getResponseCode(urlResponse.statusCode),
+                                            code: urlResponse.statusCode,
                                             data: data)
             sendSuccess(restResponse)
         } else {

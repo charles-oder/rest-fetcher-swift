@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3D36744B0D617DC160EE1CC0B8D163CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		46697DF010A34A655E99D947E707B170 /* RFResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7B831ED45CBAC8AFC1F0A1E8118474 /* RFResponseCode.swift */; };
 		6A7A80F8375CCB24C1946A1A07F2545A /* Pods-RestFetcherExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F9BAAC1A980A2D53A3BF9020645034 /* Pods-RestFetcherExample-dummy.m */; };
 		6CB46B5564DD7F111C7FBF17B825A517 /* Pods-RestFetcherExample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 90836CDA45A85E7CBC50197189C3564D /* Pods-RestFetcherExample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B3B7D3A3CF7765F1E7872409BE4DDE /* Pods-RestFetcherExampleTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BE039E033B11DA98617A77B7BDE41DC4 /* Pods-RestFetcherExampleTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -66,7 +65,6 @@
 		B7BC115C686BDC374A06C0A2F182DB27 /* RestFetcher.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = RestFetcher.modulemap; sourceTree = "<group>"; };
 		BE039E033B11DA98617A77B7BDE41DC4 /* Pods-RestFetcherExampleTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RestFetcherExampleTests-umbrella.h"; sourceTree = "<group>"; };
 		D7A4887D9064EDEF5D1E609614532C19 /* Pods-RestFetcherExampleTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RestFetcherExampleTests-frameworks.sh"; sourceTree = "<group>"; };
-		DD7B831ED45CBAC8AFC1F0A1E8118474 /* RFResponseCode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RFResponseCode.swift; path = RestFetcher/RFResponseCode.swift; sourceTree = "<group>"; };
 		E52EBECA5D321408F10AD983A45A2BBC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5722A041EECD9B5F37D56A13608E839 /* RestFetcher-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RestFetcher-dummy.m"; sourceTree = "<group>"; };
 		E73C053625A6BFAB2652A7581A1E1E6C /* Pods-RestFetcherExampleTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RestFetcherExampleTests-resources.sh"; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 				FEF068C0D26C1475A6B4625CAA094160 /* RFMethod.swift */,
 				261ED66E60D504F1D4836AC296C3C613 /* RFRequest.swift */,
 				E784009C511EA58094EB4746F3F0CBC2 /* RFResponse.swift */,
-				DD7B831ED45CBAC8AFC1F0A1E8118474 /* RFResponseCode.swift */,
 				D6743BBCB3571B95FC0C0F739CBC4862 /* Support Files */,
 			);
 			name = RestFetcher;
@@ -374,7 +371,6 @@
 				DBAA89D60BFBCB1B10652288F6DB9BEE /* RFMethod.swift in Sources */,
 				94052748A229FED7D8BA8CB702D3CBF8 /* RFRequest.swift in Sources */,
 				A8DF8A2B31A79AB9473E021E9A55A617 /* RFResponse.swift in Sources */,
-				46697DF010A34A655E99D947E707B170 /* RFResponseCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

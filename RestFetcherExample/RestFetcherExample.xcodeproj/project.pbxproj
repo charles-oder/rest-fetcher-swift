@@ -15,7 +15,6 @@
 		E1FFC8D51D871707004A1DFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1FFC8D41D871707004A1DFF /* Assets.xcassets */; };
 		E1FFC8D81D871707004A1DFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1FFC8D61D871707004A1DFF /* LaunchScreen.storyboard */; };
 		E1FFC8F41D871887004A1DFF /* RFRestFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8EF1D871887004A1DFF /* RFRestFetcherTests.swift */; };
-		E1FFC8F51D871887004A1DFF /* RFResponseCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8F01D871887004A1DFF /* RFResponseCodeTests.swift */; };
 		E1FFC8F61D871887004A1DFF /* RFResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FFC8F11D871887004A1DFF /* RFResponseTests.swift */; };
 		F11FD042116DE00BE35EBF58 /* Pods_RestFetcherExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A41FB6A620B0DEF244246258 /* Pods_RestFetcherExampleTests.framework */; };
 /* End PBXBuildFile section */
@@ -51,7 +50,6 @@
 		E1FFC8DE1D871707004A1DFF /* RestFetcherExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RestFetcherExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1FFC8E41D871707004A1DFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1FFC8EF1D871887004A1DFF /* RFRestFetcherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RFRestFetcherTests.swift; sourceTree = "<group>"; };
-		E1FFC8F01D871887004A1DFF /* RFResponseCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RFResponseCodeTests.swift; sourceTree = "<group>"; };
 		E1FFC8F11D871887004A1DFF /* RFResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RFResponseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				E1FFC8EF1D871887004A1DFF /* RFRestFetcherTests.swift */,
-				E1FFC8F01D871887004A1DFF /* RFResponseCodeTests.swift */,
 				E1FFC8F11D871887004A1DFF /* RFResponseTests.swift */,
 				E1FFC8E41D871707004A1DFF /* Info.plist */,
 				E19FDF951E42ECEF00132EB0 /* RFRequestTests.swift */,
@@ -381,7 +378,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E19FDF961E42ECEF00132EB0 /* RFRequestTests.swift in Sources */,
-				E1FFC8F51D871887004A1DFF /* RFResponseCodeTests.swift in Sources */,
 				E1FFC8F61D871887004A1DFF /* RFResponseTests.swift in Sources */,
 				E1FFC8F41D871887004A1DFF /* RFRestFetcherTests.swift in Sources */,
 			);
