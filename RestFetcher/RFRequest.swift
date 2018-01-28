@@ -20,6 +20,14 @@ open class RFRequest<T> {
         self.restFetcherBuilder = restFetcherBuilder
     }
     
+    open var logger: RFLogger {
+        return RFConsoleLogger()
+    }
+    
+    open var keysToScrub: [String] {
+        return ["password"]
+    }
+    
     open var restMethod: RFMethod {
         return RFMethod.get
     }

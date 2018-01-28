@@ -14,14 +14,6 @@ public protocol RFLoggedRequest {
 
 extension RFRequest: RFLoggedRequest {
     
-    open var logger: RFLogger {
-        return RFConsoleLogger()
-    }
-    
-    open var keysToScrub: [String] {
-        return ["password"]
-    }
-    
     func logResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) {
         guard let unwrappedData = data else {
             return
