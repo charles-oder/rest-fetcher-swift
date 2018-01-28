@@ -4,6 +4,9 @@ open class RFRequest<T> {
     
     private var _cancel = false
     private var _restFetcher: RFRestFetcher?
+    
+    var requestId: String = UUID().uuidString
+    
     public var restFetcherBuilder: RestFetcherBuilder
     
     public var successCallback : (_ code: Int, _ response: T?) -> Void = { _, _ in }
@@ -13,7 +16,7 @@ open class RFRequest<T> {
         self.restFetcherBuilder = RFRestFetcher.Builder()
     }
     
-    public func setRestFetcherBuilder(restFetcherBuilder: RestFetcherBuilder) {
+    func setRestFetcherBuilder(restFetcherBuilder: RestFetcherBuilder) {
         self.restFetcherBuilder = restFetcherBuilder
     }
     
@@ -84,11 +87,11 @@ open class RFRequest<T> {
     }
     
     open func willFetchRequest(resource: String, method: RFMethod, headers: [String: String], body: String) {
-        // Logging hook
+        logRequest(resource: resource, method: method, headers: headers, body: body)
     }
 
     open func willCreateResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) {
-        // Logging hook
+        logResponse(responseTime: responseTime, code: code, headers: headers, data: data)
     }
     
     open func createResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) -> T? {
@@ -114,6 +117,7 @@ open class RFRequest<T> {
     }
     
     open func onError(_ error: NSError) {
+        logError(error)
         errorCallback(error)
     }
     

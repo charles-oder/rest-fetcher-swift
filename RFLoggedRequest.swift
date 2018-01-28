@@ -7,17 +7,25 @@
 
 import Foundation
 
-open class RFLoggedRequest<T>: RFRequest<T> {
-    
-    open var logger: RFLogger {
+public protocol RFLoggedRequest {
+    var logger: RFLogger { get }
+    var keysToScrub: [String] { get }
+}
+
+extension RFLoggedRequest {
+    public var logger: RFLogger {
         return RFConsoleLogger()
     }
     
-    open var keysToScrub: [String] {
+    public var keysToScrub: [String] {
         return ["password"]
     }
     
-    open override func willCreateResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) {
+}
+
+extension RFRequest: RFLoggedRequest {
+    
+    func logResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) {
         guard let unwrappedData = data else {
             return
         }
@@ -27,14 +35,17 @@ open class RFLoggedRequest<T>: RFRequest<T> {
         logger.debug("rest_call: \(message)")
     }
     
-    open override func onError(_ error: NSError) {
+    func logError(_ error: NSError) {
         let errorMessage = buildErrorMessage(error: error)
         logger.error("rest_error: \(errorMessage)")
-        super.onError(error)
+    }
+    
+    func logRequest(resource: String, method: RFMethod, headers: [String: String], body: String) {
+        logger.debug(buildRequestLogMessage())
     }
     
     func buildRequestLogMessage() -> String {
-        var logMessage = "\(restMethod.rawValue) Request: \(requestUrlString)\n Request Headers:\n"
+        var logMessage = "\(requestId) \(restMethod.rawValue) Request: \(requestUrlString)\n Request Headers:\n"
         for (key, val) in requestHeaders {
             logMessage += "\t\(key): \(val)\n"
         }
@@ -43,8 +54,7 @@ open class RFLoggedRequest<T>: RFRequest<T> {
     }
     
     func buildSuccessMessage(code: Int, headers: [String: String], data: Data?, body: String?) -> String {
-        var logMessage = buildRequestLogMessage()
-        logMessage += "Response: \(code)\nHeaders:\n"
+        var logMessage = "\(requestId) Response: \(code)\nHeaders:\n"
         for (key, val) in headers {
             logMessage += "\(key): \(val)"
         }
@@ -54,8 +64,7 @@ open class RFLoggedRequest<T>: RFRequest<T> {
     }
     
     func buildErrorMessage(error: NSError) -> String {
-        var logMessage = buildRequestLogMessage()
-        logMessage += "Response: \(error.code)\n"
+        var logMessage = "\(requestId) Response: \(error.code)\n"
         let headers = error.userInfo["headers"] as? [String: String]
         logMessage += "\nResponse Headers:"
         for (key, value) in headers ?? [:] {

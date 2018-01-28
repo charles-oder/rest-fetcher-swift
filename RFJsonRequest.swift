@@ -7,7 +7,7 @@
 
 import Foundation
 
-open class RFJsonRequest<T: Decodable>: RFLoggedRequest<T> {
+open class RFJsonRequest<T: Decodable>: RFRequest<T> {
     
     open var jsonRequestObject: Encodable? {
         return nil
