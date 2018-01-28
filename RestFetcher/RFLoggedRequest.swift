@@ -12,18 +12,15 @@ public protocol RFLoggedRequest {
     var keysToScrub: [String] { get }
 }
 
-extension RFLoggedRequest {
-    public var logger: RFLogger {
+extension RFRequest: RFLoggedRequest {
+    
+    open var logger: RFLogger {
         return RFConsoleLogger()
     }
     
-    public var keysToScrub: [String] {
+    open var keysToScrub: [String] {
         return ["password"]
     }
-    
-}
-
-extension RFRequest: RFLoggedRequest {
     
     func logResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) {
         guard let unwrappedData = data else {
