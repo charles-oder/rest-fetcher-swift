@@ -15,7 +15,7 @@ class RFJsonRequestTests: XCTestCase {
         let json = "{\"thing\":\"one\"}"
         let data = json.data(using: .utf8)
         
-        let response = request.createResponse(code: 200, headers: [:], data: data)
+        let response = request.createResponse(responseTime: 1.0, code: 200, headers: [:], data: data)
         
         XCTAssertEqual("one", response?.thing)
     }

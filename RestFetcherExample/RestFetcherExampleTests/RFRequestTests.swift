@@ -166,11 +166,11 @@ class RFRequestTests: XCTestCase {
     func testWillCreateResponse() {
         class TestRequest: RFRequest<RFResponse> {
             var callCount = 0
-            override func willCreateResponse(code: Int, headers: [String: String], data: Data?) {
+            override func willCreateResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) {
                 callCount += 1
             }
 
-            override func createResponse(code: Int, headers: [String: String], data: Data?) -> RFResponse? {
+            override func createResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) -> RFResponse? {
                 return RFResponse(headers: headers, code: 200, data: nil, responseTime: 1.0)
             }
         }
@@ -184,7 +184,7 @@ class RFRequestTests: XCTestCase {
         testObject.fetch()
         XCTAssertEqual(0, testObject.callCount)
 
-        guard let response = testObject.createResponse(code: 200, headers: [:], data: nil) else {
+        guard let response = testObject.createResponse(responseTime: 1.0, code: 200, headers: [:], data: nil) else {
             XCTFail("response is nil")
             return
         }

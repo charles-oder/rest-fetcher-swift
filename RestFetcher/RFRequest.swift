@@ -87,18 +87,18 @@ open class RFRequest<T> {
         // Logging hook
     }
 
-    open func willCreateResponse(code: Int, headers: [String: String], data: Data?) {
+    open func willCreateResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) {
         // Logging hook
     }
     
-    open func createResponse(code: Int, headers: [String: String], data: Data?) -> T? {
+    open func createResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) -> T? {
         return nil
     }
 
     func restFetcherSuccess(response: RFResponse) {
         if !_cancel {
-            willCreateResponse(code: response.code, headers: response.headers, data: response.data)
-            let apiResponse = createResponse(code: response.code, headers: response.headers, data: response.data)
+            willCreateResponse(responseTime: response.responseTime, code: response.code, headers: response.headers, data: response.data)
+            let apiResponse = createResponse(responseTime: response.responseTime, code: response.code, headers: response.headers, data: response.data)
             onSuccess(response.code, apiResponse)
         }
     }

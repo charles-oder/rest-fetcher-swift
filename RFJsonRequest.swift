@@ -26,7 +26,7 @@ open class RFJsonRequest<T: Decodable>: RFLoggedRequest<T> {
         return headers
     }
     
-    open override func createResponse(code: Int, headers: [String: String], data: Data?) -> T? {
+    open override func createResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) -> T? {
         guard let unwrappedData = data else {
             return nil
         }

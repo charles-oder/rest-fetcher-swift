@@ -17,7 +17,7 @@ open class RFLoggedRequest<T>: RFRequest<T> {
         return ["password"]
     }
     
-    open override func willCreateResponse(code: Int, headers: [String: String], data: Data?) {
+    open override func willCreateResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) {
         guard let unwrappedData = data else {
             return
         }
