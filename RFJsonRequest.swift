@@ -31,6 +31,10 @@ open class RFJsonRequest<T: Decodable>: RFRequest<T> {
             return nil
         }
         
+        if T.self == RFDataResponse.self {
+            return RFDataResponse(data: data) as? T
+        }
+        
         guard let jsonString = String(data: unwrappedData, encoding: .utf8) else {
             return nil
         }
@@ -44,8 +48,12 @@ open class RFJsonRequest<T: Decodable>: RFRequest<T> {
 
 }
 
-public struct VoidJson: Decodable {
+public struct RFVoidResponse: Decodable {
     
+}
+
+public struct RFDataResponse: Decodable {
+    public var data: Data?
 }
 
 public extension Decodable {
