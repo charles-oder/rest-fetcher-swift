@@ -29,8 +29,8 @@ open class RFRestFetcher: NSObject {
         }
     }
     
-    private var logger: RFConsoleLogger = RFConsoleLogger()
-    private let timeout: TimeInterval = 30
+    private let logger: RFLogger
+    private let timeout: TimeInterval
     private let resource: String!
     private let method: RFMethod!
     private let headers: [String: String]
@@ -43,12 +43,16 @@ open class RFRestFetcher: NSObject {
                 method: RFMethod,
                 headers: [String: String],
                 body: String,
+                logger: RFLogger = RFConsoleLogger(),
+                timeout: TimeInterval = 30,
                 successCallback: @escaping (_ response: RFResponse) -> Void,
                 errorCallback: @escaping (_ error: NSError) -> Void) {
         self.resource = resource
         self.method = method
         self.headers = headers
         self.body = body
+        self.logger = logger
+        self.timeout = timeout
         self.successCallback = successCallback
         self.errorCallback = errorCallback
     }
@@ -144,15 +148,23 @@ open class RFRestFetcher: NSObject {
     }
     
     private func logRequest(_ request: URLRequest) {
-        logger.logRequest(callId: "\(hashValue) \(method.rawValue)", url: resource, headers: headers, body: body)
+        
+        var logMessage = "Request: \(hashValue) \(method.rawValue)\nURL: \(String(describing: resource))\n Headers:\n"
+        for (key, val) in headers {
+            logMessage += "\t\(key): \(val)\n"
+        }
+        logMessage += "Body: \(String(describing: body))"
+        logger.debug(logMessage)
     }
     
     private func logResponse(_ response: HTTPURLResponse, data: Data?) {
-        logger.logResponse(callId: "\(hashValue) \(method.rawValue)",
-            url: resource,
-            code: response.statusCode,
-            headers: headers,
-            body: dataToString(data))
+        
+        var logMessage = "Response: \(hashValue) \(method.rawValue) received: \(response.statusCode)\nHeaders:\n"
+        for (key, val) in headers {
+            logMessage += "\(key): \(val)"
+        }
+        logMessage += "\nBody: \(String(describing: body))"
+        logger.debug(logMessage)
     }
     
     private func dataToString(_ data: Data?) -> String {

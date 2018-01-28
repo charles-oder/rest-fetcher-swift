@@ -25,21 +25,4 @@ public class RFConsoleLogger: NSObject, RFLogger {
         print("ERROR: \(message)")
     }
     
-    public func logRequest(callId: String, url: String?, headers: [String: String], body: String?) {
-        var logMessage = "Request: \(callId)\nURL: \(String(describing: url))\n Headers:\n"
-        for (key, val) in headers {
-            logMessage += "\t\(key): \(val)\n"
-        }
-        logMessage += "Body: \(String(describing: body))"
-        debug(logMessage)
-    }
-    
-    public func logResponse(callId: String, url: String?, code: Int, headers: [String: String], body: String?) {
-        var logMessage = "Response: \(callId) received: \(code)\nHeaders:\n"
-        for (key, val) in headers {
-            logMessage += "\(key): \(val)"
-        }
-        logMessage += "\nBody: \(String(describing: body))"
-        debug(logMessage)
-    }
 }
