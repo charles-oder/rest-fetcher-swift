@@ -68,9 +68,9 @@
 		B7BC115C686BDC374A06C0A2F182DB27 /* RestFetcher.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = RestFetcher.modulemap; sourceTree = "<group>"; };
 		BE039E033B11DA98617A77B7BDE41DC4 /* Pods-RestFetcherExampleTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RestFetcherExampleTests-umbrella.h"; sourceTree = "<group>"; };
 		D7A4887D9064EDEF5D1E609614532C19 /* Pods-RestFetcherExampleTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RestFetcherExampleTests-frameworks.sh"; sourceTree = "<group>"; };
-		E19D0572201C5789001A7D36 /* RFDataScrubber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFDataScrubber.swift; sourceTree = "<group>"; };
-		E19D0574201C5913001A7D36 /* RFLoggedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFLoggedRequest.swift; sourceTree = "<group>"; };
-		E19D057A201C6063001A7D36 /* RFJsonRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFJsonRequest.swift; sourceTree = "<group>"; };
+		E19D0572201C5789001A7D36 /* RFDataScrubber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RFDataScrubber.swift; path = RestFetcher/RFDataScrubber.swift; sourceTree = "<group>"; };
+		E19D0574201C5913001A7D36 /* RFLoggedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RFLoggedRequest.swift; path = RestFetcher/RFLoggedRequest.swift; sourceTree = "<group>"; };
+		E19D057A201C6063001A7D36 /* RFJsonRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RFJsonRequest.swift; path = RestFetcher/RFJsonRequest.swift; sourceTree = "<group>"; };
 		E52EBECA5D321408F10AD983A45A2BBC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5722A041EECD9B5F37D56A13608E839 /* RestFetcher-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RestFetcher-dummy.m"; sourceTree = "<group>"; };
 		E73C053625A6BFAB2652A7581A1E1E6C /* Pods-RestFetcherExampleTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RestFetcherExampleTests-resources.sh"; sourceTree = "<group>"; };
