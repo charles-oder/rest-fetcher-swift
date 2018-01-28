@@ -63,8 +63,7 @@ extension RFRequest: RFLoggedRequest {
     }
     
     func buildErrorMessage(error: NSError) -> String {
-        let responseTime = error.userInfo["time"] as? Double ?? 0
-        let responseTimeString = String(format: "%.6f", responseTime)
+        let responseTimeString = error.userInfo["time"] as? String ?? "<unknown>"
         var logMessage = "\(requestId)\nResponse took \(responseTimeString) seconds\nResponse: \(error.code)\n"
         let headers = error.userInfo["headers"] as? [String: String]
         logMessage += "\nResponse Headers:"
