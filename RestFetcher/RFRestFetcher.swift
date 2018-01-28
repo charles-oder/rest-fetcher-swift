@@ -89,7 +89,8 @@ open class RFRestFetcher: NSObject {
         
         let responseTime = calculateResponseTimeInSeconds()
         guard let urlResponse = response as? HTTPURLResponse else {
-            sendError(NSError(domain: "RestFetcher", code: 0, userInfo: ["message": "Network Error"]))
+            sendError(NSError(domain: "RestFetcher", code: 0, userInfo: ["time": "\(responseTime)",
+                                                                        "message": "Network Error"]))
             return
         }
         
@@ -98,7 +99,8 @@ open class RFRestFetcher: NSObject {
         }
         
         if let e = error {
-            sendError(NSError(domain: "RestFetcher", code: e._code, userInfo: ["message": "Network Error"]))
+            sendError(NSError(domain: "RestFetcher", code: e._code, userInfo: ["time": "\(responseTime)",
+                                                                                "message": "Network Error"]))
         } else  if isSuccessCode(urlResponse.statusCode) {
             let restResponse = RFResponse(headers: extractHeaders(urlResponse: urlResponse),
                                             code: urlResponse.statusCode,
@@ -107,8 +109,9 @@ open class RFRestFetcher: NSObject {
             sendSuccess(restResponse)
         } else {
             let headers = extractHeaders(urlResponse: urlResponse)
-            let userInfo: [String: Any] = ["message": dataToString(data),
-                                                "headers": headers]
+            let userInfo: [String: Any] = ["time": "\(responseTime)",
+                                            "message": dataToString(data),
+                                            "headers": headers]
             sendError(NSError(domain: "RestFetcher", code: urlResponse.statusCode, userInfo: userInfo))
         }
     }

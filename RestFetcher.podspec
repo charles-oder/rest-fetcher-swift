@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RestFetcher'
-  s.version          = '4.0.1'
+  s.version          = '4.0.2'
   s.summary          = 'A simple framework for making api calls.'
 
 

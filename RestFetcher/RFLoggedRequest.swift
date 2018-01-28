@@ -31,13 +31,11 @@ extension RFRequest: RFLoggedRequest {
         }
         
         let body = String(data: unwrappedData, encoding: .utf8)
-        let message = buildSuccessMessage(code: code, headers: headers, data: data, body: body)
-        logger.debug("rest_call: \(message)")
+        logger.debug(buildSuccessMessage(responseTime: responseTime, code: code, headers: headers, data: data, body: body))
     }
     
     func logError(_ error: NSError) {
-        let errorMessage = buildErrorMessage(error: error)
-        logger.error("rest_error: \(errorMessage)")
+        logger.error(buildErrorMessage(error: error))
     }
     
     func logRequest(resource: String, method: RFMethod, headers: [String: String], body: String) {
@@ -45,7 +43,7 @@ extension RFRequest: RFLoggedRequest {
     }
     
     func buildRequestLogMessage() -> String {
-        var logMessage = "\(requestId) \(restMethod.rawValue) Request: \(requestUrlString)\n Request Headers:\n"
+        var logMessage = "\(requestId)\n\(restMethod.rawValue) Request: \(requestUrlString)\n Request Headers:\n"
         for (key, val) in requestHeaders {
             logMessage += "\t\(key): \(val)\n"
         }
@@ -53,8 +51,9 @@ extension RFRequest: RFLoggedRequest {
         return logMessage
     }
     
-    func buildSuccessMessage(code: Int, headers: [String: String], data: Data?, body: String?) -> String {
-        var logMessage = "\(requestId) Response: \(code)\nHeaders:\n"
+    func buildSuccessMessage(responseTime: Double, code: Int, headers: [String: String], data: Data?, body: String?) -> String {
+        let responseTimeString = String(format: "%.6f", responseTime)
+        var logMessage = "\(requestId)\nResponse took \(responseTimeString) seconds\nResponse: \(code)\nHeaders:\n"
         for (key, val) in headers {
             logMessage += "\(key): \(val)"
         }
@@ -64,7 +63,9 @@ extension RFRequest: RFLoggedRequest {
     }
     
     func buildErrorMessage(error: NSError) -> String {
-        var logMessage = "\(requestId) Response: \(error.code)\n"
+        let responseTime = error.userInfo["time"] as? Double ?? 0
+        let responseTimeString = String(format: "%.6f", responseTime)
+        var logMessage = "\(requestId)\nResponse took \(responseTimeString) seconds\nResponse: \(error.code)\n"
         let headers = error.userInfo["headers"] as? [String: String]
         logMessage += "\nResponse Headers:"
         for (key, value) in headers ?? [:] {
