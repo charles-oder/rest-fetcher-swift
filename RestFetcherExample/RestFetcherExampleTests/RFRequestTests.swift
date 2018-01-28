@@ -4,7 +4,7 @@ import XCTest
 class RFRequestTests: XCTestCase {
     
     var testRequest: ConcreteRestRequest?
-    var mockResponse = RFResponse(headers: [String: String](), code: 200, data: Data())
+    var mockResponse = RFResponse(headers: [String: String](), code: 200, data: Data(), responseTime: 1.0)
     var mockFetcher: RFRestFetcher?
     
     override func setUp() {
@@ -171,7 +171,7 @@ class RFRequestTests: XCTestCase {
             }
 
             override func createResponse(code: Int, headers: [String: String], data: Data?) -> RFResponse? {
-                return RFResponse(headers: headers, code: 200, data: nil)
+                return RFResponse(headers: headers, code: 200, data: nil, responseTime: 1.0)
             }
         }
         

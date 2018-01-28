@@ -5,11 +5,13 @@ public class RFResponse: NSObject {
     public let headers: [String: String]
     public let code: Int
     public let data: Data?
+    public let responseTime: Double
     
-    public init(headers: [String: String], code: Int, data: Data?) {
+    public init(headers: [String: String], code: Int, data: Data?, responseTime: Double) {
         self.headers = headers
         self.code = code
         self.data = data
+        self.responseTime = responseTime
     }
     
     public class func dataToString(_ data: Data?) -> String {

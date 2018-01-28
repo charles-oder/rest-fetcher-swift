@@ -38,7 +38,9 @@ open class RFRestFetcher: NSObject {
     private let successCallback: (_ response: RFResponse) -> Void
     private let errorCallback: (_ error: NSError) -> Void
     private var session: URLSession = URLSession.shared
-    
+
+    private var startTime: UInt64 = 0
+
     public init(resource: String,
                 method: RFMethod,
                 headers: [String: String],
@@ -59,6 +61,7 @@ open class RFRestFetcher: NSObject {
     
     open func fetch() {
         let task = session.dataTask(with: createRequest(), completionHandler: urlSessionComplete)
+        startTime = DispatchTime.now().uptimeNanoseconds
         task.resume()
     }
     
@@ -83,6 +86,8 @@ open class RFRestFetcher: NSObject {
     }
     
     func urlSessionComplete(data: Data?, response: URLResponse?, error: Error?) {
+        
+        let responseTime = calculateResponseTimeInSeconds()
         guard let urlResponse = response as? HTTPURLResponse else {
             sendError(NSError(domain: "RestFetcher", code: 0, userInfo: ["message": "Network Error"]))
             return
@@ -97,7 +102,8 @@ open class RFRestFetcher: NSObject {
         } else  if isSuccessCode(urlResponse.statusCode) {
             let restResponse = RFResponse(headers: extractHeaders(urlResponse: urlResponse),
                                             code: urlResponse.statusCode,
-                                            data: data)
+                                            data: data,
+                                            responseTime: responseTime)
             sendSuccess(restResponse)
         } else {
             let headers = extractHeaders(urlResponse: urlResponse)
@@ -105,6 +111,13 @@ open class RFRestFetcher: NSObject {
                                                 "headers": headers]
             sendError(NSError(domain: "RestFetcher", code: urlResponse.statusCode, userInfo: userInfo))
         }
+    }
+    
+    private func calculateResponseTimeInSeconds() -> Double {
+        let endTime = DispatchTime.now().uptimeNanoseconds
+        let responseTimeInNanoSeconds = endTime - startTime
+        let nanoSecondsInOneSecond = 1_000_000_000
+        return Double(responseTimeInNanoSeconds) / Double(nanoSecondsInOneSecond)
     }
     
     private func extractHeaders(urlResponse: HTTPURLResponse) -> [String: String] {
