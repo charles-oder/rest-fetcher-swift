@@ -15,6 +15,8 @@ public protocol RestFetcherBuilder {
 @objc
 open class RFRestFetcher: NSObject {
     
+    public static var defaultBuilder = RFRestFetcher.Builder()
+    
     public class Builder: RestFetcherBuilder {
         public func createRestFetcher(resource: String,
                                       method: RFMethod,

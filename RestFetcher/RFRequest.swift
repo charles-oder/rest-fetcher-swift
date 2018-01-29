@@ -12,11 +12,7 @@ open class RFRequest<T> {
     public var successCallback : (_ code: Int, _ response: T?) -> Void = { _, _ in }
     public var errorCallback : (_ error: NSError) -> Void = { _ in }
     
-    public init() {
-        self.restFetcherBuilder = RFRestFetcher.Builder()
-    }
-    
-    func setRestFetcherBuilder(restFetcherBuilder: RestFetcherBuilder) {
+    public init(restFetcherBuilder: RestFetcherBuilder = RFRestFetcher.defaultBuilder) {
         self.restFetcherBuilder = restFetcherBuilder
     }
     
