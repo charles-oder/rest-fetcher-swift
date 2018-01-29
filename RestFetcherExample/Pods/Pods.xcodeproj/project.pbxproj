@@ -25,7 +25,7 @@
 		DBAA89D60BFBCB1B10652288F6DB9BEE /* RFMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF068C0D26C1475A6B4625CAA094160 /* RFMethod.swift */; };
 		E19D0576201C5953001A7D36 /* RFDataScrubber.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19D0572201C5789001A7D36 /* RFDataScrubber.swift */; };
 		E19D0577201C5957001A7D36 /* RFLoggedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19D0574201C5913001A7D36 /* RFLoggedRequest.swift */; };
-		E19D057C201C6098001A7D36 /* RFJsonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19D057A201C6063001A7D36 /* RFJsonRequest.swift */; };
+		E19D057C201C6098001A7D36 /* RFResponseWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19D057A201C6063001A7D36 /* RFResponseWrappers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +70,7 @@
 		D7A4887D9064EDEF5D1E609614532C19 /* Pods-RestFetcherExampleTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RestFetcherExampleTests-frameworks.sh"; sourceTree = "<group>"; };
 		E19D0572201C5789001A7D36 /* RFDataScrubber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RFDataScrubber.swift; path = RestFetcher/RFDataScrubber.swift; sourceTree = "<group>"; };
 		E19D0574201C5913001A7D36 /* RFLoggedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RFLoggedRequest.swift; path = RestFetcher/RFLoggedRequest.swift; sourceTree = "<group>"; };
-		E19D057A201C6063001A7D36 /* RFJsonRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RFJsonRequest.swift; path = RestFetcher/RFJsonRequest.swift; sourceTree = "<group>"; };
+		E19D057A201C6063001A7D36 /* RFResponseWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RFResponseWrappers.swift; path = RestFetcher/RFResponseWrappers.swift; sourceTree = "<group>"; };
 		E52EBECA5D321408F10AD983A45A2BBC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5722A041EECD9B5F37D56A13608E839 /* RestFetcher-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RestFetcher-dummy.m"; sourceTree = "<group>"; };
 		E73C053625A6BFAB2652A7581A1E1E6C /* Pods-RestFetcherExampleTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RestFetcherExampleTests-resources.sh"; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 				D6743BBCB3571B95FC0C0F739CBC4862 /* Support Files */,
 				E19D0572201C5789001A7D36 /* RFDataScrubber.swift */,
 				E19D0574201C5913001A7D36 /* RFLoggedRequest.swift */,
-				E19D057A201C6063001A7D36 /* RFJsonRequest.swift */,
+				E19D057A201C6063001A7D36 /* RFResponseWrappers.swift */,
 			);
 			name = RestFetcher;
 			path = ../..;
@@ -381,7 +381,7 @@
 				8D449B34554C2D156A8F0EF8359F870C /* RFConsoleLogger.swift in Sources */,
 				E19D0576201C5953001A7D36 /* RFDataScrubber.swift in Sources */,
 				B2FBD4E3AE05CF6F5D35DCC1F9BA9F5A /* RestFetcher-dummy.m in Sources */,
-				E19D057C201C6098001A7D36 /* RFJsonRequest.swift in Sources */,
+				E19D057C201C6098001A7D36 /* RFResponseWrappers.swift in Sources */,
 				A8C416E0836374D6AA9B5C9BF27B7F09 /* RFRestFetcher.swift in Sources */,
 				DAF1661AA0FB2F584DAFE6276A017CF2 /* RFEnvironemnt.swift in Sources */,
 				DBAA89D60BFBCB1B10652288F6DB9BEE /* RFMethod.swift in Sources */,

@@ -168,7 +168,7 @@ class RFRequestTests: XCTestCase {
     }
 
     func testWillCreateResponse() {
-        class TestRequest: RFRequest<RFResponse> {
+        class TestRequest: RFRequest<RFRawResponse<RFResponse>> {
             var callCount = 0
             override func willCreateResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) {
                 callCount += 1
@@ -213,7 +213,7 @@ class RFRequestTests: XCTestCase {
         testObject.fetch()
         XCTAssertEqual(1, testObject.callCount)
 
-        _ = testObject.createResponse(code: 200, headers: [:], data: nil)
+        _ = testObject.createResponse(responseTime: 0.5, code: 200, headers: [:], data: nil)
         XCTAssertEqual(1, testObject.callCount)
 
     }
@@ -227,7 +227,7 @@ open class ConcreteRestRequest2: ConcreteRestRequest {
     
 }
 
-open class ConcreteRestRequest: RFRequest<ConcreteRestResponse> {
+open class ConcreteRestRequest: RFRequest<RFVoidResponse> {
 
     open override var domain: String {
         return "http://google.com"
@@ -250,13 +250,4 @@ open class ConcreteRestRequest: RFRequest<ConcreteRestResponse> {
         args["arg2"] = "value2"
         return args
     }
-}
-
-extension RFRequest where T == ConcreteRestResponse {
-    func createResponse(code: Int, headers: [String: String], data: Data?) -> T? {
-        return ConcreteRestResponse()
-    }
-}
-
-open class ConcreteRestResponse {
 }

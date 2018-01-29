@@ -1,6 +1,6 @@
 import Foundation
 
-open class RFRequest<T> {
+open class RFRequest<T: RFDecodable> {
     
     private var _cancel = false
     private var _restFetcher: RFRestFetcher?
@@ -9,7 +9,7 @@ open class RFRequest<T> {
     
     public var restFetcherBuilder: RestFetcherBuilder
     
-    public var successCallback : (_ code: Int, _ response: T?) -> Void = { _, _ in }
+    public var successCallback : (_ code: Int, _ response: T.ResponseType?) -> Void = { _, _ in }
     public var errorCallback : (_ error: NSError) -> Void = { _ in }
     
     public init(restFetcherBuilder: RestFetcherBuilder = RFRestFetcher.defaultBuilder) {
@@ -91,7 +91,9 @@ open class RFRequest<T> {
     }
     
     open var requestHeaders: [String: String] {
-        return [:]
+        var headers: [String: String] = [:]
+        headers["Accept"] = T.acceptType
+        return headers
     }
     
     open func willFetchRequest(resource: String, method: RFMethod, headers: [String: String], body: String) {
@@ -102,8 +104,8 @@ open class RFRequest<T> {
         logResponse(responseTime: responseTime, code: code, headers: headers, data: data)
     }
     
-    open func createResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) -> T? {
-        return nil
+    open func createResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) -> T.ResponseType? {
+        return T(data: data)?.object as? T.ResponseType
     }
 
     func restFetcherSuccess(response: RFResponse) {
@@ -120,7 +122,7 @@ open class RFRequest<T> {
         }
     }
     
-    open func onSuccess(_ code: Int, _ response: T?) {
+    open func onSuccess(_ code: Int, _ response: T.ResponseType?) {
         successCallback(code, response)
     }
     

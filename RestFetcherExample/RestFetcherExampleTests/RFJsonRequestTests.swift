@@ -11,7 +11,7 @@ import RestFetcher
 class RFJsonRequestTests: XCTestCase {
     
     func testCreateResponse() {
-        let request = RFJsonRequest<TestResponse>()
+        let request = RFRequest<RFDecodableResponse<TestResponse>>()
         let json = "{\"thing\":\"one\"}"
         let data = json.data(using: .utf8)
         
@@ -20,37 +20,13 @@ class RFJsonRequestTests: XCTestCase {
         XCTAssertEqual("one", response?.thing)
     }
     
-    func testUseRequestObject() {
-        
-        let testObject = TestRequest()
-        
-        testObject.testValue = "banana"
-        
-        XCTAssertEqual("{\"monkey\":\"banana\"}", testObject.requestBody)
-        
-        testObject.testValue = "orange"
-        
-        XCTAssertEqual("{\"monkey\":\"orange\"}", testObject.requestBody)
-        
-    }
-    
     func testAcceptHeader() {
-        let testObject = RFJsonRequest<RFVoidResponse>()
+        let testObject = RFRequest<RFDecodableResponse<TestResponse>>()
         XCTAssertEqual("application/json", testObject.requestHeaders["Accept"])
     }
     
-    func testContentHeaderForNilBodyObject() {
-        let testObject = RFJsonRequest<RFVoidResponse>()
-        XCTAssertNil(testObject.requestHeaders["Content-Type"])
-    }
-    
-    func testContentHeaderForNonNilBodyObject() {
-        let testObject = TestRequest()
-        XCTAssertEqual("application/json", testObject.requestHeaders["Content-Type"])
-    }
-    
     func testDataResponse() {
-        let testObject = RFJsonRequest<RFDataResponse>()
+        let testObject = RFRequest<RFDataResponse>()
         let testData = "test".data(using: .utf8)
         
         guard let response = testObject.createResponse(responseTime: 1.0, code: 200, headers: [:], data: testData) else {
@@ -58,12 +34,7 @@ class RFJsonRequestTests: XCTestCase {
             return
         }
         
-        guard let actualData = response.data else {
-            XCTFail("Nil data")
-            return
-        }
-        
-        XCTAssertEqual("test", String(data: actualData, encoding: .utf8))
+        XCTAssertEqual("test", String(data: response, encoding: .utf8))
     }
     
     struct TestResponse: Decodable {
@@ -72,13 +43,6 @@ class RFJsonRequestTests: XCTestCase {
     
     struct TestEntity: Encodable {
         var monkey: String?
-    }
-    
-    class TestRequest: RFJsonRequest<RFVoidResponse> {
-        var testValue: String?
-        override var jsonRequestObject: Encodable? {
-            return TestEntity(monkey: testValue)
-        }
     }
     
 }
