@@ -6,6 +6,8 @@ public protocol RestFetcherBuilder {
                            method: RFMethod,
                            headers: [String: String],
                            body: String,
+                           logger: RFLogger,
+                           timeout: TimeInterval,
                            successCallback: @escaping (_ response: RFResponse) -> Void,
                            errorCallback: @escaping (_ error: NSError) -> Void) -> RFRestFetcher
 }
@@ -18,12 +20,16 @@ open class RFRestFetcher: NSObject {
                                       method: RFMethod,
                                       headers: [String: String],
                                       body: String,
+                                      logger: RFLogger,
+                                      timeout: TimeInterval,
                                       successCallback: @escaping (_ response: RFResponse) -> Void,
                                       errorCallback: @escaping (_ error: NSError) -> Void) -> RFRestFetcher {
             return RFRestFetcher(resource: resource,
                                method: method,
                                headers: headers,
                                body: body,
+                               logger: logger,
+                               timeout: timeout,
                                successCallback: successCallback,
                                errorCallback: errorCallback)
         }
@@ -45,8 +51,8 @@ open class RFRestFetcher: NSObject {
                 method: RFMethod,
                 headers: [String: String],
                 body: String,
-                logger: RFLogger = RFConsoleLogger(),
-                timeout: TimeInterval = 30,
+                logger: RFLogger,
+                timeout: TimeInterval,
                 successCallback: @escaping (_ response: RFResponse) -> Void,
                 errorCallback: @escaping (_ error: NSError) -> Void) {
         self.resource = resource

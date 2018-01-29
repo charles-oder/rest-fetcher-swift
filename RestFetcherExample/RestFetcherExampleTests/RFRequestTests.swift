@@ -118,6 +118,8 @@ class RFRequestTests: XCTestCase {
                            method: RFMethod.get,
                            headers: [String: String](),
                            body: "",
+                           logger: RFConsoleLogger(),
+                           timeout: 30,
                            successCallback: { _ in },
                            errorCallback: { _ in })
             }
@@ -133,6 +135,8 @@ class RFRequestTests: XCTestCase {
                                                method: RFMethod,
                                                headers: [String: String],
                                                body: String,
+                                               logger: RFLogger,
+                                               timeout: TimeInterval,
                                                successCallback: @escaping (RFResponse) -> Void,
                                                errorCallback: @escaping (NSError) -> Void) -> RFRestFetcher {
                 return mockFetcher

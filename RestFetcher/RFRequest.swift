@@ -24,6 +24,10 @@ open class RFRequest<T> {
         return RFConsoleLogger()
     }
     
+    open var timeout: TimeInterval {
+        return 30
+    }
+    
     open var keysToScrub: [String] {
         return ["password"]
     }
@@ -134,6 +138,8 @@ open class RFRequest<T> {
                                                             method: restMethod,
                                                             headers: requestHeaders,
                                                             body: requestBody,
+                                                            logger: logger,
+                                                            timeout: timeout,
                                                             successCallback: restFetcherSuccess,
                                                             errorCallback: restFetcherError)
     }

@@ -13,6 +13,8 @@ class RFRestFetcherTests: XCTestCase {
                                  method: method,
                                  headers: headers,
                                  body: body,
+                                 logger: RFConsoleLogger(),
+                                 timeout: 30,
                                  successCallback: { _ in },
                                  errorCallback: { _ in })
         super.setUp()
@@ -68,7 +70,10 @@ class RFRestFetcherTests: XCTestCase {
         var errorFlag = false
         self.testObject = RFRestFetcher(resource: "",
                                       method: RFMethod.get,
-                                      headers: [String: String](), body: "",
+                                      headers: [String: String](),
+                                      body: "",
+                                      logger: RFConsoleLogger(),
+                                      timeout: 30,
                                       successCallback: { _ in
             XCTFail("Should not have been called")
             },
@@ -102,7 +107,10 @@ class RFRestFetcherTests: XCTestCase {
         let asyncExpectation = expectation(description: "ApiCall")
         self.testObject = RFRestFetcher(resource: "",
                                       method: RFMethod.get,
-                                      headers: [String: String](), body: "",
+                                      headers: [String: String](),
+                                      body: "",
+                                      logger: RFConsoleLogger(),
+                                      timeout: 30,
                                       successCallback: { response in
                 XCTAssertEqual(200, response.code)
                 let actualBody = response.body
@@ -140,6 +148,8 @@ class RFRestFetcherTests: XCTestCase {
                                       method: RFMethod.get,
                                       headers: [String: String](),
                                       body: "",
+                                      logger: RFConsoleLogger(),
+                                      timeout: 30,
                                       successCallback: { _ in
                 XCTFail("Should not have been called")
             },
@@ -171,6 +181,8 @@ class RFRestFetcherTests: XCTestCase {
                                  method: RFMethod.get,
                                  headers: [String: String](),
                                  body: "",
+                                 logger: RFConsoleLogger(),
+                                 timeout: 30,
                                  successCallback: { _ in
                 XCTFail("Should not have been called")
             },
