@@ -37,6 +37,18 @@ class RFJsonRequestTests: XCTestCase {
         XCTAssertEqual("test", String(data: response, encoding: .utf8))
     }
     
+    func testStringResponse() {
+        let testObject = RFRequest<RFStringResponse>()
+        let testData = "test".data(using: .utf8)
+        
+        guard let response = testObject.createResponse(responseTime: 1.0, code: 200, headers: [:], data: testData) else {
+            XCTFail("Nil response")
+            return
+        }
+        
+        XCTAssertEqual("test", response)
+    }
+    
     struct TestResponse: Decodable {
         var thing: String?
     }

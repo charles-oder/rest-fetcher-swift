@@ -35,11 +35,25 @@ public struct RFDataResponse: RFDecodable {
     public static var acceptType: String? {
         return nil
     }
-
+    
     public var object: ResponseType?
     
     public init?(data: Data?) {
         object = data
+    }
+}
+
+public struct RFStringResponse: RFDecodable {
+    public typealias ResponseType = String
+    
+    public static var acceptType: String? {
+        return nil
+    }
+    
+    public var object: ResponseType?
+    
+    public init?(data: Data?) {
+        object = data?.toString
     }
 }
 
@@ -85,6 +99,12 @@ extension Decodable {
 extension Data {
     func decodeJson<T>(_ type: T.Type) -> T? where T: Decodable {
         return try? JSONDecoder().decode(T.self, from: self)
+    }
+}
+
+extension Data {
+    var toString: String? {
+        return String(data: self, encoding: .utf8)
     }
 }
 
