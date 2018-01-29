@@ -105,7 +105,7 @@ open class RFRequest<T: RFDecodable> {
     }
     
     open func createResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) -> T.ResponseType? {
-        return T(data: data)?.object as? T.ResponseType
+        return T(data: data)?.object
     }
 
     func restFetcherSuccess(response: RFResponse) {
