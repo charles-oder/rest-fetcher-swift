@@ -27,13 +27,13 @@ open class RFRestFetcher: NSObject {
                                       successCallback: @escaping (_ response: RFResponse) -> Void,
                                       errorCallback: @escaping (_ error: NSError) -> Void) -> RFRestFetcher {
             return RFRestFetcher(resource: resource,
-                               method: method,
-                               headers: headers,
-                               body: body,
-                               logger: logger,
-                               timeout: timeout,
-                               successCallback: successCallback,
-                               errorCallback: errorCallback)
+                                 method: method,
+                                 headers: headers,
+                                 body: body,
+                                 logger: logger,
+                                 timeout: timeout,
+                                 successCallback: successCallback,
+                                 errorCallback: errorCallback)
         }
     }
     
@@ -45,10 +45,10 @@ open class RFRestFetcher: NSObject {
     private let body: String?
     private let successCallback: (_ response: RFResponse) -> Void
     private let errorCallback: (_ error: NSError) -> Void
-    private var session: URLSession = URLSession.shared
-
+    private var session: URLSession!
+    
     private var startTime: UInt64 = 0
-
+    
     public init(resource: String,
                 method: RFMethod,
                 headers: [String: String],
@@ -68,7 +68,7 @@ open class RFRestFetcher: NSObject {
     }
     
     open func fetch() {
-        let task = session.dataTask(with: createRequest(), completionHandler: urlSessionComplete)
+        let task = getUrlSession().dataTask(with: createRequest(), completionHandler: urlSessionComplete)
         startTime = DispatchTime.now().uptimeNanoseconds
         task.resume()
     }
@@ -93,12 +93,22 @@ open class RFRestFetcher: NSObject {
         self.session = session
     }
     
+    func getUrlSession() -> URLSession {
+        if session == nil {
+            let sessionConfig = URLSessionConfiguration.default
+            sessionConfig.timeoutIntervalForRequest = timeout
+            sessionConfig.timeoutIntervalForResource = timeout
+            session = URLSession(configuration: sessionConfig)
+        }
+        return session
+    }
+    
     func urlSessionComplete(data: Data?, response: URLResponse?, error: Error?) {
         
         let responseTime = calculateResponseTimeInSeconds()
         guard let urlResponse = response as? HTTPURLResponse else {
             sendError(NSError(domain: "RestFetcher", code: 0, userInfo: ["time": "\(responseTime)",
-                                                                        "message": "Network Error"]))
+                "message": "Network Error"]))
             return
         }
         
@@ -108,18 +118,18 @@ open class RFRestFetcher: NSObject {
         
         if let e = error {
             sendError(NSError(domain: "RestFetcher", code: e._code, userInfo: ["time": "\(responseTime)",
-                                                                                "message": "Network Error"]))
+                "message": "Network Error"]))
         } else  if isSuccessCode(urlResponse.statusCode) {
             let restResponse = RFResponse(headers: extractHeaders(urlResponse: urlResponse),
-                                            code: urlResponse.statusCode,
-                                            data: data,
-                                            responseTime: responseTime)
+                                          code: urlResponse.statusCode,
+                                          data: data,
+                                          responseTime: responseTime)
             sendSuccess(restResponse)
         } else {
             let headers = extractHeaders(urlResponse: urlResponse)
             let userInfo: [String: Any] = ["time": "\(responseTime)",
-                                            "message": dataToString(data),
-                                            "headers": headers]
+                "message": dataToString(data),
+                "headers": headers]
             sendError(NSError(domain: "RestFetcher", code: urlResponse.statusCode, userInfo: userInfo))
         }
     }
@@ -206,3 +216,4 @@ open class RFRestFetcher: NSObject {
     }
     
 }
+
