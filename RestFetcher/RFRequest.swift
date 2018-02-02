@@ -118,6 +118,7 @@ open class RFRequest<T: RFDecodable> {
     
     func restFetcherError(error: NSError) {
         if !_cancel {
+            logError(error)
             onError(error)
         }
     }
@@ -127,7 +128,6 @@ open class RFRequest<T: RFDecodable> {
     }
     
     open func onError(_ error: NSError) {
-        logError(error)
         errorCallback(error)
     }
     
