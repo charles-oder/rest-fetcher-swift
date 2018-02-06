@@ -32,7 +32,7 @@ extension RFRequest: RFLoggedRequest {
     }
     
     func buildRequestLogMessage() -> String {
-        var logMessage = "\(requestId)\n\(restMethod.rawValue) Request: \(requestUrlString)\n Request Headers:\n"
+        var logMessage = "Sending Request: \(requestId)\n\(restMethod.rawValue) Request: \(requestUrlString)\n Request Headers:\n"
         for (key, val) in requestHeaders {
             logMessage += "\t\(key): \(val)\n"
         }
@@ -42,7 +42,7 @@ extension RFRequest: RFLoggedRequest {
     
     func buildSuccessMessage(responseTime: Double, code: Int, headers: [String: String], data: Data?, body: String?) -> String {
         let responseTimeString = String(format: "%.6f", responseTime)
-        var logMessage = "\(requestId)\nResponse took \(responseTimeString) seconds\nResponse: \(code)\nHeaders:\n"
+        var logMessage = "Response Recieved: \(requestId)\n\(restMethod.rawValue): \(requestUrlString)\nResponse took \(responseTimeString) seconds\nResponse: \(code)\nHeaders:\n"
         for (key, val) in headers {
             logMessage += "\(key): \(val)"
         }
@@ -53,7 +53,7 @@ extension RFRequest: RFLoggedRequest {
     
     func buildErrorMessage(error: NSError) -> String {
         let responseTimeString = error.userInfo["time"] as? String ?? "<unknown>"
-        var logMessage = "\(requestId)\nResponse took \(responseTimeString) seconds\nResponse: \(error.code)\n"
+        var logMessage = "Response Recieved: \(requestId)\n\(restMethod.rawValue): \(requestUrlString)\nResponse took \(responseTimeString) seconds\nResponse: \(error.code)\n"
         let headers = error.userInfo["headers"] as? [String: String]
         logMessage += "\nResponse Headers:"
         for (key, value) in headers ?? [:] {
