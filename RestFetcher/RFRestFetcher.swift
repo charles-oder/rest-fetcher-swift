@@ -116,8 +116,8 @@ open class RFRestFetcher: NSObject {
             logResponse(urlResponse, data: data)
         }
         
-        if let e = error {
-            sendError(NSError(domain: "RestFetcher", code: e._code, userInfo: ["time": "\(responseTime)",
+        if let unwrappedError = error {
+            sendError(NSError(domain: "RestFetcher", code: unwrappedError._code, userInfo: ["time": "\(responseTime)",
                 "message": "Network Error"]))
         } else  if isSuccessCode(urlResponse.statusCode) {
             let restResponse = RFResponse(headers: extractHeaders(urlResponse: urlResponse),
@@ -203,8 +203,8 @@ open class RFRestFetcher: NSObject {
     
     private func dataToString(_ data: Data?) -> String {
         var output = ""
-        if let d = data {
-            if let str = String(data: d, encoding: .utf8) {
+        if let unwrappedData = data {
+            if let str = String(data: unwrappedData, encoding: .utf8) {
                 output = str as String
             }
         }
@@ -216,4 +216,3 @@ open class RFRestFetcher: NSObject {
     }
     
 }
-

@@ -16,8 +16,8 @@ public class RFResponse: NSObject {
     
     public class func dataToString(_ data: Data?) -> String {
         var output = ""
-        if let d = data {
-            if let str = String(data: d, encoding: .utf8) {
+        if let unwrappedData = data {
+            if let str = String(data: unwrappedData, encoding: .utf8) {
                 output = str as String
             }
         }
