@@ -82,7 +82,7 @@ open class RFRestFetcher: NSObject {
         
         request = addBody(request)
         
-        if RFEnvironemnt().isLogging() {
+        if RFEnvironment().isLogging() {
             logRequest(request)
         }
         
@@ -112,7 +112,7 @@ open class RFRestFetcher: NSObject {
             return
         }
         
-        if RFEnvironemnt().isLogging() {
+        if RFEnvironment().isLogging() {
             logResponse(urlResponse, data: data)
         }
         

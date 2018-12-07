@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RFEnvironemnt: NSObject {
+class RFEnvironment: NSObject {
 
     func isLogging() -> Bool {
         if let value = getInfoPlistDictionary()?["log_rest_fetcher_calls"] as? Bool {
