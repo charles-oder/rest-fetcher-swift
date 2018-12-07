@@ -23,9 +23,13 @@ class RFRequestTests: XCTestCase {
     }
     
     func testBuildUrlString() {
-        let expectedResource = "http://google.com/api?arg2=value2&arg1=value%201"
-        let actuaResource = testRequest?.requestUrlString
-        XCTAssertEqual(actuaResource, expectedResource)
+        guard let actuaResource = testRequest?.requestUrlString else {
+            XCTFail("actuaResource is nil")
+            return
+        }
+        XCTAssertTrue(actuaResource.contains("http://google.com/api?"))
+        XCTAssertTrue(actuaResource.contains("arg2=value2"))
+        XCTAssertTrue(actuaResource.contains("arg1=value%201"))
     }
     
     func testBody() {
@@ -150,9 +154,10 @@ class RFRequestTests: XCTestCase {
     
     func testQueryArgumentsAreAtTheEndOfSubclasses() {
         let testObject = ConcreteRestRequest2()
-        let expectedResource = "http://google.com/api/stuff?arg2=value2&arg1=value%201"
-        
-        XCTAssertEqual(expectedResource, testObject.requestUrlString)
+
+        XCTAssertTrue(testObject.requestUrlString.contains("http://google.com/api/stuff?"))
+        XCTAssertTrue(testObject.requestUrlString.contains("arg2=value2"))
+        XCTAssertTrue(testObject.requestUrlString.contains("arg1=value%201"))
     }
     
     func testQueryArgumentsEncodeAmersands() {
@@ -213,7 +218,7 @@ class RFRequestTests: XCTestCase {
         testObject.fetch()
         XCTAssertEqual(1, testObject.callCount)
 
-        _ = testObject.createResponse(responseTime: 0.5, code: 200, headers: [:], data: nil)
+        _ = try? testObject.createResponse(responseTime: 0.5, code: 200, headers: [:], data: nil)
         XCTAssertEqual(1, testObject.callCount)
 
     }
