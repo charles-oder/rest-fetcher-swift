@@ -36,19 +36,31 @@ extension RFRequest: RFLoggedRequest {
         for (key, val) in requestHeaders {
             logMessage += "\t\(key): \(val)\n"
         }
-        logMessage += "Request Body: \(RFDataScrubber(keysToScrub: keysToScrub).scrub(json: requestBody) ?? "")\n"
-        return logMessage
+        do {
+            let requestBodyLogMessageScrubbed = try RFDataScrubber(keysToScrub: keysToScrub).scrub(json: requestBody) ?? ""
+            logMessage += "Request Body: \(requestBodyLogMessageScrubbed)\n"
+            return logMessage
+        } catch {
+            logMessage += "Request Body: Error scrubbing requestBody\(error)\n"
+            return logMessage
+        }
     }
-    
+
+    //swiftlint:disable line_length
     func buildSuccessMessage(responseTime: Double, code: Int, headers: [String: String], data: Data?, body: String?) -> String {
         let responseTimeString = String(format: "%.6f", responseTime)
         var logMessage = "Response Recieved: \(requestId)\n\(restMethod.rawValue): \(requestUrlString)\nResponse took \(responseTimeString) seconds\nResponse: \(code)\nHeaders:\n"
         for (key, val) in headers {
             logMessage += "\(key): \(val)"
         }
-        logMessage += "\nResponse Body: \(RFDataScrubber(keysToScrub: keysToScrub).scrub(json: body) ?? "")"
-        return logMessage
-        
+        do {
+            let responseBodyMessageScrubbed = try RFDataScrubber(keysToScrub: keysToScrub).scrub(json: body) ?? ""
+            logMessage += "\nResponse Body: \(responseBodyMessageScrubbed)"
+            return logMessage
+        } catch {
+            logMessage += "Response Body: Error scrubbing response\(error)\n"
+            return logMessage
+        }
     }
     
     func buildErrorMessage(error: NSError) -> String {
@@ -62,5 +74,6 @@ extension RFRequest: RFLoggedRequest {
         logMessage += "\nResponse Body: \(error.userInfo["message"] ?? "")"
         return logMessage
     }
+    //swiftlint:enable line_length
     
 }

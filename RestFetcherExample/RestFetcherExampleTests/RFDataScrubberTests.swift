@@ -14,12 +14,12 @@ class RFDataScrubberTests: XCTestCase {
         let json = "{\"password\":\"monkey\"}"
         let testObject = RFDataScrubber(keysToScrub: ["password"])
         
-        guard let result = testObject.scrub(json: json) else {
+        guard let result = try? testObject.scrub(json: json) else {
             XCTFail("Error scrubbing json")
             return
         }
         
-        XCTAssertEqual(false, result.contains("monkey"))
+        XCTAssertEqual(false, result?.contains("monkey"))
     }
     
     func testScrubDictionary() {

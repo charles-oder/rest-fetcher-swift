@@ -44,8 +44,8 @@ class RFRestFetcherTests: XCTestCase {
         }
         if let headers = request.allHTTPHeaderFields {
             for (key, value) in expectedHeaders {
-                if let s = headers[key] {
-                XCTAssertEqual(value, s)
+                if let string = headers[key] {
+                XCTAssertEqual(value, string)
                 } else {
                     XCTFail("Key missing: \(key)")
                 }

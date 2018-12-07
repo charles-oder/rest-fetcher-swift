@@ -15,8 +15,11 @@ public class RFDataScrubber {
         self.keysToScrub = keysToScrub
     }
     
-    public func scrub(json: String?) -> String? {
-        let data = json?.data(using: String.Encoding.utf8, allowLossyConversion: true)
+    public func scrub(json: String?) throws -> String? {
+        guard let json = json, !json.isEmpty else {
+            return ""
+        }
+        let data = json.data(using: String.Encoding.utf8, allowLossyConversion: true)
         if let data = data {
             do {
                 let options = JSONSerialization.ReadingOptions.allowFragments
@@ -28,8 +31,7 @@ public class RFDataScrubber {
                     return strippedString
                 }
             } catch let error {
-                print("Error Stripping data from JSON: \(error)")
-                return json
+                throw error
             }
         }
         return json
