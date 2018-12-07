@@ -14,7 +14,7 @@ public protocol RFDecodable {
     
     var object: ResponseType? { get }
 
-    init?(data: Data?)
+    init?(data: Data?) throws
 }
 
 public struct RFVoidResponse: RFDecodable {
@@ -26,7 +26,7 @@ public struct RFVoidResponse: RFDecodable {
     
     public var object: ResponseType?
     
-    public init?(data: Data?) {}
+    public init?(data: Data?) throws {}
 }
 
 public struct RFDataResponse: RFDecodable {
@@ -38,7 +38,7 @@ public struct RFDataResponse: RFDecodable {
     
     public var object: ResponseType?
     
-    public init?(data: Data?) {
+    public init?(data: Data?) throws {
         object = data
     }
 }
@@ -52,7 +52,7 @@ public struct RFStringResponse: RFDecodable {
     
     public var object: ResponseType?
     
-    public init?(data: Data?) {
+    public init?(data: Data?) throws {
         object = data?.toString
     }
 }
@@ -66,8 +66,8 @@ public struct RFDecodableResponse<T: Decodable>: RFDecodable {
     
     public var object: ResponseType?
     
-    public init?(data: Data?) {
-        object = T(data: data)
+    public init?(data: Data?) throws {
+        object = try T(data: data)
     }
 }
 
@@ -80,14 +80,14 @@ public struct RFRawResponse<T>: RFDecodable {
     
     public var object: ResponseType?
     
-    public init?(data: Data?) {}
+    public init?(data: Data?) throws {}
 }
 
 extension Decodable {
     
-    public init?(data: Data?) {
+    public init?(data: Data?) throws {
         
-        guard let decoded = data?.decodeJson(Self.self) else {
+        guard let decoded = try data?.decodeJson(Self.self) else {
             return nil
         }
         
@@ -97,8 +97,8 @@ extension Decodable {
 }
 
 extension Data {
-    func decodeJson<T>(_ type: T.Type) -> T? where T: Decodable {
-        return try? JSONDecoder().decode(T.self, from: self)
+    func decodeJson<T>(_ type: T.Type) throws -> T? where T: Decodable {
+        return try JSONDecoder().decode(T.self, from: self)
     }
 }
 

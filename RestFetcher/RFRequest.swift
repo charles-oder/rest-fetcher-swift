@@ -4,6 +4,10 @@ open class RFRequest<T: RFDecodable> {
     
     private var _cancel = false
     private var _restFetcher: RFRestFetcher?
+
+    public enum ErrorCode: Int {
+        case createResponseError = 10001
+    }
     
     var requestId: String = UUID().uuidString
     
@@ -104,15 +108,26 @@ open class RFRequest<T: RFDecodable> {
         logResponse(responseTime: responseTime, code: code, headers: headers, data: data)
     }
     
-    open func createResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) -> T.ResponseType? {
-        return T(data: data)?.object
+    open func createResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) throws -> T.ResponseType? {
+        return try T(data: data)?.object
     }
 
     func restFetcherSuccess(response: RFResponse) {
         if !_cancel {
             willCreateResponse(responseTime: response.responseTime, code: response.code, headers: response.headers, data: response.data)
-            let apiResponse = createResponse(responseTime: response.responseTime, code: response.code, headers: response.headers, data: response.data)
-            onSuccess(response.code, apiResponse)
+            do {
+                let apiResponse = try createResponse(responseTime: response.responseTime,
+                                                     code: response.code,
+                                                     headers: response.headers,
+                                                     data: response.data)
+                onSuccess(response.code, apiResponse)
+            } catch {
+                let nsError = NSError(domain: "createResponse",
+                                      code: ErrorCode.createResponseError.rawValue,
+                                      userInfo: ["error": error])
+                errorCallback(nsError)
+            }
+
         }
     }
     
