@@ -1,19 +1,23 @@
 PODS:
-  - RestFetcher (3.1.1)
-  - SwiftLint (0.24.0)
+  - RestFetcher (4.0.13)
+  - SwiftLint (0.29.1)
 
 DEPENDENCIES:
   - RestFetcher (from `../`)
   - SwiftLint
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SwiftLint
+
 EXTERNAL SOURCES:
   RestFetcher:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  RestFetcher: 5ae84b2528ea349462cec0df232df1011bc55cb8
-  SwiftLint: a014c92b4664e8b13f380f8640a51bb1733778ba
+  RestFetcher: ae732240f08000e3b8000c55d6af80de87bb0f48
+  SwiftLint: 6772320e40b52049053a518c17db9b0634a0b45a
 
 PODFILE CHECKSUM: 575fd9d4ae38b88a0d5eb714e64d4af40dff036d
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3

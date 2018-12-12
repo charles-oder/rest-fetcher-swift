@@ -158,7 +158,6 @@
 				E1FFC8C71D871707004A1DFF /* Frameworks */,
 				E1FFC8C81D871707004A1DFF /* Resources */,
 				120AE57C466958E9E536E11F /* [CP] Embed Pods Frameworks */,
-				DB9DEB8AE3AF0CB1CA8106BE /* [CP] Copy Pods Resources */,
 				E19FDF971E43F5ED00132EB0 /* Swift Lint Check */,
 			);
 			buildRules = (
@@ -178,8 +177,6 @@
 				E1FFC8DA1D871707004A1DFF /* Sources */,
 				E1FFC8DB1D871707004A1DFF /* Frameworks */,
 				E1FFC8DC1D871707004A1DFF /* Resources */,
-				E5C2F9CAE7CC198EAB1E8842 /* [CP] Embed Pods Frameworks */,
-				7BA52F64DA588AB915843CB9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -290,36 +287,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RestFetcherExample/Pods-RestFetcherExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7BA52F64DA588AB915843CB9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RestFetcherExampleTests/Pods-RestFetcherExampleTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DB9DEB8AE3AF0CB1CA8106BE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RestFetcherExample/Pods-RestFetcherExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E19FDF971E43F5ED00132EB0 /* Swift Lint Check */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -333,21 +300,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd ..\n${PODS_ROOT}/SwiftLint/swiftlint";
-		};
-		E5C2F9CAE7CC198EAB1E8842 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RestFetcherExampleTests/Pods-RestFetcherExampleTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		EDBEB57C225515CC92FB7DAC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -474,7 +426,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -524,7 +476,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -541,7 +493,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = us.oder.RestFetcherExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -556,7 +508,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = us.oder.RestFetcherExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -571,7 +523,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = us.oder.RestFetcherExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RestFetcherExample.app/RestFetcherExample";
 			};
 			name = Debug;
@@ -587,7 +539,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = us.oder.RestFetcherExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RestFetcherExample.app/RestFetcherExample";
 			};
 			name = Release;
