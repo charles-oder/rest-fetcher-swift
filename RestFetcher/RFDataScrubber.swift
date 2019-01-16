@@ -27,7 +27,6 @@ public class RFDataScrubber {
             return ""
         }
         var body = json
-        print("Scrubbing: \(key)")
         let regex = try NSRegularExpression(pattern: "\\\"[^\"]*\(key)[^\"]?\\\"\\s*:\\s*\\\"", options: NSRegularExpression.Options.caseInsensitive)
         let range = NSRange(location: 0, length: body.count)
         let matches = regex.matches(in: body, options: [], range: range).reversed()
@@ -37,11 +36,9 @@ public class RFDataScrubber {
             let first = split[0]
             var second = split[1]
             while !second.hasPrefix("\"") {
-                print("dropping first character from: \(second)")
                 second = String(second.dropFirst())
             }
             body = first + "********" + second
-            print("body updated: \(body)")
         }
         return body
     }
