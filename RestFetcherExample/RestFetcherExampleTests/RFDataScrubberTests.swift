@@ -22,15 +22,4 @@ class RFDataScrubberTests: XCTestCase {
         XCTAssertEqual(false, result?.contains("monkey"))
     }
     
-    func testScrubDictionary() {
-        let dictionary: [String: Any] = ["credentials": "banana"]
-        let testObject = RFDataScrubber(keysToScrub: ["credentials"])
-        
-        let result = testObject.scrub(dictionary: dictionary)
-        
-        XCTAssertNotNil(result["credentials"] as? String)
-        XCTAssertNotEqual("banana", result["credentials"] as? String)
-
-    }
-    
 }
