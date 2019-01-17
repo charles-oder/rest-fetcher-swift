@@ -22,35 +22,46 @@ public class RFDataScrubber {
         return try scrub(json: json, keys: keysToScrub)
     }
     
-    private func scrub(json: String?, key: String) throws -> String? {
+    private func scrub(json: String?, keys: [String]) throws -> String? {
         guard let json = json, !json.isEmpty else {
             return ""
         }
         var body = json
-        let regex = try NSRegularExpression(pattern: "\\\"[^\"]*\(key)[^\"]?\\\"\\s*:\\s*\\\"", options: NSRegularExpression.Options.caseInsensitive)
+        let keyRegex = createKeyMatchRegex(keys: keys)
+        let regex = try NSRegularExpression(pattern: "\\\"[^\"]*\(keyRegex)[^\"]?\\\"\\s*:\\s*\\\"",
+                                            options: NSRegularExpression.Options.caseInsensitive)
         let range = NSRange(location: 0, length: body.count)
         let matches = regex.matches(in: body, options: [], range: range).reversed()
         
         for match in matches {
-            var split = body.split(at: match.range.upperBound)
-            let first = split[0]
-            var second = split[1]
-            while !second.hasPrefix("\"") {
-                second = String(second.dropFirst())
-            }
-            body = first + "********" + second
+            body = removeSesitiveValue(regexMatch: match, json: body)
         }
         return body
     }
     
-    private func scrub(json: String?, keys: [String]) throws -> String? {
-        var body = json
-        for key in keys {
-            body = try scrub(json: body, key: key)
+    func removeSesitiveValue(regexMatch: NSTextCheckingResult, json: String) -> String {
+        var split = json.split(at: regexMatch.range.upperBound)
+        let first = split[0]
+        let second = split[1]
+        guard let quoteIndex = second.firstIndex(of: "\"") else {
+            return json
         }
-        return body
+        let cleanedSecond = second[quoteIndex...]
+        
+        return first + "********" + cleanedSecond
     }
-
+    
+    func createKeyMatchRegex(keys: [String]) -> String {
+        var keyString = "["
+        for key in keys {
+            if keyString.count > 1 {
+                keyString += " | "
+            }
+            keyString += key
+        }
+        keyString += "]"
+        return keyString
+    }
 }
 
 extension String {
