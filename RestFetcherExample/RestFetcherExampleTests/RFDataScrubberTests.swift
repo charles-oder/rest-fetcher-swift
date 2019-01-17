@@ -23,7 +23,7 @@ class RFDataScrubberTests: XCTestCase {
     }
     
     func testScrubJsonKeyThatContainsKey() {
-        let json = "{\"thePassword\":\"monkey\"}"
+        let json = "{\"thePasswordthing\":\"monkey\"}"
         let testObject = RFDataScrubber(keysToScrub: ["password"])
         
         guard let result = try? testObject.scrub(json: json) else {

@@ -28,7 +28,7 @@ public class RFDataScrubber {
         }
         var body = json
         let keyRegex = createKeyMatchRegex(keys: keys)
-        let regex = try NSRegularExpression(pattern: "\\\"[^\"]*\(keyRegex)[^\"]?\\\"\\s*:\\s*\\\"",
+        let regex = try NSRegularExpression(pattern: "\\\"[^\"]*\(keyRegex)[^\"]*\\\"\\s*:\\s*\\\"",
                                             options: NSRegularExpression.Options.caseInsensitive)
         let range = NSRange(location: 0, length: body.count)
         let matches = regex.matches(in: body, options: [], range: range).reversed()
@@ -55,7 +55,7 @@ public class RFDataScrubber {
         var keyString = "["
         for key in keys {
             if keyString.count > 1 {
-                keyString += " | "
+                keyString += "|"
             }
             keyString += key
         }
