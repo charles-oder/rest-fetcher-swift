@@ -150,14 +150,14 @@ open class RFRestFetcher: NSObject {
     }
     
     private func sendError(_ error: NSError) {
-        DispatchQueue.main.async {
-            self.errorCallback(error)
+        DispatchQueue.main.async { [weak self] in
+            self?.errorCallback(error)
         }
     }
     
     private func sendSuccess(_ response: RFResponse) {
-        DispatchQueue.main.async {
-            self.successCallback(response)
+        DispatchQueue.main.async { [weak self] in
+            self?.successCallback(response)
         }
     }
     
