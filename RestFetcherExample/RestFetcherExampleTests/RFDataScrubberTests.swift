@@ -58,4 +58,17 @@ class RFDataScrubberTests: XCTestCase {
         XCTAssertEqual(false, result?.contains("monkey"))
     }
 
+    func testLeavesOtherFieldsAlone() {
+        let json = "{\"dateTime\":\"8675309\"}"
+        
+        let testObject = RFDataScrubber(keysToScrub: ["password"])
+        
+        guard let result = try? testObject.scrub(json: json) else {
+            XCTFail("Error scrubbing json")
+            return
+        }
+        
+        XCTAssertEqual(true, result?.contains("8675309"))
+
+    }
 }

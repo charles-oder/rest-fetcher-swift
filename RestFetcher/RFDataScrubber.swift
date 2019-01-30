@@ -52,14 +52,14 @@ public class RFDataScrubber {
     }
     
     func createKeyMatchRegex(keys: [String]) -> String {
-        var keyString = "["
+        var keyString = "("
         for key in keys {
             if keyString.count > 1 {
                 keyString += "|"
             }
             keyString += key
         }
-        keyString += "]"
+        keyString += ")"
         return keyString
     }
 }
