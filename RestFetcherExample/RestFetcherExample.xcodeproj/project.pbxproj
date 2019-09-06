@@ -275,7 +275,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RestFetcherExample/Pods-RestFetcherExample-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-RestFetcherExample/Pods-RestFetcherExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RestFetcher/RestFetcher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -284,7 +284,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RestFetcherExample/Pods-RestFetcherExample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RestFetcherExample/Pods-RestFetcherExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E19FDF971E43F5ED00132EB0 /* Swift Lint Check */ = {

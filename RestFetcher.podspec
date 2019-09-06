@@ -46,7 +46,7 @@ SOFTWARE.
   s.source           = { :git => 'https://github.com/charles-oder/rest-fetcher-swift.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
-  s.swift_version = '4.2'
+  s.swift_version = '5.0'
   s.source_files = 'RestFetcher/**/*'
   
 end

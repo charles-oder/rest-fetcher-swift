@@ -1,5 +1,5 @@
 PODS:
-  - RestFetcher (4.0.13)
+  - RestFetcher (4.0.18)
   - SwiftLint (0.29.1)
 
 DEPENDENCIES:
@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  RestFetcher: ae732240f08000e3b8000c55d6af80de87bb0f48
+  RestFetcher: 84f5bc23c7d6029e290d3763b9d098577684314b
   SwiftLint: 6772320e40b52049053a518c17db9b0634a0b45a
 
 PODFILE CHECKSUM: 575fd9d4ae38b88a0d5eb714e64d4af40dff036d
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.5
