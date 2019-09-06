@@ -6,7 +6,7 @@ open class RFRequest<T: RFDecodable> {
     private var _restFetcher: RFRestFetcher?
 
     public enum ErrorCode: Int {
-        case createResponseError = 10001
+        case createResponseError = 10_001
     }
     
     var requestId: String = UUID().uuidString

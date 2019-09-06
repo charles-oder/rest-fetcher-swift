@@ -27,7 +27,7 @@ public class RFResponse: NSObject {
 }
 
 public extension RFResponse {
-    public var body: String? {
+    var body: String? {
         guard let unwrappedData = data else {
             return nil
         }

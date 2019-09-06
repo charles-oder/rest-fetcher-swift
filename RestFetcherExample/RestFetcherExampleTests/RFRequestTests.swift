@@ -218,7 +218,7 @@ class RFRequestTests: XCTestCase {
         testObject.fetch()
         XCTAssertEqual(1, testObject.callCount)
 
-        _ = try? testObject.createResponse(responseTime: 0.5, code: 200, headers: [:], data: nil)
+        _ = ((try? testObject.createResponse(responseTime: 0.5, code: 200, headers: [:], data: nil)) as RFVoidResponse.ResponseType??)
         XCTAssertEqual(1, testObject.callCount)
 
     }

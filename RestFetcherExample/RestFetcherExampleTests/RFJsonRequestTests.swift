@@ -40,8 +40,8 @@ class RFJsonRequestTests: XCTestCase {
     func testStringResponse() {
         let testObject = RFRequest<RFStringResponse>()
         let testData = "test".data(using: .utf8)
-        
-        guard let response = try? testObject.createResponse(responseTime: 1.0, code: 200, headers: [:], data: testData) else {
+        let response: RFStringResponse.ResponseType? = try? testObject.createResponse(responseTime: 1.0, code: 200, headers: [:], data: testData)
+        guard response != nil else {
             XCTFail("Nil response")
             return
         }
