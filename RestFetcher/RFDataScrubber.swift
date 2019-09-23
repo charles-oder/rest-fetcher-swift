@@ -40,7 +40,7 @@ public class RFDataScrubber {
     }
     
     func removeSesitiveValue(regexMatch: NSTextCheckingResult, json: String) -> String {
-        var split = json.split(at: regexMatch.range.upperBound)
+        let split = json.split(at: regexMatch.range.upperBound)
         let first = split[0]
         let second = split[1]
         guard let quoteIndex = second.firstIndex(of: "\"") else {
