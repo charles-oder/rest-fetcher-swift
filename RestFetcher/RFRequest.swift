@@ -72,22 +72,27 @@ open class RFRequest<T: RFDecodable> {
         return output
     }
     
-    open var requestBody: String {
+    open var requestBodyData: Data? {
+        return requestBodyString?.data(using: .utf8)
+    }
+    
+    open var requestBodyString: String? {
+        var bodyData: Data
         let bodyDict = requestBodyDictionary
         if bodyDict.isEmpty {
-            return ""
+            return nil
         }
-        var bodyData: Data
+
         do {
             bodyData = try JSONSerialization.data(withJSONObject: bodyDict, options: JSONSerialization.WritingOptions(rawValue: 0))
         } catch _ {
             bodyData = Data()
         }
-        
+
         if let output = String(data: bodyData, encoding: .utf8) {
             return output
         }
-        return "" // will never be hit in this code
+        return nil // will never be hit in this code
     }
     
     open var requestBodyDictionary: [String: Any?] {
@@ -100,8 +105,8 @@ open class RFRequest<T: RFDecodable> {
         return headers
     }
     
-    open func willFetchRequest(resource: String, method: RFMethod, headers: [String: String], body: String) {
-        logRequest(resource: resource, method: method, headers: headers, body: body)
+    open func willFetchRequest(resource: String, method: RFMethod, headers: [String: String], bodyString: String?) {
+        logRequest(resource: resource, method: method, headers: headers, bodyString: bodyString)
     }
 
     open func willCreateResponse(responseTime: Double, code: Int, headers: [String: String], data: Data?) {
@@ -150,7 +155,7 @@ open class RFRequest<T: RFDecodable> {
         _restFetcher = restFetcherBuilder.createRestFetcher(resource: requestUrlString,
                                                             method: restMethod,
                                                             headers: requestHeaders,
-                                                            body: requestBody,
+                                                            body: requestBodyData,
                                                             logger: logger,
                                                             timeout: timeout,
                                                             successCallback: restFetcherSuccess,
@@ -159,7 +164,7 @@ open class RFRequest<T: RFDecodable> {
     
     open func fetch() {
         if let fetcher = _restFetcher {
-            willFetchRequest(resource: requestUrlString, method: restMethod, headers: requestHeaders, body: requestBody)
+            willFetchRequest(resource: requestUrlString, method: restMethod, headers: requestHeaders, bodyString: requestBodyString)
             fetcher.fetch()
         } else {
             prepare()

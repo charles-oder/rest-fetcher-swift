@@ -8,7 +8,7 @@ class RFRestFetcherTests: XCTestCase {
     override func setUp() {
         let headers: [String: String] = ["header1": "one", "header2": "two"]
         let method = RFMethod.post
-        let body = "{\"thing\":\"one\", \"otherThing\":\"two\"}"
+        let body = "{\"thing\":\"one\", \"otherThing\":\"two\"}".data(using: .utf8)
         testObject = RFRestFetcher(resource: "http://google.com/api/login",
                                  method: method,
                                  headers: headers,
@@ -71,7 +71,7 @@ class RFRestFetcherTests: XCTestCase {
         self.testObject = RFRestFetcher(resource: "",
                                       method: RFMethod.get,
                                       headers: [String: String](),
-                                      body: "",
+                                      body: nil,
                                       logger: RFConsoleLogger(),
                                       timeout: 30,
                                       successCallback: { _ in
@@ -108,7 +108,7 @@ class RFRestFetcherTests: XCTestCase {
         self.testObject = RFRestFetcher(resource: "",
                                       method: RFMethod.get,
                                       headers: [String: String](),
-                                      body: "",
+                                      body: nil,
                                       logger: RFConsoleLogger(),
                                       timeout: 30,
                                       successCallback: { response in
@@ -147,7 +147,7 @@ class RFRestFetcherTests: XCTestCase {
         self.testObject = RFRestFetcher(resource: "",
                                       method: RFMethod.get,
                                       headers: [String: String](),
-                                      body: "",
+                                      body: nil,
                                       logger: RFConsoleLogger(),
                                       timeout: 30,
                                       successCallback: { _ in
@@ -180,7 +180,7 @@ class RFRestFetcherTests: XCTestCase {
         testObject = RFRestFetcher(resource: "",
                                  method: RFMethod.get,
                                  headers: [String: String](),
-                                 body: "",
+                                 body: nil,
                                  logger: RFConsoleLogger(),
                                  timeout: 30,
                                  successCallback: { _ in

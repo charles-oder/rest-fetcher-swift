@@ -5,7 +5,7 @@ public protocol RestFetcherBuilder {
     func createRestFetcher(resource: String,
                            method: RFMethod,
                            headers: [String: String],
-                           body: String,
+                           body: Data?,
                            logger: RFLogger,
                            timeout: TimeInterval,
                            successCallback: @escaping (_ response: RFResponse) -> Void,
@@ -21,7 +21,7 @@ open class RFRestFetcher: NSObject {
         public func createRestFetcher(resource: String,
                                       method: RFMethod,
                                       headers: [String: String],
-                                      body: String,
+                                      body: Data?,
                                       logger: RFLogger,
                                       timeout: TimeInterval,
                                       successCallback: @escaping (_ response: RFResponse) -> Void,
@@ -42,7 +42,7 @@ open class RFRestFetcher: NSObject {
     private let resource: String!
     private let method: RFMethod!
     private let headers: [String: String]
-    private let body: String?
+    private let body: Data?
     private let successCallback: (_ response: RFResponse) -> Void
     private let errorCallback: (_ error: NSError) -> Void
     private var session: URLSession!
@@ -52,7 +52,7 @@ open class RFRestFetcher: NSObject {
     public init(resource: String,
                 method: RFMethod,
                 headers: [String: String],
-                body: String,
+                body: Data?,
                 logger: RFLogger,
                 timeout: TimeInterval,
                 successCallback: @escaping (_ response: RFResponse) -> Void,
@@ -175,8 +175,8 @@ open class RFRestFetcher: NSObject {
     
     private func addBody(_ request: URLRequest) -> URLRequest {
         var updatedRequest = request
-        if let str = body {
-            updatedRequest.httpBody = str.data(using: .utf8)
+        if let data = body {
+            updatedRequest.httpBody = data
         }
         return updatedRequest
     }
@@ -187,7 +187,9 @@ open class RFRestFetcher: NSObject {
         for (key, val) in headers {
             logMessage += "\t\(key): \(val)\n"
         }
-        logMessage += "Body: \(String(describing: body))"
+        if let data = body {
+            logMessage += "Body: \(String(describing: String(data: data, encoding: .utf8)))"
+        }
         logger.debug(logMessage)
     }
     
@@ -195,9 +197,11 @@ open class RFRestFetcher: NSObject {
         
         var logMessage = "Response: \(hashValue) \(method.rawValue) received: \(response.statusCode)\nHeaders:\n"
         for (key, val) in headers {
-            logMessage += "\(key): \(val)"
+            logMessage += "\(key): \(val)\n"
         }
-        logMessage += "\nBody: \(String(describing: body))"
+        if let data = body {
+            logMessage += "Body: \(String(describing: String(data: data, encoding: .utf8)))"
+        }
         logger.debug(logMessage)
     }
     

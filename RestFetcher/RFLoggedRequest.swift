@@ -27,7 +27,7 @@ extension RFRequest: RFLoggedRequest {
         logger.error(buildErrorMessage(error: error))
     }
     
-    func logRequest(resource: String, method: RFMethod, headers: [String: String], body: String) {
+    func logRequest(resource: String, method: RFMethod, headers: [String: String], bodyString: String?) {
         logger.debug(buildRequestLogMessage())
     }
     
@@ -37,7 +37,7 @@ extension RFRequest: RFLoggedRequest {
             logMessage += "\t\(key): \(val)\n"
         }
         do {
-            let requestBodyLogMessageScrubbed = try RFDataScrubber(keysToScrub: keysToScrub).scrub(json: requestBody) ?? ""
+            let requestBodyLogMessageScrubbed = try RFDataScrubber(keysToScrub: keysToScrub).scrub(json: requestBodyString) ?? ""
             logMessage += "Request Body: \(requestBodyLogMessageScrubbed)\n"
             return logMessage
         } catch {

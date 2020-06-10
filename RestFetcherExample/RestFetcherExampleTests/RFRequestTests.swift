@@ -33,9 +33,19 @@ class RFRequestTests: XCTestCase {
     }
     
     func testBody() {
-        let expectedBody = ""
-        let actualBody = testRequest?.requestBody
-        XCTAssertEqual(actualBody, expectedBody)
+        let actualBody = testRequest?.requestBodyString
+        
+        XCTAssertNil(actualBody)
+    }
+    
+    func testConvertingStringToData() {
+        testRequest?.testBodyString = "test"
+        
+        
+        let actualBody = testRequest?.requestBodyData
+        XCTAssertNotNil(actualBody)
+        XCTAssertEqual("test", String(data: actualBody ?? Data(), encoding: .utf8))
+
     }
     
     // swiftlint:disable nesting
@@ -52,7 +62,7 @@ class RFRequestTests: XCTestCase {
         var expectedDict = [String: Any?]()
         expectedDict["key1"] = "value1"
         XCTAssertEqual(expectedDict.count, 1)
-        XCTAssertEqual("{\"key1\":\"value1\"}", testRequest?.requestBody)
+        XCTAssertEqual("{\"key1\":\"value1\"}", testRequest?.requestBodyString)
     }
     
     func testEmptyBodyDict() {
@@ -121,7 +131,7 @@ class RFRequestTests: XCTestCase {
                 super.init(resource: "",
                            method: RFMethod.get,
                            headers: [String: String](),
-                           body: "",
+                           body: nil,
                            logger: RFConsoleLogger(),
                            timeout: 30,
                            successCallback: { _ in },
@@ -138,7 +148,7 @@ class RFRequestTests: XCTestCase {
             fileprivate func createRestFetcher(resource: String,
                                                method: RFMethod,
                                                headers: [String: String],
-                                               body: String,
+                                               body: Data?,
                                                logger: RFLogger,
                                                timeout: TimeInterval,
                                                successCallback: @escaping (RFResponse) -> Void,
@@ -205,7 +215,7 @@ class RFRequestTests: XCTestCase {
     func testWillFetchRequest() {
         class TestRequest: ConcreteRestRequest {
             var callCount = 0
-            override func willFetchRequest(resource: String, method: RFMethod, headers: [String: String], body: String) {
+            override func willFetchRequest(resource: String, method: RFMethod, headers: [String: String], bodyString: String?) {
                 callCount += 1
             }
         }
@@ -233,6 +243,8 @@ open class ConcreteRestRequest2: ConcreteRestRequest {
 }
 
 open class ConcreteRestRequest: RFRequest<RFVoidResponse> {
+    
+    var testBodyString: String?
 
     open override var domain: String {
         return "http://google.com"
@@ -240,6 +252,10 @@ open class ConcreteRestRequest: RFRequest<RFVoidResponse> {
     
     open override var rootPath: String {
         return "/api"
+    }
+    
+    open override var requestBodyString: String? {
+        return testBodyString ?? super.requestBodyString
     }
     
     open override var requestHeaders: [String: String] {
